@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.1.5)  6 JAN 2011 13:35
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=latex 2011.1.6)  6 JAN 2011 13:38
 entering extended mode
 **analyse-design.tex
 ("C:\DTU\HWSW Rapport\Rapport\content\analyse-design.tex"
@@ -123,7 +123,7 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 3--4
 
 ! Undefined control sequence.
 l.5 \billede
-            {!htbp}{1}{LC-3 System}{LC-3 System}
+            {!htbp}{1}{LC3-System}{LC-3 System}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -138,7 +138,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.5 \billede{!
-              htbp}{1}{LC-3 System}{LC-3 System}
+              htbp}{1}{LC3-System}{LC-3 System}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -150,8 +150,8 @@ Missing character: There is no p in font nullfont!
 Missing character: There is no 1 in font nullfont!
 Missing character: There is no L in font nullfont!
 Missing character: There is no C in font nullfont!
-Missing character: There is no - in font nullfont!
 Missing character: There is no 3 in font nullfont!
+Missing character: There is no - in font nullfont!
 Missing character: There is no S in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no s in font nullfont!
@@ -176,11 +176,11 @@ Missing character: There is no m in font nullfont!
 
  
 Here is how much of TeX's memory you used:
- 7 strings out of 494019
- 230 string characters out of 3148165
+ 7 strings out of 494020
+ 230 string characters out of 3148188
  48862 words of memory out of 3000000
  3395 multiletter control sequences out of 15000+200000
  3640 words of font info for 14 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  5i,0n,4p,82b,16s stack positions out of 5000i,500n,10000p,200000b,50000s
-!  ==> Fatal error occurred, no output PDF file produced!
+No pages of output.
