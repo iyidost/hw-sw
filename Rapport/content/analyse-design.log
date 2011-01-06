@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=latex 2011.1.6)  6 JAN 2011 13:38
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=latex 2011.1.6)  6 JAN 2011 13:40
 entering extended mode
 **analyse-design.tex
 ("C:\DTU\HWSW Rapport\Rapport\content\analyse-design.tex"
@@ -123,7 +123,7 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 3--4
 
 ! Undefined control sequence.
 l.5 \billede
-            {!htbp}{1}{LC3-System}{LC-3 System}
+            {!htbp}{1}{LC3-System}{Figur xx:LC-3 System}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -138,7 +138,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.5 \billede{!
-              htbp}{1}{LC3-System}{LC-3 System}
+              htbp}{1}{LC3-System}{Figur xx:LC-3 System}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -158,6 +158,14 @@ Missing character: There is no s in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no m in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no : in font nullfont!
 Missing character: There is no L in font nullfont!
 Missing character: There is no C in font nullfont!
 Missing character: There is no - in font nullfont!
