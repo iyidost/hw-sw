@@ -6,7 +6,7 @@ C:\PROGRA~1\Xilinx\10.1\ISE.
 speed -7
 Opened constraints file system_complete.pcf.
 
-Wed Jan 12 13:17:37 2011
+Wed Jan 12 18:21:50 2011
 
 C:\PROGRA~1\Xilinx\10.1\ISE\bin\nt\unwrapped\bitgen.exe -intstyle ise -w -g DebugBitstream:No -g Binary:no -g CRC:Enable -g ConfigRate:4 -g CclkPin:PullUp -g M0Pin:PullUp -g M1Pin:PullUp -g M2Pin:PullUp -g ProgPin:PullUp -g DonePin:PullUp -g PowerdownPin:PullUp -g TckPin:PullUp -g TdiPin:PullUp -g TdoPin:PullNone -g TmsPin:PullUp -g UnusedPin:PullDown -g UserID:0xFFFFFFFF -g DCMShutdown:Disable -g DisableBandgap:No -g DCIUpdateMode:AsRequired -g StartUpClk:CClk -g DONE_cycle:4 -g GTS_cycle:5 -g GWE_cycle:6 -g LCK_cycle:NoWait -g Match_cycle:Auto -g Security:None -g DonePipe:No -g DriveDone:No -g Encrypt:No system_complete.ncd 
 
@@ -141,6 +141,10 @@ Summary of Bitgen Options:
  ** The specified setting matches the default setting.
 
 Running DRC.
+WARNING:PhysDesignRules:367 - The signal <mb_btn_i<0>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <mb_btn_i<2>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <mb_sw_i<0>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <mb_sw_i<1>_IBUF> is incomplete. The
@@ -148,10 +152,6 @@ WARNING:PhysDesignRules:367 - The signal <mb_sw_i<1>_IBUF> is incomplete. The
 WARNING:PhysDesignRules:367 - The signal <mb_sw_i<2>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <mb_sw_i<3>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <mb_btn_i<0>_IBUF> is incomplete. The
-   signal does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <mb_btn_i<2>_IBUF> is incomplete. The
    signal does not drive any load pins in the design.
 DRC detected 0 errors and 6 warnings.  Please see the previously displayed
 individual error or warning messages for more details.

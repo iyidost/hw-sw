@@ -5,6 +5,12 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="warning" file="Par" num="288" delta="unknown" >The signal <arg fmt="%s" index="1">mb_btn_i&lt;0&gt;_IBUF</arg> has no load.  PAR will not attempt to route this signal.
+</msg>
+
+<msg type="warning" file="Par" num="288" delta="unknown" >The signal <arg fmt="%s" index="1">mb_btn_i&lt;2&gt;_IBUF</arg> has no load.  PAR will not attempt to route this signal.
+</msg>
+
 <msg type="warning" file="Par" num="288" delta="unknown" >The signal <arg fmt="%s" index="1">mb_sw_i&lt;0&gt;_IBUF</arg> has no load.  PAR will not attempt to route this signal.
 </msg>
 
@@ -15,12 +21,6 @@
 </msg>
 
 <msg type="warning" file="Par" num="288" delta="unknown" >The signal <arg fmt="%s" index="1">mb_sw_i&lt;3&gt;_IBUF</arg> has no load.  PAR will not attempt to route this signal.
-</msg>
-
-<msg type="warning" file="Par" num="288" delta="unknown" >The signal <arg fmt="%s" index="1">mb_btn_i&lt;0&gt;_IBUF</arg> has no load.  PAR will not attempt to route this signal.
-</msg>
-
-<msg type="warning" file="Par" num="288" delta="unknown" >The signal <arg fmt="%s" index="1">mb_btn_i&lt;2&gt;_IBUF</arg> has no load.  PAR will not attempt to route this signal.
 </msg>
 
 <msg type="warning" file="Par" num="283" delta="unknown" >There are <arg fmt="%d" index="1">6</arg> loadless signals in this design. This design will cause Bitgen to issue DRC warnings.

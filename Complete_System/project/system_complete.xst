@@ -1,5 +1,5 @@
-set -tmpdir "C:/Documents and Settings/s000536/Desktop/complete_system/xst/projnav.tmp"
-set -xsthdpdir "C:/Documents and Settings/s000536/Desktop/complete_system/xst"
+set -tmpdir "C:/Documents and Settings/s000536/Desktop/lc3_project/xst/projnav.tmp"
+set -xsthdpdir "C:/Documents and Settings/s000536/Desktop/lc3_project/xst"
 run
 -ifn system_complete.prj
 -ifmt mixed

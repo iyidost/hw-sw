@@ -1,16 +1,16 @@
 Release 10.1.02 - xst K.37 (nt)
 Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
---> Parameter TMPDIR set to C:/Documents and Settings/s000536/Desktop/complete_system/xst/projnav.tmp
+--> Parameter TMPDIR set to C:/Documents and Settings/s000536/Desktop/lc3_project/xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.32 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.08 secs
  
---> Parameter xsthdpdir set to C:/Documents and Settings/s000536/Desktop/complete_system/xst
+--> Parameter xsthdpdir set to C:/Documents and Settings/s000536/Desktop/lc3_project/xst
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.33 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.08 secs
  
 --> Reading design: system_complete.prj
 
@@ -107,46 +107,43 @@ Slice Utilization Ratio Delta      : 5
 *                          HDL Compilation                              *
 =========================================================================
 Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/baud_gen.vhd" in Library work.
-Entity <mod_m_counter> compiled.
-Entity <mod_m_counter> (Architecture <arch>) compiled.
+Architecture arch of Entity mod_m_counter is up to date.
 Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart_rx.vhd" in Library work.
-Entity <uart_rx> compiled.
-Entity <uart_rx> (Architecture <arch>) compiled.
+Architecture arch of Entity uart_rx is up to date.
 Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/fifo.vhd" in Library work.
-Entity <fifo> compiled.
-Entity <fifo> (Architecture <arch>) compiled.
+Architecture arch of Entity fifo is up to date.
 Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart_tx.vhd" in Library work.
-Entity <uart_tx> compiled.
-Entity <uart_tx> (Architecture <arch>) compiled.
-Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart.vhd" in Library work.
-Entity <uart> compiled.
-Entity <uart> (Architecture <str_arch>) compiled.
-Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/memory.vhd" in Library work.
-Entity <memory> compiled.
-Entity <memory> (Architecture <beh_arch>) compiled.
+Architecture arch of Entity uart_tx is up to date.
+Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_sync.vhd" in Library work.
+Architecture arch of Entity vga_sync is up to date.
+Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_rom_color.vhd" in Library work.
+Architecture arch of Entity vga_rom_color is up to date.
+Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_rom_tile.vhd" in Library work.
+Architecture arch of Entity vga_rom_tile is up to date.
 Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/ClockDivider-DCM.vhd" in Library work.
-Entity <ClockDivider> compiled.
-Entity <ClockDivider> (Architecture <DCM>) compiled.
+Architecture dcm of Entity clockdivider is up to date.
+Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart.vhd" in Library work.
+Architecture str_arch of Entity uart is up to date.
+Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/memory.vhd" in Library work.
+Architecture beh_arch of Entity memory is up to date.
 Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/memory_wrapper.vhd" in Library work.
-Entity <memory_wrapper> compiled.
-Entity <memory_wrapper> (Architecture <Behavioral>) compiled.
+Architecture behavioral of Entity memory_wrapper is up to date.
 Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/disp_hex.vhd" in Library work.
-Entity <disp_hex_mux> compiled.
-Entity <disp_hex_mux> (Architecture <arch>) compiled.
+Architecture arch of Entity disp_hex_mux is up to date.
 Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart_wrapper.vhd" in Library work.
-Entity <uart_wrapper> compiled.
-Entity <uart_wrapper> (Architecture <Behavioral>) compiled.
+Architecture behavioral of Entity uart_wrapper is up to date.
 Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/steeringwheel_ad.vhd" in Library work.
-Entity <steeringwheel_ad> compiled.
-Entity <steeringwheel_ad> (Architecture <AD1>) compiled.
+Architecture ad1 of Entity steeringwheel_ad is up to date.
+Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_wrapper.vhd" in Library work.
+Entity <vga_wrapper> compiled.
+Entity <vga_wrapper> (Architecture <behavioral>) compiled.
 Compiling vhdl file "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/top_template-advanced.vhd" in Library work.
-Entity <system_complete> compiled.
-Entity <system_complete> (Architecture <Behavioral>) compiled.
+Architecture behavioral of Entity system_complete is up to date.
 
 =========================================================================
 *                     Design Hierarchy Analysis                         *
 =========================================================================
-Analyzing hierarchy for entity <system_complete> in library <work> (architecture <Behavioral>).
+Analyzing hierarchy for entity <system_complete> in library <work> (architecture <behavioral>).
 
 Analyzing hierarchy for entity <ClockDivider> in library <work> (architecture <DCM>) with generics.
 	div = 1.000000
@@ -159,6 +156,8 @@ Analyzing hierarchy for entity <uart_wrapper> in library <work> (architecture <B
 
 Analyzing hierarchy for entity <steeringwheel_ad> in library <work> (architecture <AD1>).
 
+Analyzing hierarchy for entity <vga_wrapper> in library <work> (architecture <Behavioral>).
+
 Analyzing hierarchy for entity <memory> in library <work> (architecture <beh_arch>) with generics.
 	ADDR_WIDTH = 16
 	DATA_WIDTH = 16
@@ -169,6 +168,15 @@ Analyzing hierarchy for entity <uart> in library <work> (architecture <str_arch>
 	DVSR_BIT = 8
 	FIFO_W = 2
 	SB_TICK = 16
+
+Analyzing hierarchy for entity <vga_sync> in library <work> (architecture <arch>).
+
+Analyzing hierarchy for entity <vga_rom_color> in library <work> (architecture <arch>).
+
+Analyzing hierarchy for entity <vga_rom_tile> in library <work> (architecture <arch>).
+
+Analyzing hierarchy for entity <ClockDivider> in library <work> (architecture <DCM>) with generics.
+	div = 2.000000
 
 Analyzing hierarchy for entity <mod_m_counter> in library <work> (architecture <arch>) with generics.
 	M = 54
@@ -190,13 +198,13 @@ Analyzing hierarchy for entity <uart_tx> in library <work> (architecture <arch>)
 =========================================================================
 *                            HDL Analysis                               *
 =========================================================================
-Analyzing Entity <system_complete> in library <work> (Architecture <Behavioral>).
+Analyzing Entity <system_complete> in library <work> (Architecture <behavioral>).
 WARNING:Xst:2211 - "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/top_template-advanced.vhd" line 222: Instantiating black box module <lc3>.
 Entity <system_complete> analyzed. Unit <system_complete> generated.
 
-Analyzing generic Entity <ClockDivider> in library <work> (Architecture <DCM>).
+Analyzing generic Entity <ClockDivider.1> in library <work> (Architecture <DCM>).
 	div = 1.000000
-Entity <ClockDivider> analyzed. Unit <ClockDivider> generated.
+Entity <ClockDivider.1> analyzed. Unit <ClockDivider.1> generated.
 
 Analyzing Entity <memory_wrapper> in library <work> (Architecture <Behavioral>).
 Entity <memory_wrapper> analyzed. Unit <memory_wrapper> generated.
@@ -245,6 +253,41 @@ Entity <uart_tx> analyzed. Unit <uart_tx> generated.
 Analyzing Entity <steeringwheel_ad> in library <work> (Architecture <AD1>).
 Entity <steeringwheel_ad> analyzed. Unit <steeringwheel_ad> generated.
 
+Analyzing Entity <vga_wrapper> in library <work> (Architecture <Behavioral>).
+WARNING:Xst:753 - "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_wrapper.vhd" line 63: Unconnected output port 'p_tick' of component 'vga_sync'.
+WARNING:Xst:819 - "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_wrapper.vhd" line 100: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <clk_out>
+Entity <vga_wrapper> analyzed. Unit <vga_wrapper> generated.
+
+Analyzing Entity <vga_sync> in library <work> (Architecture <arch>).
+Entity <vga_sync> analyzed. Unit <vga_sync> generated.
+
+Analyzing Entity <vga_rom_color> in library <work> (Architecture <arch>).
+Entity <vga_rom_color> analyzed. Unit <vga_rom_color> generated.
+
+Analyzing Entity <vga_rom_tile> in library <work> (Architecture <arch>).
+Entity <vga_rom_tile> analyzed. Unit <vga_rom_tile> generated.
+
+Analyzing generic Entity <ClockDivider.2> in library <work> (Architecture <DCM>).
+	div = 2.000000
+    Set user-defined property "CLKDV_DIVIDE =  2.0000000000000000" for instance <divide.DCM_INST> in unit <ClockDivider.2>.
+    Set user-defined property "CLKFX_DIVIDE =  1" for instance <divide.DCM_INST> in unit <ClockDivider.2>.
+    Set user-defined property "CLKFX_MULTIPLY =  4" for instance <divide.DCM_INST> in unit <ClockDivider.2>.
+    Set user-defined property "CLKIN_DIVIDE_BY_2 =  FALSE" for instance <divide.DCM_INST> in unit <ClockDivider.2>.
+    Set user-defined property "CLKIN_PERIOD =  10.0000000000000000" for instance <divide.DCM_INST> in unit <ClockDivider.2>.
+    Set user-defined property "CLKOUT_PHASE_SHIFT =  NONE" for instance <divide.DCM_INST> in unit <ClockDivider.2>.
+    Set user-defined property "CLK_FEEDBACK =  1X" for instance <divide.DCM_INST> in unit <ClockDivider.2>.
+    Set user-defined property "DESKEW_ADJUST =  SYSTEM_SYNCHRONOUS" for instance <divide.DCM_INST> in unit <ClockDivider.2>.
+    Set user-defined property "DFS_FREQUENCY_MODE =  LOW" for instance <divide.DCM_INST> in unit <ClockDivider.2>.
+    Set user-defined property "DLL_FREQUENCY_MODE =  LOW" for instance <divide.DCM_INST> in unit <ClockDivider.2>.
+    Set user-defined property "DSS_MODE =  NONE" for instance <divide.DCM_INST> in unit <ClockDivider.2>.
+    Set user-defined property "DUTY_CYCLE_CORRECTION =  TRUE" for instance <divide.DCM_INST> in unit <ClockDivider.2>.
+    Set user-defined property "FACTORY_JF =  C080" for instance <divide.DCM_INST> in unit <ClockDivider.2>.
+    Set user-defined property "PHASE_SHIFT =  0" for instance <divide.DCM_INST> in unit <ClockDivider.2>.
+    Set user-defined property "SIM_MODE =  SAFE" for instance <divide.DCM_INST> in unit <ClockDivider.2>.
+    Set user-defined property "STARTUP_WAIT =  FALSE" for instance <divide.DCM_INST> in unit <ClockDivider.2>.
+Entity <ClockDivider.2> analyzed. Unit <ClockDivider.2> generated.
+
 
 =========================================================================
 *                           HDL Synthesis                               *
@@ -252,9 +295,9 @@ Entity <steeringwheel_ad> analyzed. Unit <steeringwheel_ad> generated.
 
 Performing bidirectional port resolution...
 
-Synthesizing Unit <ClockDivider>.
+Synthesizing Unit <ClockDivider_1>.
     Related source file is "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/ClockDivider-DCM.vhd".
-Unit <ClockDivider> synthesized.
+Unit <ClockDivider_1> synthesized.
 
 
 Synthesizing Unit <disp_hex_mux>.
@@ -401,6 +444,46 @@ Synthesizing Unit <uart_tx>.
 Unit <uart_tx> synthesized.
 
 
+Synthesizing Unit <vga_sync>.
+    Related source file is "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_sync.vhd".
+    Found 10-bit up counter for signal <h_count_reg>.
+    Found 10-bit comparator greatequal for signal <h_sync_next$cmp_ge0000> created at line 94.
+    Found 10-bit comparator lessequal for signal <h_sync_next$cmp_le0000> created at line 94.
+    Found 1-bit register for signal <h_sync_reg>.
+    Found 1-bit register for signal <mod2_reg>.
+    Found 10-bit up counter for signal <v_count_reg>.
+    Found 10-bit comparator greatequal for signal <v_sync_next$cmp_ge0000> created at line 98.
+    Found 10-bit comparator lessequal for signal <v_sync_next$cmp_le0000> created at line 98.
+    Found 1-bit register for signal <v_sync_reg>.
+    Found 10-bit comparator less for signal <VGA_OUT_BLANK_Z$cmp_lt0000> created at line 103.
+    Found 10-bit comparator less for signal <VGA_OUT_BLANK_Z$cmp_lt0001> created at line 103.
+    Summary:
+	inferred   2 Counter(s).
+	inferred   3 D-type flip-flop(s).
+	inferred   6 Comparator(s).
+Unit <vga_sync> synthesized.
+
+
+Synthesizing Unit <vga_rom_color>.
+    Related source file is "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_rom_color.vhd".
+    Found 32x16-bit ROM for signal <data$rom0000> created at line 49.
+    Found 5-bit register for signal <addr_reg>.
+    Summary:
+	inferred   1 ROM(s).
+	inferred   5 D-type flip-flop(s).
+Unit <vga_rom_color> synthesized.
+
+
+Synthesizing Unit <vga_rom_tile>.
+    Related source file is "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_rom_tile.vhd".
+    Found 512x16-bit ROM for signal <data$rom0000> created at line 97.
+    Found 9-bit register for signal <addr_reg>.
+    Summary:
+	inferred   1 ROM(s).
+	inferred   9 D-type flip-flop(s).
+Unit <vga_rom_tile> synthesized.
+
+
 Synthesizing Unit <memory_wrapper>.
     Related source file is "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/memory_wrapper.vhd".
     Found 16-bit tristate buffer for signal <data_inout>.
@@ -417,6 +500,11 @@ Synthesizing Unit <uart>.
 Unit <uart> synthesized.
 
 
+Synthesizing Unit <ClockDivider_2>.
+    Related source file is "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/ClockDivider-DCM.vhd".
+Unit <ClockDivider_2> synthesized.
+
+
 Synthesizing Unit <uart_wrapper>.
     Related source file is "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart_wrapper.vhd".
     Found 16-bit tristate buffer for signal <$mux0000>.
@@ -425,16 +513,27 @@ Synthesizing Unit <uart_wrapper>.
 Unit <uart_wrapper> synthesized.
 
 
+Synthesizing Unit <vga_wrapper>.
+    Related source file is "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_wrapper.vhd".
+WARNING:Xst:646 - Signal <vga_tile_line> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <vga_tile_color> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <vga_data_line> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <vga_addr> is used but never assigned. This sourceless signal will be automatically connected to value 000000000.
+    Register <g_out_reg> equivalent to <b_out_reg> has been removed
+    Register <r_out_reg> equivalent to <b_out_reg> has been removed
+    Found 8-bit register for signal <b_out_reg>.
+    Found 10-bit comparator greater for signal <r_out_reg$cmp_gt0000> created at line 106.
+    Found 10-bit comparator greater for signal <r_out_reg$cmp_gt0001> created at line 106.
+    Found 10-bit comparator less for signal <r_out_reg$cmp_lt0000> created at line 106.
+    Found 10-bit comparator less for signal <r_out_reg$cmp_lt0001> created at line 106.
+    Summary:
+	inferred   8 D-type flip-flop(s).
+	inferred   4 Comparator(s).
+Unit <vga_wrapper> synthesized.
+
+
 Synthesizing Unit <system_complete>.
     Related source file is "//w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/top_template-advanced.vhd".
-WARNING:Xst:1306 - Output <b_out> is never assigned.
-WARNING:Xst:1306 - Output <vsync_out> is never assigned.
-WARNING:Xst:1306 - Output <g_out> is never assigned.
-WARNING:Xst:1306 - Output <blank_out> is never assigned.
-WARNING:Xst:1306 - Output <pixelclk_out> is never assigned.
-WARNING:Xst:1306 - Output <comp_synch> is never assigned.
-WARNING:Xst:1306 - Output <hsync_out> is never assigned.
-WARNING:Xst:1306 - Output <r_out> is never assigned.
 WARNING:Xst:1780 - Signal <mem_WE> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <mem_RE> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <mb_sw> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
@@ -455,6 +554,10 @@ WARNING:Xst:646 - Signal <MCR_reg<14:0>> is assigned but never used. This unconn
 Unit <system_complete> synthesized.
 
 INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+WARNING:Xst:524 - All outputs of the instance <vga_rom_color> of the block <vga_rom_color> are unconnected in block <vga_wrapper>.
+   This instance will be removed from the design along with all underlying logic
+WARNING:Xst:524 - All outputs of the instance <vga_rom_tile> of the block <vga_rom_tile> are unconnected in block <vga_wrapper>.
+   This instance will be removed from the design along with all underlying logic
 
 =========================================================================
 HDL Synthesis Report
@@ -469,19 +572,24 @@ Macro Statistics
  3-bit adder                                           : 2
  4-bit adder                                           : 2
  8-bit adder                                           : 1
-# Counters                                             : 3
+# Counters                                             : 5
+ 10-bit up counter                                     : 2
  18-bit up counter                                     : 1
  3-bit up counter                                      : 1
  4-bit up counter                                      : 1
-# Registers                                            : 31
- 1-bit register                                        : 9
+# Registers                                            : 35
+ 1-bit register                                        : 12
  12-bit register                                       : 1
  16-bit register                                       : 2
  2-bit register                                        : 4
  3-bit register                                        : 2
  4-bit register                                        : 2
- 8-bit register                                        : 11
-# Comparators                                          : 6
+ 8-bit register                                        : 12
+# Comparators                                          : 16
+ 10-bit comparator greatequal                          : 2
+ 10-bit comparator greater                             : 2
+ 10-bit comparator less                                : 4
+ 10-bit comparator lessequal                           : 2
  16-bit comparator greater                             : 1
  16-bit comparator less                                : 1
  2-bit comparator equal                                : 4
@@ -558,6 +666,13 @@ WARNING:Xst:2677 - Node <temp1_12> of sequential type is unconnected in block <s
 WARNING:Xst:2677 - Node <temp1_13> of sequential type is unconnected in block <steeringwheel_ad>.
 WARNING:Xst:2677 - Node <temp1_14> of sequential type is unconnected in block <steeringwheel_ad>.
 WARNING:Xst:2677 - Node <temp1_15> of sequential type is unconnected in block <steeringwheel_ad>.
+WARNING:Xst:1710 - FF/Latch <b_out_reg_0> (without init value) has a constant value of 0 in block <vga_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <b_out_reg_1> (without init value) has a constant value of 0 in block <vga_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <b_out_reg_2> (without init value) has a constant value of 0 in block <vga_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <b_out_reg_3> (without init value) has a constant value of 0 in block <vga_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <b_out_reg_4> (without init value) has a constant value of 0 in block <vga_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <b_out_reg_5> (without init value) has a constant value of 0 in block <vga_wrapper>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <b_out_reg_6> (without init value) has a constant value of 0 in block <vga_wrapper>. This FF/Latch will be trimmed during the optimization process.
 
 =========================================================================
 Advanced HDL Synthesis Report
@@ -572,13 +687,18 @@ Macro Statistics
  3-bit adder                                           : 2
  4-bit adder                                           : 2
  8-bit adder                                           : 1
-# Counters                                             : 3
+# Counters                                             : 5
+ 10-bit up counter                                     : 2
  18-bit up counter                                     : 1
  3-bit up counter                                      : 1
  4-bit up counter                                      : 1
-# Registers                                            : 149
- Flip-Flops                                            : 149
-# Comparators                                          : 6
+# Registers                                            : 153
+ Flip-Flops                                            : 153
+# Comparators                                          : 16
+ 10-bit comparator greatequal                          : 2
+ 10-bit comparator greater                             : 2
+ 10-bit comparator less                                : 4
+ 10-bit comparator lessequal                           : 2
  16-bit comparator greater                             : 1
  16-bit comparator less                                : 1
  2-bit comparator equal                                : 4
@@ -613,13 +733,15 @@ Optimizing unit <fifo> ...
 
 Optimizing unit <uart_tx> ...
 
+Optimizing unit <vga_sync> ...
+
 Optimizing unit <memory_wrapper> ...
 
 Optimizing unit <uart_wrapper> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block system_complete, actual ratio is 10.
+Found area constraint ratio of 100 (+ 5) on block system_complete, actual ratio is 11.
 INFO:Xst:2260 - The FF/Latch <instr_6> in Unit <lc3_1> is equivalent to the following FF/Latch : <instr_6_1> 
 INFO:Xst:2260 - The FF/Latch <instr_7> in Unit <lc3_1> is equivalent to the following FF/Latch : <instr_7_1> 
 INFO:Xst:2260 - The FF/Latch <instr_0> in Unit <lc3_1> is equivalent to the following 3 FFs/Latches : <instr_0_1> <instr_0_2> <instr_0_3> 
@@ -639,8 +761,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 176
- Flip-Flops                                            : 176
+# Registers                                            : 200
+ Flip-Flops                                            : 200
 
 =========================================================================
 
@@ -669,29 +791,29 @@ Design Statistics
 # IOs                              : 82
 
 Cell Usage :
-# BELS                             : 3400
+# BELS                             : 3505
 #      GND                         : 3
-#      INV                         : 46
-#      LUT1                        : 36
-#      LUT2                        : 183
+#      INV                         : 49
+#      LUT1                        : 54
+#      LUT2                        : 206
 #      LUT2_D                      : 4
 #      LUT2_L                      : 20
-#      LUT3                        : 801
-#      LUT3_D                      : 49
+#      LUT3                        : 806
+#      LUT3_D                      : 48
 #      LUT3_L                      : 32
-#      LUT4                        : 875
+#      LUT4                        : 893
 #      LUT4_D                      : 53
 #      LUT4_L                      : 105
 #      MULT_AND                    : 17
-#      MUXCY                       : 456
-#      MUXF5                       : 218
+#      MUXCY                       : 474
+#      MUXF5                       : 219
 #      MUXF6                       : 48
 #      VCC                         : 3
-#      XORCY                       : 451
-# FlipFlops/Latches                : 1340
+#      XORCY                       : 471
+# FlipFlops/Latches                : 1364
 #      FD                          : 910
-#      FDC                         : 67
-#      FDCE                        : 95
+#      FDC                         : 71
+#      FDCE                        : 115
 #      FDE                         : 238
 #      FDP                         : 3
 #      FDPE                        : 5
@@ -704,12 +826,14 @@ Cell Usage :
 #      SRL16                       : 2
 # Tri-States                       : 144
 #      BUFT                        : 144
-# Clock Buffers                    : 2
-#      BUFG                        : 1
-#      BUFGP                       : 1
-# IO Buffers                       : 46
+# Clock Buffers                    : 4
+#      BUFG                        : 4
+# IO Buffers                       : 76
 #      IBUF                        : 18
-#      OBUF                        : 28
+#      IBUFG                       : 1
+#      OBUF                        : 57
+# DCMs                             : 1
+#      DCM                         : 1
 # MULTs                            : 1
 #      MULT18X18                   : 1
 =========================================================================
@@ -719,17 +843,18 @@ Device utilization summary:
 
 Selected Device : 2vp30ff896-7 
 
- Number of Slices:                     1471  out of  13696    10%  
- Number of Slice Flip Flops:           1340  out of  27392     4%  
- Number of 4 input LUTs:               2206  out of  27392     8%  
-    Number used as logic:              2204
+ Number of Slices:                     1501  out of  13696    10%  
+ Number of Slice Flip Flops:           1364  out of  27392     4%  
+ Number of 4 input LUTs:               2272  out of  27392     8%  
+    Number used as logic:              2270
     Number used as Shift registers:       2
  Number of IOs:                          82
- Number of bonded IOBs:                  47  out of    556     8%  
+ Number of bonded IOBs:                  76  out of    556    13%  
  Number of TBUFs:                       144  out of   6848     2%  
  Number of BRAMs:                        64  out of    136    47%  
  Number of MULT18X18s:                    1  out of    136     0%  
- Number of GCLKs:                         2  out of     16    12%  
+ Number of GCLKs:                         4  out of     16    25%  
+ Number of DCMs:                          1  out of      8    12%  
 
 ---------------------------
 Partition Resource Summary:
@@ -749,20 +874,21 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
------------------------------------+------------------------+-------+
-Clock Signal                       | Clock buffer(FF name)  | Load  |
------------------------------------+------------------------+-------+
-clk100                             | BUFGP                  | 1312  |
-steeringwheel_ad/clk_counter_21    | BUFG                   | 30    |
------------------------------------+------------------------+-------+
+-----------------------------------+----------------------------------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)                              | Load  |
+-----------------------------------+----------------------------------------------------+-------+
+clk100                             | IBUFG+BUFG                                         | 1312  |
+clk100                             | vga_wrapper/ClockDivider_unit/divide.DCM_INST:CLKDV| 24    |
+steeringwheel_ad/clk_counter_21    | BUFG                                               | 30    |
+-----------------------------------+----------------------------------------------------+-------+
 
 Asynchronous Control Signals Information:
 ----------------------------------------
------------------------------------+------------------------+-------+
-Control Signal                     | Buffer(FF name)        | Load  |
------------------------------------+------------------------+-------+
-mb_btn<4>(mb_btn<4>1_INV_0:O)      | NONE(lc3_1/pc_4)       | 170   |
------------------------------------+------------------------+-------+
+-----------------------------------+---------------------------+-------+
+Control Signal                     | Buffer(FF name)           | Load  |
+-----------------------------------+---------------------------+-------+
+mb_btn<4>(mb_btn<4>1_INV_0:O)      | NONE(disp_hex_mux/q_reg_7)| 194   |
+-----------------------------------+---------------------------+-------+
 
 Timing Summary:
 ---------------
@@ -770,7 +896,7 @@ Speed Grade: -7
 
    Minimum period: 8.906ns (Maximum Frequency: 112.280MHz)
    Minimum input arrival time before clock: 6.229ns
-   Maximum output required time after clock: 10.375ns
+   Maximum output required time after clock: 10.198ns
    Maximum combinational path delay: 7.477ns
 
 Timing Detail:
@@ -780,7 +906,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk100'
   Clock period: 8.906ns (frequency: 112.280MHz)
-  Total number of paths / destination ports: 354913 / 1622
+  Total number of paths / destination ports: 355386 / 1666
 -------------------------------------------------------------------------
 Delay:               8.906ns (Levels of Logic = 13)
   Source:            lc3_1/instr_0_2 (FF)
@@ -864,7 +990,7 @@ Offset:              6.229ns (Levels of Logic = 9)
 Timing constraint: Default OFFSET IN BEFORE for Clock 'steeringwheel_ad/clk_counter_21'
   Total number of paths / destination ports: 3 / 3
 -------------------------------------------------------------------------
-Offset:              2.942ns (Levels of Logic = 2)
+Offset:              2.976ns (Levels of Logic = 2)
   Source:            mb_btn_i<4> (PAD)
   Destination:       steeringwheel_ad/current_state_FSM_FFd1 (FF)
   Destination Clock: steeringwheel_ad/clk_counter_21 rising
@@ -874,17 +1000,17 @@ Offset:              2.942ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O             2   0.878   0.378  mb_btn_i_4_IBUF (mb_btn<4>_inv)
-     INV:I->O            175   0.275   0.874  mb_btn<4>1_INV_0 (mb_btn<4>)
+     INV:I->O            199   0.275   0.909  mb_btn<4>1_INV_0 (mb_btn<4>)
      FDR:R                     0.536          steeringwheel_ad/current_state_FSM_FFd1
     ----------------------------------------
-    Total                      2.942ns (1.689ns logic, 1.253ns route)
-                                       (57.4% logic, 42.6% route)
+    Total                      2.976ns (1.689ns logic, 1.287ns route)
+                                       (56.8% logic, 43.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'steeringwheel_ad/clk_counter_21'
   Total number of paths / destination ports: 97 / 12
 -------------------------------------------------------------------------
-Offset:              7.445ns (Levels of Logic = 7)
+Offset:              7.327ns (Levels of Logic = 7)
   Source:            steeringwheel_ad/current_state_FSM_FFd2 (FF)
   Destination:       seg<2> (PAD)
   Source Clock:      steeringwheel_ad/clk_counter_21 rising
@@ -895,44 +1021,44 @@ Offset:              7.445ns (Levels of Logic = 7)
     ----------------------------------------  ------------
      FDRS:C->Q             4   0.370   0.413  steeringwheel_ad/current_state_FSM_FFd2 (steeringwheel_ad/current_state_FSM_FFd2)
      INV:I->O              1   0.275   0.332  steeringwheel_ad/current_state_FSM_Out01_INV_0 (steer_wheel_done)
-     BUFT:I->O             6   0.472   0.581  bus_data_ren_15 (bus_data<15>)
-     LUT4:I0->O            1   0.275   0.350  sseg_out<15>1 (sseg_out<15>)
+     BUFT:I->O             6   0.472   0.463  bus_data_ren_15 (bus_data<15>)
+     LUT4:I2->O            1   0.275   0.350  sseg_out<15>1 (sseg_out<15>)
      LUT3:I2->O            1   0.275   0.000  disp_hex_mux/Mmux_hex_33 (disp_hex_mux/Mmux_hex_33)
      MUXF5:I1->O           7   0.303   0.601  disp_hex_mux/Mmux_hex_2_f5_2 (disp_hex_mux/hex<3>)
      LUT4:I0->O            1   0.275   0.332  disp_hex_mux/Mrom_hex_rom000041 (disp_hex_mux/Mrom_hex_rom00004)
      OBUF:I->O                 2.592          seg_2_OBUF (seg<2>)
     ----------------------------------------
-    Total                      7.445ns (4.837ns logic, 2.608ns route)
-                                       (65.0% logic, 35.0% route)
+    Total                      7.327ns (4.837ns logic, 2.490ns route)
+                                       (66.0% logic, 34.0% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk100'
-  Total number of paths / destination ports: 18303 / 22
+  Total number of paths / destination ports: 18340 / 28
 -------------------------------------------------------------------------
-Offset:              10.375ns (Levels of Logic = 11)
-  Source:            lc3_1/addr_9 (FF)
+Offset:              10.198ns (Levels of Logic = 11)
+  Source:            lc3_1/addr_13 (FF)
   Destination:       seg<6> (PAD)
   Source Clock:      clk100 rising
 
-  Data Path: lc3_1/addr_9 to seg<6>
+  Data Path: lc3_1/addr_13 to seg<6>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q             73   0.370   0.866  addr_9 (addr<9>)
+     FDE:C->Q             74   0.370   0.829  addr_13 (addr<13>)
      end scope: 'lc3_1'
-     LUT4:I0->O            1   0.275   0.429  uart_RE_and0000112 (uart_RE_and0000112)
-     LUT3_D:I1->LO         1   0.275   0.198  uart_RE_and0000135 (N127)
-     LUT4:I1->O            6   0.275   0.581  uart_RE_and000021 (N12)
+     LUT4:I1->O            1   0.275   0.467  uart_RE_and000014 (uart_RE_and000014)
+     LUT3_D:I0->LO         1   0.275   0.138  uart_RE_and0000135 (N134)
+     LUT4:I3->O            6   0.275   0.581  uart_RE_and000021 (N15)
      LUT3:I0->O           16   0.275   0.630  uart_wrapper/rd_uart_inv1 (uart_wrapper/rd_uart_inv)
-     BUFT:T->O            10   0.472   0.647  uart_wrapper/_mux0000_data_out_0 (bus_data<0>)
-     LUT4:I0->O            1   0.275   0.430  sseg_out<0>1 (sseg_out<0>)
+     BUFT:T->O            10   0.472   0.529  uart_wrapper/_mux0000_data_out_0 (bus_data<0>)
+     LUT4:I2->O            1   0.275   0.430  sseg_out<0>1 (sseg_out<0>)
      LUT3:I1->O            1   0.275   0.000  disp_hex_mux/Mmux_hex_4 (disp_hex_mux/Mmux_hex_4)
      MUXF5:I0->O           7   0.303   0.601  disp_hex_mux/Mmux_hex_2_f5 (disp_hex_mux/hex<0>)
      LUT4:I0->O            1   0.275   0.332  disp_hex_mux/Mrom_hex_rom0000111 (disp_hex_mux/Mrom_hex_rom00001)
      OBUF:I->O                 2.592          seg_5_OBUF (seg<5>)
     ----------------------------------------
-    Total                     10.375ns (5.662ns logic, 4.713ns route)
-                                       (54.6% logic, 45.4% route)
+    Total                     10.198ns (5.662ns logic, 4.536ns route)
+                                       (55.5% logic, 44.5% route)
 
 =========================================================================
 Timing constraint: Default path analysis
@@ -960,14 +1086,14 @@ Delay:               7.477ns (Levels of Logic = 7)
 =========================================================================
 
 
-Total REAL time to Xst completion: 36.00 secs
-Total CPU time to Xst completion: 36.15 secs
+Total REAL time to Xst completion: 37.00 secs
+Total CPU time to Xst completion: 36.47 secs
  
 --> 
 
-Total memory usage is 277808 kilobytes
+Total memory usage is 266864 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   29 (   0 filtered)
+Number of warnings :   36 (   0 filtered)
 Number of infos    :   14 (   0 filtered)
 

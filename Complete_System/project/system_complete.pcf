@@ -1,19 +1,60 @@
 //! **************************************************************************
-// Written by: Map K.37 on Wed Jan 12 13:16:08 2011
+// Written by: Map K.37 on Wed Jan 12 18:20:25 2011
 //! **************************************************************************
 
 SCHEMATIC START;
+COMP "rx" LOCATE = SITE "AJ8" LEVEL 1;
+COMP "tx" LOCATE = SITE "AE7" LEVEL 1;
+COMP "nCS" LOCATE = SITE "K7" LEVEL 1;
+COMP "pixelclk_out" LOCATE = SITE "H12" LEVEL 1;
+COMP "SCLK" LOCATE = SITE "E2" LEVEL 1;
+COMP "ledg" LOCATE = SITE "V7" LEVEL 1;
+COMP "blank_out" LOCATE = SITE "A8" LEVEL 1;
+COMP "mb_btn_i<0>" LOCATE = SITE "AH4" LEVEL 1;
+COMP "mb_btn_i<1>" LOCATE = SITE "AH2" LEVEL 1;
+COMP "mb_btn_i<2>" LOCATE = SITE "AG3" LEVEL 1;
+COMP "mb_btn_i<3>" LOCATE = SITE "AH1" LEVEL 1;
+COMP "mb_btn_i<4>" LOCATE = SITE "AG5" LEVEL 1;
+COMP "mb_led_o<0>" LOCATE = SITE "AC4" LEVEL 1;
+COMP "mb_led_o<1>" LOCATE = SITE "AC3" LEVEL 1;
+COMP "mb_led_o<2>" LOCATE = SITE "AA6" LEVEL 1;
+COMP "mb_led_o<3>" LOCATE = SITE "AA5" LEVEL 1;
+COMP "an<0>" LOCATE = SITE "Y4" LEVEL 1;
+COMP "an<1>" LOCATE = SITE "AB1" LEVEL 1;
+COMP "an<2>" LOCATE = SITE "W5" LEVEL 1;
+COMP "an<3>" LOCATE = SITE "W4" LEVEL 1;
+COMP "sw_i<0>" LOCATE = SITE "N6" LEVEL 1;
+COMP "sw_i<1>" LOCATE = SITE "L5" LEVEL 1;
+COMP "sw_i<2>" LOCATE = SITE "M2" LEVEL 1;
+COMP "sw_i<3>" LOCATE = SITE "P9" LEVEL 1;
+COMP "sw_i<4>" LOCATE = SITE "M4" LEVEL 1;
+COMP "sw_i<5>" LOCATE = SITE "N1" LEVEL 1;
+COMP "sw_i<6>" LOCATE = SITE "P8" LEVEL 1;
+COMP "sw_i<7>" LOCATE = SITE "N4" LEVEL 1;
+COMP "SDATA1" LOCATE = SITE "K8" LEVEL 1;
+COMP "b_out<0>" LOCATE = SITE "D15" LEVEL 1;
+COMP "b_out<1>" LOCATE = SITE "E15" LEVEL 1;
+COMP "b_out<2>" LOCATE = SITE "H15" LEVEL 1;
+COMP "b_out<3>" LOCATE = SITE "J15" LEVEL 1;
+COMP "b_out<4>" LOCATE = SITE "C13" LEVEL 1;
+COMP "b_out<5>" LOCATE = SITE "D13" LEVEL 1;
+COMP "b_out<6>" LOCATE = SITE "D14" LEVEL 1;
+COMP "b_out<7>" LOCATE = SITE "E14" LEVEL 1;
+COMP "hsync_out" LOCATE = SITE "B8" LEVEL 1;
+COMP "g_out<0>" LOCATE = SITE "G10" LEVEL 1;
+COMP "g_out<1>" LOCATE = SITE "E10" LEVEL 1;
+COMP "g_out<2>" LOCATE = SITE "D10" LEVEL 1;
+COMP "g_out<3>" LOCATE = SITE "D8" LEVEL 1;
+COMP "g_out<4>" LOCATE = SITE "C8" LEVEL 1;
+COMP "g_out<5>" LOCATE = SITE "H11" LEVEL 1;
+COMP "g_out<6>" LOCATE = SITE "G11" LEVEL 1;
+COMP "g_out<7>" LOCATE = SITE "E11" LEVEL 1;
+COMP "clk100" LOCATE = SITE "AJ15" LEVEL 1;
 COMP "btn_i<0>" LOCATE = SITE "P3" LEVEL 1;
 COMP "btn_i<1>" LOCATE = SITE "P2" LEVEL 1;
 COMP "btn_i<2>" LOCATE = SITE "W3" LEVEL 1;
 COMP "btn_i<3>" LOCATE = SITE "V8" LEVEL 1;
 COMP "btn_i<4>" LOCATE = SITE "AA1" LEVEL 1;
-COMP "mb_sw_i<0>" LOCATE = SITE "AC11" LEVEL 1;
-COMP "mb_sw_i<1>" LOCATE = SITE "AD11" LEVEL 1;
-COMP "mb_sw_i<2>" LOCATE = SITE "AF8" LEVEL 1;
-COMP "mb_sw_i<3>" LOCATE = SITE "AF9" LEVEL 1;
-COMP "clk100" LOCATE = SITE "AJ15" LEVEL 1;
-COMP "SCLK" LOCATE = SITE "E2" LEVEL 1;
 COMP "led<0>" LOCATE = SITE "T8" LEVEL 1;
 COMP "led<1>" LOCATE = SITE "U5" LEVEL 1;
 COMP "led<2>" LOCATE = SITE "W2" LEVEL 1;
@@ -22,41 +63,31 @@ COMP "led<4>" LOCATE = SITE "V4" LEVEL 1;
 COMP "led<5>" LOCATE = SITE "Y1" LEVEL 1;
 COMP "led<6>" LOCATE = SITE "U8" LEVEL 1;
 COMP "led<7>" LOCATE = SITE "V6" LEVEL 1;
-COMP "rx" LOCATE = SITE "AJ8" LEVEL 1;
-COMP "tx" LOCATE = SITE "AE7" LEVEL 1;
 COMP "seg<0>" LOCATE = SITE "P7" LEVEL 1;
 COMP "seg<1>" LOCATE = SITE "P1" LEVEL 1;
-COMP "mb_btn_i<0>" LOCATE = SITE "AH4" LEVEL 1;
 COMP "seg<2>" LOCATE = SITE "M3" LEVEL 1;
 COMP "seg<3>" LOCATE = SITE "R9" LEVEL 1;
-COMP "mb_btn_i<1>" LOCATE = SITE "AH2" LEVEL 1;
-COMP "mb_btn_i<2>" LOCATE = SITE "AG3" LEVEL 1;
 COMP "seg<4>" LOCATE = SITE "N2" LEVEL 1;
 COMP "seg<5>" LOCATE = SITE "L4" LEVEL 1;
-COMP "mb_btn_i<3>" LOCATE = SITE "AH1" LEVEL 1;
 COMP "seg<6>" LOCATE = SITE "N5" LEVEL 1;
-COMP "mb_btn_i<4>" LOCATE = SITE "AG5" LEVEL 1;
 COMP "seg<7>" LOCATE = SITE "N3" LEVEL 1;
-COMP "mb_led_o<0>" LOCATE = SITE "AC4" LEVEL 1;
-COMP "mb_led_o<1>" LOCATE = SITE "AC3" LEVEL 1;
-COMP "mb_led_o<2>" LOCATE = SITE "AA6" LEVEL 1;
-COMP "mb_led_o<3>" LOCATE = SITE "AA5" LEVEL 1;
-COMP "ledg" LOCATE = SITE "V7" LEVEL 1;
-COMP "nCS" LOCATE = SITE "K7" LEVEL 1;
-COMP "SDATA1" LOCATE = SITE "K8" LEVEL 1;
-COMP "sw_i<0>" LOCATE = SITE "N6" LEVEL 1;
-COMP "sw_i<1>" LOCATE = SITE "L5" LEVEL 1;
-COMP "an<0>" LOCATE = SITE "Y4" LEVEL 1;
-COMP "sw_i<2>" LOCATE = SITE "M2" LEVEL 1;
-COMP "an<1>" LOCATE = SITE "AB1" LEVEL 1;
-COMP "sw_i<3>" LOCATE = SITE "P9" LEVEL 1;
-COMP "an<2>" LOCATE = SITE "W5" LEVEL 1;
-COMP "sw_i<4>" LOCATE = SITE "M4" LEVEL 1;
-COMP "an<3>" LOCATE = SITE "W4" LEVEL 1;
-COMP "sw_i<5>" LOCATE = SITE "N1" LEVEL 1;
-COMP "sw_i<6>" LOCATE = SITE "P8" LEVEL 1;
-COMP "sw_i<7>" LOCATE = SITE "N4" LEVEL 1;
-NET "clk100_BUFGP/IBUFG" BEL "clk100_BUFGP/BUFG.GCLKMUX" USELOCALCONNECT;
+COMP "comp_synch" LOCATE = SITE "G12" LEVEL 1;
+COMP "mb_sw_i<0>" LOCATE = SITE "AC11" LEVEL 1;
+COMP "mb_sw_i<1>" LOCATE = SITE "AD11" LEVEL 1;
+COMP "mb_sw_i<2>" LOCATE = SITE "AF8" LEVEL 1;
+COMP "mb_sw_i<3>" LOCATE = SITE "AF9" LEVEL 1;
+COMP "r_out<0>" LOCATE = SITE "G8" LEVEL 1;
+COMP "r_out<1>" LOCATE = SITE "H9" LEVEL 1;
+COMP "r_out<2>" LOCATE = SITE "G9" LEVEL 1;
+COMP "r_out<3>" LOCATE = SITE "F9" LEVEL 1;
+COMP "r_out<4>" LOCATE = SITE "F10" LEVEL 1;
+COMP "r_out<5>" LOCATE = SITE "D7" LEVEL 1;
+COMP "r_out<6>" LOCATE = SITE "C7" LEVEL 1;
+COMP "r_out<7>" LOCATE = SITE "H10" LEVEL 1;
+COMP "vsync_out" LOCATE = SITE "D11" LEVEL 1;
+NET "clk100_IBUFG1" BEL "clk100_IBUFG_BUFG.GCLKMUX" USELOCALCONNECT;
+PIN vga_wrapper/ClockDivider_unit/divide.DCM_INST_pins<10> = BEL
+        "vga_wrapper/ClockDivider_unit/divide.DCM_INST" PINNAME CLKIN;
 TIMEGRP clk100 = BEL "hand_clk_delay" BEL "sys_halt_delay" BEL "MCR_reg_15"
         BEL "hand_clk_pulse" BEL "disp_hex_mux/q_reg_0" BEL
         "disp_hex_mux/q_reg_1" BEL "disp_hex_mux/q_reg_2" BEL
@@ -67,10 +98,12 @@ TIMEGRP clk100 = BEL "hand_clk_delay" BEL "sys_halt_delay" BEL "MCR_reg_15"
         "disp_hex_mux/q_reg_11" BEL "disp_hex_mux/q_reg_12" BEL
         "disp_hex_mux/q_reg_13" BEL "disp_hex_mux/q_reg_14" BEL
         "disp_hex_mux/q_reg_15" BEL "disp_hex_mux/q_reg_16" BEL
-        "disp_hex_mux/q_reg_17" BEL "steeringwheel_ad/clk_counter_2" BEL
-        "steeringwheel_ad/clk_counter_1" BEL "steeringwheel_ad/clk_counter_0"
-        BEL "memory_wrapper/inst_LPM_FF_0" BEL "memory_wrapper/inst_LPM_FF_1"
-        BEL "uart_wrapper/uart/uart_tx_unit/tx_reg" BEL
+        "disp_hex_mux/q_reg_17" PIN
+        "vga_wrapper/ClockDivider_unit/divide.DCM_INST_pins<10>" BEL
+        "steeringwheel_ad/clk_counter_2" BEL "steeringwheel_ad/clk_counter_1"
+        BEL "steeringwheel_ad/clk_counter_0" BEL
+        "memory_wrapper/inst_LPM_FF_0" BEL "memory_wrapper/inst_LPM_FF_1" BEL
+        "uart_wrapper/uart/uart_tx_unit/tx_reg" BEL
         "uart_wrapper/uart/uart_tx_unit/n_reg_0" BEL
         "uart_wrapper/uart/uart_tx_unit/n_reg_1" BEL
         "uart_wrapper/uart/uart_tx_unit/n_reg_2" BEL
@@ -2154,6 +2187,33 @@ TIMEGRP clk100 = BEL "hand_clk_delay" BEL "sys_halt_delay" BEL "MCR_reg_15"
         "lc3_1/instr_0_1" BEL "lc3_1/instr_0_2" BEL "lc3_1/instr_1_1" BEL
         "lc3_1/instr_1_2" BEL "lc3_1/instr_2_1" BEL "lc3_1/instr_0_3" BEL
         "lc3_1/instr_1_3";
+TIMEGRP vga_wrapper_ClockDivider_unit_CLKDV_BUF = BEL
+        "vga_wrapper/b_out_reg_7" BEL
+        "vga_wrapper/vga_sync_unit/v_count_reg_9" BEL
+        "vga_wrapper/vga_sync_unit/v_count_reg_8" BEL
+        "vga_wrapper/vga_sync_unit/v_count_reg_7" BEL
+        "vga_wrapper/vga_sync_unit/v_count_reg_6" BEL
+        "vga_wrapper/vga_sync_unit/v_count_reg_5" BEL
+        "vga_wrapper/vga_sync_unit/v_count_reg_4" BEL
+        "vga_wrapper/vga_sync_unit/v_count_reg_3" BEL
+        "vga_wrapper/vga_sync_unit/v_count_reg_2" BEL
+        "vga_wrapper/vga_sync_unit/v_count_reg_1" BEL
+        "vga_wrapper/vga_sync_unit/v_count_reg_0" BEL
+        "vga_wrapper/vga_sync_unit/h_count_reg_9" BEL
+        "vga_wrapper/vga_sync_unit/h_count_reg_8" BEL
+        "vga_wrapper/vga_sync_unit/h_count_reg_7" BEL
+        "vga_wrapper/vga_sync_unit/h_count_reg_6" BEL
+        "vga_wrapper/vga_sync_unit/h_count_reg_5" BEL
+        "vga_wrapper/vga_sync_unit/h_count_reg_4" BEL
+        "vga_wrapper/vga_sync_unit/h_count_reg_3" BEL
+        "vga_wrapper/vga_sync_unit/h_count_reg_2" BEL
+        "vga_wrapper/vga_sync_unit/h_count_reg_1" BEL
+        "vga_wrapper/vga_sync_unit/h_count_reg_0" BEL
+        "vga_wrapper/vga_sync_unit/h_sync_reg" BEL
+        "vga_wrapper/vga_sync_unit/mod2_reg" BEL
+        "vga_wrapper/vga_sync_unit/v_sync_reg" BEL "pixelclk_out";
 TS_clk = PERIOD TIMEGRP "clk100" 10 ns HIGH 50%;
+TS_vga_wrapper_ClockDivider_unit_CLKDV_BUF = PERIOD TIMEGRP
+        "vga_wrapper_ClockDivider_unit_CLKDV_BUF" TS_clk * 2 HIGH 50%;
 SCHEMATIC END;
 
