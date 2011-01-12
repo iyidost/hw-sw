@@ -1,0 +1,197 @@
+Release 10.1.02 par K.37 (nt)
+Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+
+OP755-GZ0PY3J::  Wed Jan 12 13:16:12 2011
+
+par -w -intstyle ise -ol std -t 1 system_complete_map.ncd system_complete.ncd
+system_complete.pcf 
+
+
+Constraints file: system_complete.pcf.
+Loading device for application Rf_Device from file '2vp30.nph' in environment C:\PROGRA~1\Xilinx\10.1\ISE.
+   "system_complete" is an NCD, version 3.2, device xc2vp30, package ff896, speed -7
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000 Celsius)
+Initializing voltage to 1.400 Volts. (default - Range: 1.400 to 1.600 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.94 2008-05-01".
+
+
+Device Utilization Summary:
+
+   Number of BUFGMUXs                        2 out of 16     12%
+   Number of External IOBs                  53 out of 556     9%
+      Number of LOCed IOBs                  53 out of 53    100%
+
+   Number of MULT18X18s                      1 out of 136     1%
+   Number of RAMB16s                        64 out of 136    47%
+   Number of SLICEs                       1485 out of 13696  10%
+   Number of TBUFs                         144 out of 6848    2%
+
+
+Overall effort level (-ol):   Standard 
+Placer effort level (-pl):    High 
+Placer cost table entry (-t): 1
+Router effort level (-rl):    Standard 
+
+Starting initial Timing Analysis.  REAL time: 4 secs 
+Finished initial Timing Analysis.  REAL time: 4 secs 
+
+WARNING:Par:288 - The signal mb_sw_i<0>_IBUF has no load.  PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal mb_sw_i<1>_IBUF has no load.  PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal mb_sw_i<2>_IBUF has no load.  PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal mb_sw_i<3>_IBUF has no load.  PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal mb_btn_i<0>_IBUF has no load.  PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal mb_btn_i<2>_IBUF has no load.  PAR will not attempt to route this signal.
+
+Starting Placer
+
+Phase 1.1
+Phase 1.1 (Checksum:2fa8cf) REAL time: 6 secs 
+
+Phase 2.7
+Phase 2.7 (Checksum:2fa8cf) REAL time: 6 secs 
+
+Phase 3.31
+Phase 3.31 (Checksum:2fa8cf) REAL time: 6 secs 
+
+Phase 4.2
+
+.
+Phase 4.2 (Checksum:3021d5) REAL time: 6 secs 
+
+Phase 5.30
+Phase 5.30 (Checksum:3021d5) REAL time: 6 secs 
+
+Phase 6.3
+Phase 6.3 (Checksum:3021d5) REAL time: 6 secs 
+
+Phase 7.5
+Phase 7.5 (Checksum:3021d5) REAL time: 6 secs 
+
+Phase 8.8
+.....................
+.......................
+....
+......................................
+.....
+......
+.....
+Phase 8.8 (Checksum:1a8858c) REAL time: 24 secs 
+
+Phase 9.5
+Phase 9.5 (Checksum:1a8858c) REAL time: 25 secs 
+
+Phase 10.18
+Phase 10.18 (Checksum:1a785c9) REAL time: 30 secs 
+
+Phase 11.5
+Phase 11.5 (Checksum:1a785c9) REAL time: 30 secs 
+
+Phase 12.27
+Phase 12.27 (Checksum:1a785c9) REAL time: 31 secs 
+
+Phase 13.24
+Phase 13.24 (Checksum:1a785c9) REAL time: 31 secs 
+
+REAL time consumed by placer: 31 secs 
+CPU  time consumed by placer: 30 secs 
+Writing design to file system_complete.ncd
+
+
+Total REAL time to Placer completion: 31 secs 
+Total CPU time to Placer completion: 30 secs 
+
+Starting Router
+
+Phase 1: 11275 unrouted;       REAL time: 39 secs 
+
+Phase 2: 10224 unrouted;       REAL time: 39 secs 
+
+Phase 3: 2866 unrouted;       REAL time: 41 secs 
+
+Phase 4: 2866 unrouted; (63909)      REAL time: 42 secs 
+
+Phase 5: 3017 unrouted; (218)      REAL time: 44 secs 
+
+Phase 6: 3026 unrouted; (0)      REAL time: 44 secs 
+
+Phase 7: 0 unrouted; (0)      REAL time: 48 secs 
+
+Phase 8: 0 unrouted; (0)      REAL time: 49 secs 
+
+Phase 9: 0 unrouted; (0)      REAL time: 51 secs 
+
+
+Total REAL time to Router completion: 51 secs 
+Total CPU time to Router completion: 50 secs 
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Generating "PAR" statistics.
+
+**************************
+Generating Clock Report
+**************************
+
++---------------------+--------------+------+------+------------+-------------+
+|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
++---------------------+--------------+------+------+------------+-------------+
+|        clk100_BUFGP |     BUFGMUX0P| No   |  801 |  0.266     |  1.243      |
++---------------------+--------------+------+------+------------+-------------+
+|steeringwheel_ad/clk |              |      |      |            |             |
+|         _counter<2> |     BUFGMUX4P| No   |   16 |  0.079     |  1.119      |
++---------------------+--------------+------+------+------------+-------------+
+
+* Net Skew is the difference between the minimum and maximum routing
+only delays for the net. Note this is different from Clock Skew which
+is reported in TRCE timing report. Clock Skew is the difference between
+the minimum and maximum path delays which includes logic delays.
+
+Timing Score: 0
+
+Asterisk (*) preceding a constraint indicates it was not met.
+   This may be due to a setup or hold violation.
+
+------------------------------------------------------------------------------------------------------
+  Constraint                                |  Check  | Worst Case |  Best Case | Timing |   Timing   
+                                            |         |    Slack   | Achievable | Errors |    Score   
+------------------------------------------------------------------------------------------------------
+  TS_clk = PERIOD TIMEGRP "clk100" 10 ns HI | SETUP   |     0.029ns|     9.971ns|       0|           0
+  GH 50%                                    | HOLD    |     0.484ns|            |       0|           0
+------------------------------------------------------------------------------------------------------
+
+
+All constraints were met.
+
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+WARNING:Par:283 - There are 6 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
+
+Total REAL time to PAR completion: 55 secs 
+Total CPU time to PAR completion: 54 secs 
+
+Peak Memory Usage:  286 MB
+
+Placement: Completed - No errors found.
+Routing: Completed - No errors found.
+Timing: Completed - No errors found.
+
+Number of error messages: 0
+Number of warning messages: 8
+Number of info messages: 0
+
+Writing design to file system_complete.ncd
+
+
+
+PAR done!

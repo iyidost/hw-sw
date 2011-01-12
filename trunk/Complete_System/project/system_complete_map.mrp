@@ -1,0 +1,637 @@
+Release 10.1.02 Map K.37 (nt)
+Xilinx Mapping Report File for Design 'system_complete'
+
+Design Information
+------------------
+Command Line   : map -ise "C:/Documents and
+Settings/s000536/Desktop/complete_system/complete_lc3.ise" -intstyle ise -p
+xc2vp30-ff896-7 -cm area -pr off -k 4 -c 100 -tx off -o system_complete_map.ncd
+system_complete.ngd system_complete.pcf 
+Target Device  : xc2vp30
+Target Package : ff896
+Target Speed   : -7
+Mapper Version : virtex2p -- $Revision: 1.46.12.2 $
+Mapped Date    : Wed Jan 12 13:16:02 2011
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:    8
+Logic Utilization:
+  Number of Slice Flip Flops:         1,322 out of  27,392    4%
+  Number of 4 input LUTs:             2,148 out of  27,392    7%
+Logic Distribution:
+  Number of occupied Slices:          1,485 out of  13,696   10%
+    Number of Slices containing only related logic:   1,485 out of   1,485 100%
+    Number of Slices containing unrelated logic:          0 out of   1,485   0%
+      *See NOTES below for an explanation of the effects of unrelated logic.
+  Total Number of 4 input LUTs:       2,186 out of  27,392    7%
+    Number used as logic:             2,146
+    Number used as a route-thru:         38
+    Number used as Shift registers:       2
+  Number of bonded IOBs:                 53 out of     556    9%
+  Number of TBUFs:                      144 out of   6,848    2%
+  Number of RAMB16s:                     64 out of     136   47%
+  Number of MULT18X18s:                   1 out of     136    1%
+  Number of BUFGMUXs:                     2 out of      16   12%
+
+Peak Memory Usage:  218 MB
+Total REAL time to MAP completion:  8 secs 
+Total CPU time to MAP completion:   6 secs 
+
+NOTES:
+
+   Related logic is defined as being logic that shares connectivity - e.g. two
+   LUTs are "related" if they share common inputs.  When assembling slices,
+   Map gives priority to combine logic that is related.  Doing so results in
+   the best timing performance.
+
+   Unrelated logic shares no connectivity.  Map will only begin packing
+   unrelated logic into a slice once 99% of the slices are occupied through
+   related logic packing.
+
+   Note that once logic distribution reaches the 99% level through related
+   logic packing, this does not mean the device is completely utilized.
+   Unrelated logic packing will then begin, continuing until all usable LUTs
+   and FFs are occupied.  Depending on your timing budget, increased levels of
+   unrelated logic packing may adversely affect the overall timing performance
+   of your design.
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group and Partition Summary
+Section 10 - Modular Design Summary
+Section 11 - Timing Report
+Section 12 - Configuration String Information
+Section 13 - Control Set Information
+Section 14 - Utilization by Hierarchy
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+WARNING:LIT:243 - Logical network vsync_out has no load.
+WARNING:LIT:395 - The above warning message base_net_load_rule is repeated 52
+   more times for the following (max. 5 shown):
+   blank_out,
+   pixelclk_out,
+   comp_synch,
+   hsync_out,
+   b_out<7>
+   To see the details of these warning messages, please use the -detail switch.
+WARNING:PhysDesignRules:367 - The signal <mb_sw_i<0>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <mb_sw_i<1>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <mb_sw_i<2>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <mb_sw_i<3>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <mb_btn_i<0>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <mb_btn_i<2>_IBUF> is incomplete. The
+   signal does not drive any load pins in the design.
+
+Section 3 - Informational
+-------------------------
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:LIT:244 - All of the single ended outputs in this design are using slew
+   rate limited output drivers. The delay on speed critical single ended outputs
+   can be dramatically reduced by designating them as fast outputs.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+  41 block(s) removed
+   8 block(s) optimized away
+  39 signal(s) removed
+
+Section 5 - Removed Logic
+-------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/remd_output.adsu_sel2/add1/no_pipelining.
+the_addsub/i_lut4.i_lut4_addsub/carry_simple<16>" is sourceless and has been
+removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/remd_output.adsu_sel2/add1/no_pipelining.
+the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q_c_outreg/first_q
+_0" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/remd_output.adsu_sel2/add1/no_pipelining.
+the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q_c_outreg/first_q
+" is sourceless and has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/remd_output.adsu_sel2/add1/no_pipelining.
+the_addsub/i_lut4.i_lut4_addsub/sum_simple<16>" is sourceless and has been
+removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/remd_output.adsu_sel2/add1/no_pipelining.
+the_addsub/i_lut4.i_lut4_addsub/i_q.i_simple.qreg/first_q_16" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/remd_output.adsu_sel2/add1/no_pipelining.
+the_addsub/i_lut4.i_lut4_addsub/i_q.i_simple.qreg/first_q<16>" is sourceless and
+has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/remd_output.adsu_sel2/add1/no_pipelining.
+the_addsub/i_lut4.i_lut4_addsub/di<15>" is sourceless and has been removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/remd_output.adsu_sel2/add1/no_pipelining.
+the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[15].carrymux
+" (MUX) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/remd_output.adsu_sel2/add1/no_pipelining.
+the_addsub/i_lut4.i_lut4_addsub/carry_simple<15>" is sourceless and has been
+removed.
+   Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/remd_output.adsu_sel2/add1/no_pipelining.
+the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carryxortop" (XOR)
+removed.
+   Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/remd_output.adsu_sel2/add1/no_pipelining.
+the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.muxtop.carrymuxtop" (MUX)
+removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/remd_output.adsu_sel2/add1/no_pipelining.
+the_addsub/i_lut4.i_lut4_addsub/di<16>" is sourceless and has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[15].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/carry_simple<16>" is
+sourceless and has been removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[15].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.
+q_c_outreg/first_q_0" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[15].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.
+q_c_outreg/first_q" is sourceless and has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[14].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/carry_simple<16>" is
+sourceless and has been removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[14].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.
+q_c_outreg/first_q_0" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[14].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.
+q_c_outreg/first_q" is sourceless and has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[13].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/carry_simple<16>" is
+sourceless and has been removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[13].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.
+q_c_outreg/first_q_0" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[13].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.
+q_c_outreg/first_q" is sourceless and has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[12].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/carry_simple<16>" is
+sourceless and has been removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[12].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.
+q_c_outreg/first_q_0" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[12].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.
+q_c_outreg/first_q" is sourceless and has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[11].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/carry_simple<16>" is
+sourceless and has been removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[11].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.
+q_c_outreg/first_q_0" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[11].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.
+q_c_outreg/first_q" is sourceless and has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[10].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/carry_simple<16>" is
+sourceless and has been removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[10].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.
+q_c_outreg/first_q_0" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[10].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.
+q_c_outreg/first_q" is sourceless and has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[9].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/carry_simple<16>" is sourceless
+and has been removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[9].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q_0" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[9].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q" is sourceless and has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[8].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/carry_simple<16>" is sourceless
+and has been removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[8].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q_0" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[8].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q" is sourceless and has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[7].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/carry_simple<16>" is sourceless
+and has been removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[7].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q_0" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[7].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q" is sourceless and has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[6].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/carry_simple<16>" is sourceless
+and has been removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[6].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q_0" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[6].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q" is sourceless and has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[5].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/carry_simple<16>" is sourceless
+and has been removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[5].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q_0" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[5].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q" is sourceless and has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[4].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/carry_simple<16>" is sourceless
+and has been removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[4].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q_0" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[4].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q" is sourceless and has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[3].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/carry_simple<16>" is sourceless
+and has been removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[3].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q_0" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[3].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q" is sourceless and has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[2].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/carry_simple<16>" is sourceless
+and has been removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[2].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q_0" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[2].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q" is sourceless and has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[1].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/carry_simple<16>" is sourceless
+and has been removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[1].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q_0" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[1].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q" is sourceless and has been removed.
+The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[0].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/carry_simple<16>" is sourceless
+and has been removed.
+ Sourceless block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[0].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q_0" (FF) removed.
+  The signal
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[0].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q_c_out.i_simple.add_q_cout.q
+_c_outreg/first_q" is sourceless and has been removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/remd_output.adsu_sel2/add1/no_pipelining.
+the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_bypass.i_bypass_other.i_di_b_va
+riable.i_gt_1.multandgen[15].carrymultand" (AND) removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/remd_output.adsu_sel2/add1/no_pipelining.
+the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_bypass.i_bypass_other.i_di_b_va
+riable.multandtop.carrymultand" (AND) removed.
+Unused block "lc3_1/dvd/GND" (ZERO) removed.
+Unused block "lc3_1/dvd/VCC" (ONE) removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[0].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.muxtop.ca
+rrymuxtop" (MUX) removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[10].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.muxtop.c
+arrymuxtop" (MUX) removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[11].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.muxtop.c
+arrymuxtop" (MUX) removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[12].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.muxtop.c
+arrymuxtop" (MUX) removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[13].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.muxtop.c
+arrymuxtop" (MUX) removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[14].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.muxtop.c
+arrymuxtop" (MUX) removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[15].adder_gen.reg_req.adsu_mod/a
+dd1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.muxtop.c
+arrymuxtop" (MUX) removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[1].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.muxtop.ca
+rrymuxtop" (MUX) removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[2].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.muxtop.ca
+rrymuxtop" (MUX) removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[3].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.muxtop.ca
+rrymuxtop" (MUX) removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[4].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.muxtop.ca
+rrymuxtop" (MUX) removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[5].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.muxtop.ca
+rrymuxtop" (MUX) removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[6].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.muxtop.ca
+rrymuxtop" (MUX) removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[7].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.muxtop.ca
+rrymuxtop" (MUX) removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[8].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.muxtop.ca
+rrymuxtop" (MUX) removed.
+Unused block
+"lc3_1/dvd/BU2/U0/i_synth_opt.i_nonzero_fract.i_synth/i_algo_r2_nr.i_sdivider/i_
+synth_option.i_synth_model/divider_blk/div_loop[9].adder_gen.reg_req.adsu_mod/ad
+d1/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.muxtop.ca
+rrymuxtop" (MUX) removed.
+
+Optimized Block(s):
+TYPE 		BLOCK
+GND 		XST_GND
+VCC 		XST_VCC
+GND 		lc3_1/XST_GND
+VCC 		lc3_1/XST_VCC
+GND 		lc3_1/dvd/BU2/XST_GND
+VCC 		lc3_1/dvd/BU2/XST_VCC
+
+To enable printing of redundant blocks removed and signals merged, set the
+detailed map report option and rerun map.
+
+Section 6 - IOB Properties
+--------------------------
+
++----------------------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type             | Direction | IO Standard | Drive    | Slew | Reg (s)      | Resistor | IOB      |
+|                                    |                  |           |             | Strength | Rate |              |          | Delay    |
++----------------------------------------------------------------------------------------------------------------------------------------+
+| SCLK                               | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| SDATA1                             | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| an<0>                              | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| an<1>                              | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| an<2>                              | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| an<3>                              | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| btn_i<0>                           | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| btn_i<1>                           | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| btn_i<2>                           | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| btn_i<3>                           | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| btn_i<4>                           | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| clk100                             | IOB              | INPUT     | LVCMOS25    |          |      |              |          |          |
+| led<0>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| led<1>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| led<2>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| led<3>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| led<4>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| led<5>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| led<6>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| led<7>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| ledg                               | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| mb_btn_i<0>                        | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| mb_btn_i<1>                        | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| mb_btn_i<2>                        | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| mb_btn_i<3>                        | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| mb_btn_i<4>                        | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| mb_led_o<0>                        | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| mb_led_o<1>                        | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| mb_led_o<2>                        | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| mb_led_o<3>                        | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| mb_sw_i<0>                         | IOB              | INPUT     | LVCMOS25    |          |      |              |          |          |
+| mb_sw_i<1>                         | IOB              | INPUT     | LVCMOS25    |          |      |              |          |          |
+| mb_sw_i<2>                         | IOB              | INPUT     | LVCMOS25    |          |      |              |          |          |
+| mb_sw_i<3>                         | IOB              | INPUT     | LVCMOS25    |          |      |              |          |          |
+| nCS                                | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| rx                                 | IOB              | INPUT     | LVCMOS25    |          |      |              |          |          |
+| seg<0>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| seg<1>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| seg<2>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| seg<3>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| seg<4>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| seg<5>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| seg<6>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| seg<7>                             | IOB              | OUTPUT    | LVTTL       | 12       | SLOW |              |          |          |
+| sw_i<0>                            | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| sw_i<1>                            | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| sw_i<2>                            | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| sw_i<3>                            | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| sw_i<4>                            | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| sw_i<5>                            | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| sw_i<6>                            | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| sw_i<7>                            | IOB              | INPUT     | LVTTL       |          |      |              |          |          |
+| tx                                 | IOB              | OUTPUT    | LVCMOS25    | 8        | SLOW |              |          |          |
++----------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group and Partition Summary
+--------------------------------------------
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Area Group Information
+----------------------
+
+  No area groups were found in this design.
+
+----------------------
+
+Section 10 - Modular Design Summary
+-----------------------------------
+Modular Design not used for this design.
+
+Section 11 - Timing Report
+--------------------------
+This design was not run using timing mode.
+
+Section 12 - Configuration String Details
+-----------------------------------------
+Use the "-detail" map option to print out Configuration Strings
+
+Section 13 - Control Set Information
+------------------------------------
+No control set information for this architecture.
+
+Section 14 - Utilization by Hierarchy
+-------------------------------------
+
+This feature is not supported for this architecture.

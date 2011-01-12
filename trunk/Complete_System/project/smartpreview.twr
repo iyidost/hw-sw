@@ -1,0 +1,15 @@
+Asterisk (*) preceding a constraint indicates it was not met.
+   This may be due to a setup or hold violation.
+
+------------------------------------------------------------------------------------------------------
+  Constraint                                |  Check  | Worst Case |  Best Case | Timing |   Timing   
+                                            |         |    Slack   | Achievable | Errors |    Score   
+------------------------------------------------------------------------------------------------------
+* TS_clk = PERIOD TIMEGRP "clk100" 10 ns HI | SETUP   |    -0.523ns|    10.523ns|       2|         910
+  GH 50%                                    | HOLD    |     0.554ns|            |       0|           0
+------------------------------------------------------------------------------------------------------
+
+
+1 constraint not met.
+
+
