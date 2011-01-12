@@ -287,19 +287,19 @@ steeringwheel_ad : entity work.steeringwheel_ad
 	);
 
 -- VGA WRAPPER
---vga_wrapper : entity work.vga_wrapper
---   port map (
---	   clk					=> cpu_clk,
---		reset					=> sys_reset,
---		VGA_VSYNCH			=> vsync_out,
---		VGA_HSYNCH			=> hsync_out,
---		VGA_COMP_SYNCH		=> comp_synch,
---		VGA_OUT_BLANK_Z	=> blank_out,
---		VGA_OUT_PIXEL_CLOCK => pixelclk_out,
---		VGA_OUT_BLUE		=> b_out,
---		VGA_OUT_GREEN		=> g_out,
---		VGA_OUT_RED			=> r_out
---   );
+vga_wrapper : entity work.vga_wrapper
+   port map (
+	   clk					=> cpu_clk,
+		reset					=> sys_reset,
+		VGA_VSYNCH			=> vsync_out,
+		VGA_HSYNCH			=> hsync_out,
+		VGA_COMP_SYNCH		=> comp_synch,
+		VGA_OUT_BLANK_Z	=> blank_out,
+		VGA_OUT_PIXEL_CLOCK => pixelclk_out,
+		VGA_OUT_BLUE		=> b_out,
+		VGA_OUT_GREEN		=> g_out,
+		VGA_OUT_RED			=> r_out
+   );
 
 --mem_cs <= '1' when bus_address < X"E000" else '0';
 --mem_re <= bus_RE and mem_cs;
