@@ -1,95 +1,125 @@
-V3 48
+V3 65
 FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/baud_gen.vhd 2011/01/11.11:20:00 K.37
-EN work/mod_m_counter 1294821713 \
+EN work/mod_m_counter 1294852737 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/baud_gen.vhd \
       PB ieee/std_logic_1164 1209777529 PH ieee/NUMERIC_STD 1209777529
-AR work/mod_m_counter/arch 1294821714 \
+AR work/mod_m_counter/arch 1294852738 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/baud_gen.vhd \
-      EN work/mod_m_counter 1294821713
+      EN work/mod_m_counter 1294852737
 FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/ClockDivider-DCM.vhd 2011/01/11.11:20:00 K.37
-EN work/ClockDivider 1294821725 \
+EN work/ClockDivider 1294852751 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/ClockDivider-DCM.vhd \
       PB ieee/std_logic_1164 1209777529 PH ieee/NUMERIC_STD 1209777529 LB UNISIM \
       PH unisim/VCOMPONENTS 1212040723
-AR work/ClockDivider/DCM 1294821726 \
+AR work/ClockDivider/DCM 1294852752 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/ClockDivider-DCM.vhd \
-      EN work/ClockDivider 1294821725 CP std_logic CP BUFG CP DCM
+      EN work/ClockDivider 1294852751 CP std_logic CP BUFG CP DCM
 FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/disp_hex.vhd 2011/01/11.11:20:00 K.37
-EN work/disp_hex_mux 1294821729 \
+EN work/disp_hex_mux 1294852759 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/disp_hex.vhd \
       PB ieee/std_logic_1164 1209777529 PH ieee/NUMERIC_STD 1209777529
-AR work/disp_hex_mux/arch 1294821730 \
+AR work/disp_hex_mux/arch 1294852760 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/disp_hex.vhd \
-      EN work/disp_hex_mux 1294821729
+      EN work/disp_hex_mux 1294852759
 FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/fifo.vhd 2011/01/11.11:20:00 K.37
-EN work/fifo 1294821717 \
+EN work/fifo 1294852741 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/fifo.vhd \
       PB ieee/std_logic_1164 1209777529 PH ieee/NUMERIC_STD 1209777529
-AR work/fifo/arch 1294821718 \
+AR work/fifo/arch 1294852742 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/fifo.vhd \
-      EN work/fifo 1294821717
-FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/memory.vhd 2011/01/11.17:06:00 K.37
-EN work/memory 1294821723 \
+      EN work/fifo 1294852741
+FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/memory.vhd 2011/01/12.17:57:42 K.37
+EN work/memory 1294852755 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/memory.vhd \
       PB ieee/std_logic_1164 1209777529 PH ieee/NUMERIC_STD 1209777529
-AR work/memory/beh_arch 1294821724 \
+AR work/memory/beh_arch 1294852756 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/memory.vhd \
-      EN work/memory 1294821723
+      EN work/memory 1294852755
 FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/memory_wrapper.vhd 2011/01/11.18:22:00 K.37
-EN work/memory_wrapper 1294821727 \
+EN work/memory_wrapper 1294852757 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/memory_wrapper.vhd \
       PB ieee/std_logic_1164 1209777529 PB ieee/std_logic_arith 1209777530 \
       PB ieee/STD_LOGIC_UNSIGNED 1209777531
-AR work/memory_wrapper/Behavioral 1294821728 \
+AR work/memory_wrapper/Behavioral 1294852758 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/memory_wrapper.vhd \
-      EN work/memory_wrapper 1294821727 CP work/Memory
+      EN work/memory_wrapper 1294852757 CP work/Memory
 FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/steeringwheel_ad.vhd 2011/01/11.21:13:00 K.37
-EN work/steeringwheel_ad 1294821733 \
+EN work/steeringwheel_ad 1294852763 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/steeringwheel_ad.vhd \
       PB ieee/std_logic_1164 1209777529 PB ieee/std_logic_arith 1209777530 \
       PB ieee/STD_LOGIC_UNSIGNED 1209777531
-AR work/steeringwheel_ad/AD1 1294821734 \
+AR work/steeringwheel_ad/AD1 1294852764 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/steeringwheel_ad.vhd \
-      EN work/steeringwheel_ad 1294821733
-FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/top_template-advanced.vhd 2011/01/11.22:29:00 K.37
-EN work/system_complete 1294821735 \
+      EN work/steeringwheel_ad 1294852763
+FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/top_template-advanced.vhd 2011/01/12.15:06:16 K.37
+EN work/system_complete 1294852767 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/top_template-advanced.vhd \
       LB UNISIM PH unisim/VCOMPONENTS 1212040723 PB ieee/std_logic_1164 1209777529 \
       PB ieee/std_logic_arith 1209777530 PB ieee/STD_LOGIC_UNSIGNED 1209777531 \
       PH ieee/NUMERIC_BIT 1209777529
-AR work/system_complete/Behavioral 1294821736 \
+AR work/system_complete/Behavioral 1294852768 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/top_template-advanced.vhd \
-      EN work/system_complete 1294821735 CP work/ClockDivider CP lc3 \
+      EN work/system_complete 1294852767 CP work/ClockDivider CP lc3 \
       CP work/memory_wrapper CP work/disp_hex_mux CP work/uart_wrapper \
-      CP work/steeringwheel_ad
+      CP work/steeringwheel_ad CP work/vga_wrapper
 FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart.vhd 2011/01/11.11:20:00 K.37
-EN work/uart 1294821721 \
+EN work/uart 1294852753 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart.vhd \
       PB ieee/std_logic_1164 1209777529 PH ieee/NUMERIC_STD 1209777529
-AR work/uart/str_arch 1294821722 \
+AR work/uart/str_arch 1294852754 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart.vhd \
-      EN work/uart 1294821721 AR work/mod_m_counter/arch 1294821714 \
-      AR work/uart_rx/arch 1294821716 AR work/fifo/arch 1294821718 \
-      AR work/uart_tx/arch 1294821720
+      EN work/uart 1294852753 AR work/mod_m_counter/arch 1294852738 \
+      AR work/uart_rx/arch 1294852740 AR work/fifo/arch 1294852742 \
+      AR work/uart_tx/arch 1294852744
 FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart_rx.vhd 2011/01/11.11:20:00 K.37
-EN work/uart_rx 1294821715 \
+EN work/uart_rx 1294852739 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart_rx.vhd \
       PB ieee/std_logic_1164 1209777529 PH ieee/NUMERIC_STD 1209777529
-AR work/uart_rx/arch 1294821716 \
+AR work/uart_rx/arch 1294852740 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart_rx.vhd \
-      EN work/uart_rx 1294821715
+      EN work/uart_rx 1294852739
 FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart_tx.vhd 2011/01/11.11:20:00 K.37
-EN work/uart_tx 1294821719 \
+EN work/uart_tx 1294852743 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart_tx.vhd \
       PB ieee/std_logic_1164 1209777529 PH ieee/NUMERIC_STD 1209777529
-AR work/uart_tx/arch 1294821720 \
+AR work/uart_tx/arch 1294852744 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart_tx.vhd \
-      EN work/uart_tx 1294821719
+      EN work/uart_tx 1294852743
 FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart_wrapper.vhd 2011/01/11.12:58:00 K.37
-EN work/uart_wrapper 1294821731 \
+EN work/uart_wrapper 1294852761 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart_wrapper.vhd \
       PB ieee/std_logic_1164 1209777529 PB ieee/std_logic_arith 1209777530 \
       PB ieee/STD_LOGIC_UNSIGNED 1209777531
-AR work/uart_wrapper/Behavioral 1294821732 \
+AR work/uart_wrapper/Behavioral 1294852762 \
       FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/uart_wrapper.vhd \
-      EN work/uart_wrapper 1294821731 CP work/uart
+      EN work/uart_wrapper 1294852761 CP work/uart
+FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_rom_color.vhd 2011/01/12.17:23:12 K.37
+EN work/vga_rom_color 1294852747 \
+      FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_rom_color.vhd \
+      PB ieee/std_logic_1164 1209777529 PH ieee/NUMERIC_STD 1209777529
+AR work/vga_rom_color/arch 1294852748 \
+      FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_rom_color.vhd \
+      EN work/vga_rom_color 1294852747
+FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_rom_tile.vhd 2011/01/12.17:49:50 K.37
+EN work/vga_rom_tile 1294852749 \
+      FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_rom_tile.vhd \
+      PB ieee/std_logic_1164 1209777529 PH ieee/NUMERIC_STD 1209777529
+AR work/vga_rom_tile/arch 1294852750 \
+      FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_rom_tile.vhd \
+      EN work/vga_rom_tile 1294852749
+FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_sync.vhd 2011/01/11.11:20:00 K.37
+EN work/vga_sync 1294852745 \
+      FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_sync.vhd \
+      PB ieee/std_logic_1164 1209777529 PH ieee/NUMERIC_STD 1209777529
+AR work/vga_sync/arch 1294852746 \
+      FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_sync.vhd \
+      EN work/vga_sync 1294852745
+FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_wrapper.vhd 2011/01/12.18:18:51 K.37
+EN work/vga_wrapper 1294852765 \
+      FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_wrapper.vhd \
+      PB ieee/std_logic_1164 1209777529 PB ieee/std_logic_arith 1209777530 \
+      PB ieee/STD_LOGIC_UNSIGNED 1209777531
+AR work/vga_wrapper/Behavioral 1294852766 \
+      FL //w2.b45x.dtu.dk/users/studerende/dtu/s000536/3week_vhdl/vga_wrapper.vhd \
+      EN work/vga_wrapper 1294852765 CP work/vga_sync CP work/vga_rom_color \
+      CP work/vga_rom_tile CP ClockDivider
