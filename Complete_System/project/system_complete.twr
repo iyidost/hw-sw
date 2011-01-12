@@ -1,0 +1,236 @@
+--------------------------------------------------------------------------------
+Release 10.1.02 Trace  (nt)
+Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+
+C:\PROGRA~1\Xilinx\10.1\ISE\bin\nt\unwrapped\trce.exe -ise
+C:/Documents and Settings/s000536/Desktop/complete_system/complete_lc3.ise
+-intstyle ise -v 3 -s 7 -xml system_complete system_complete.ncd -o
+system_complete.twr system_complete.pcf -ucf H:/3week_vhdl/top_template.UCF
+
+Design file:              system_complete.ncd
+Physical constraint file: system_complete.pcf
+Device,package,speed:     xc2vp30,ff896,-7 (PRODUCTION 1.94 2008-05-01)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+
+================================================================================
+Timing constraint: TS_clk = PERIOD TIMEGRP "clk100" 10 ns HIGH 50%;
+
+ 442396 paths analyzed, 2628 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors)
+ Minimum period is   9.971ns.
+--------------------------------------------------------------------------------
+Slack:                  0.029ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               lc3_1/addr_2 (FF)
+  Destination:          lc3_1/psr_0 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      9.941ns (Levels of Logic = 9)
+  Clock Path Skew:      -0.030ns (1.827 - 1.857)
+  Source Clock:         clk100_BUFGP rising at 0.000ns
+  Destination Clock:    clk100_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: lc3_1/addr_2 to lc3_1/psr_0
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X54Y104.XQ     Tcko                  0.370   bus_address<2>
+                                                       lc3_1/addr_2
+    SLICE_X54Y110.G1     net (fanout=80)       1.099   bus_address<2>
+    SLICE_X54Y110.Y      Tilo                  0.275   sseg_out<0>216
+                                                       bus_data_cmp_eq0003_inv4
+    SLICE_X48Y111.F3     net (fanout=1)        0.588   bus_data_cmp_eq0003_inv4
+    SLICE_X48Y111.X      Tilo                  0.254   bus_data_cmp_eq0003_inv
+                                                       bus_data_cmp_eq0003_inv55
+    TBUF_X68Y110.T       net (fanout=16)       1.942   bus_data_cmp_eq0003_inv
+    TBUF_X68Y110.O       Toff                  0.472   bus_data_ren_4_13
+                                                       bus_data_ren_4_13
+    SLICE_X48Y109.F3     net (fanout=13)       1.973   bus_data<13>
+    SLICE_X48Y109.X      Tilo                  0.254   lc3_1/temp_mux0003<13>
+                                                       lc3_1/temp_mux0003<13>1
+    SLICE_X46Y109.F4     net (fanout=2)        0.306   lc3_1/temp_mux0003<13>
+    SLICE_X46Y109.X      Tilo                  0.254   lc3_1/psr_2_0_cmp_eq0000100
+                                                       lc3_1/psr_2_0_cmp_eq0000100
+    SLICE_X45Y108.G1     net (fanout=1)        0.587   lc3_1/psr_2_0_cmp_eq0000100
+    SLICE_X45Y108.Y      Tilo                  0.275   lc3_1/psr_1_mux000039
+                                                       lc3_1/psr_2_0_cmp_eq0000114
+    SLICE_X45Y109.G2     net (fanout=2)        0.116   lc3_1/psr_2_0_cmp_eq0000
+    SLICE_X45Y109.Y      Tilo                  0.275   lc3_1/psr_0_mux000083
+                                                       lc3_1/psr_0_mux000039
+    SLICE_X45Y109.F4     net (fanout=1)        0.057   lc3_1/psr_0_mux000039/O
+    SLICE_X45Y109.X      Tilo                  0.254   lc3_1/psr_0_mux000083
+                                                       lc3_1/psr_0_mux000083
+    SLICE_X43Y109.F1     net (fanout=1)        0.336   lc3_1/psr_0_mux000083
+    SLICE_X43Y109.X      Tilo                  0.254   lc3_1/psr<0>
+                                                       lc3_1/psr_0_mux0000320
+    SLICE_X43Y109.DX     net (fanout=1)        0.000   lc3_1/psr_0_mux0000
+    SLICE_X43Y109.CLK    Tdxck                 0.000   lc3_1/psr<0>
+                                                       lc3_1/psr_0
+    -------------------------------------------------  ---------------------------
+    Total                                      9.941ns (2.937ns logic, 7.004ns route)
+                                                       (29.5% logic, 70.5% route)
+
+--------------------------------------------------------------------------------
+Slack:                  0.045ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               lc3_1/instr_0_3 (FF)
+  Destination:          lc3_1/reg_5_8 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      9.955ns (Levels of Logic = 9)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk100_BUFGP rising at 0.000ns
+  Destination Clock:    clk100_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: lc3_1/instr_0_3 to lc3_1/reg_5_8
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X45Y103.YQ     Tcko                  0.370   lc3_1/instr_0_3
+                                                       lc3_1/instr_0_3
+    SLICE_X47Y104.F1     net (fanout=16)       0.701   lc3_1/instr_0_3
+    SLICE_X47Y104.F5     Tif5                  0.522   lc3_1/divider_divisor<0>
+                                                       lc3_1/Mmux_divider_divisor_4
+                                                       lc3_1/Mmux_divider_divisor_3_f5
+    SLICE_X47Y104.FXINA  net (fanout=1)        0.000   lc3_1/Mmux_divider_divisor_3_f5
+    SLICE_X47Y104.Y      Tif6y                 0.288   lc3_1/divider_divisor<0>
+                                                       lc3_1/Mmux_divider_divisor_2_f6
+    SLICE_X39Y101.F3     net (fanout=59)       1.656   lc3_1/divider_divisor<0>
+    SLICE_X39Y101.X      Tilo                  0.254   lc3_1/si0_mux0000<10>
+                                                       lc3_1/si0_mux0000<10>1
+    SLICE_X33Y105.G1     net (fanout=2)        0.924   lc3_1/si0_mux0000<10>
+    SLICE_X33Y105.X      Tif5x                 0.578   lc3_1/N250
+                                                       lc3_1/temp_mux0002<8>_SW1_F
+                                                       lc3_1/temp_mux0002<8>_SW1
+    SLICE_X30Y105.G4     net (fanout=1)        0.452   lc3_1/N250
+    SLICE_X30Y105.Y      Tilo                  0.275   lc3_1/temp_mux0002<1>10
+                                                       lc3_1/temp_mux0002<8>
+    SLICE_X36Y112.F2     net (fanout=3)        0.819   lc3_1/temp_mux0002<8>
+    SLICE_X36Y112.X      Tilo                  0.254   lc3_1/N2621
+                                                       lc3_1/reg_0_mux0000<8>196_SW0
+    SLICE_X44Y121.G1     net (fanout=1)        1.076   lc3_1/N2621
+    SLICE_X44Y121.Y      Tilo                  0.275   lc3_1/N53
+                                                       lc3_1/reg_0_mux0000<8>1106
+    SLICE_X44Y121.F3     net (fanout=1)        0.037   lc3_1/reg_0_mux0000<8>1106/O
+    SLICE_X44Y121.X      Tilo                  0.254   lc3_1/N53
+                                                       lc3_1/reg_0_mux0000<8>1127
+    SLICE_X45Y116.G1     net (fanout=7)        0.945   lc3_1/N53
+    SLICE_X45Y116.Y      Tilo                  0.275   lc3_1/reg_5_9
+                                                       lc3_1/reg_5_mux0000<8>1
+    SLICE_X45Y116.DY     net (fanout=1)        0.000   lc3_1/reg_5_mux0000<8>
+    SLICE_X45Y116.CLK    Tdyck                 0.000   lc3_1/reg_5_9
+                                                       lc3_1/reg_5_8
+    -------------------------------------------------  ---------------------------
+    Total                                      9.955ns (3.345ns logic, 6.610ns route)
+                                                       (33.6% logic, 66.4% route)
+
+--------------------------------------------------------------------------------
+Slack:                  0.049ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               lc3_1/instr_7_1 (FF)
+  Destination:          lc3_1/psr_0 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      9.838ns (Levels of Logic = 10)
+  Clock Path Skew:      -0.113ns (1.827 - 1.940)
+  Source Clock:         clk100_BUFGP rising at 0.000ns
+  Destination Clock:    clk100_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: lc3_1/instr_7_1 to lc3_1/psr_0
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X43Y112.YQ     Tcko                  0.370   lc3_1/instr_7_1
+                                                       lc3_1/instr_7_1
+    SLICE_X37Y106.BX     net (fanout=20)       1.171   lc3_1/instr_7_1
+    SLICE_X37Y106.F5     Tbxf5                 0.483   lc3_1/divider_dividend<14>
+                                                       lc3_1/Mmux_divider_dividend_3_f5_4
+    SLICE_X37Y106.FXINA  net (fanout=1)        0.000   lc3_1/Mmux_divider_dividend_3_f55
+    SLICE_X37Y106.Y      Tif6y                 0.288   lc3_1/divider_dividend<14>
+                                                       lc3_1/Mmux_divider_dividend_2_f6_4
+    SLICE_X61Y98.F4      net (fanout=24)       2.226   lc3_1/divider_dividend<14>
+    SLICE_X61Y98.X       Tif5x                 0.578   lc3_1/si_mux0001<11>
+                                                       lc3_1/si_mux0001<11>1_G
+                                                       lc3_1/si_mux0001<11>1
+    SLICE_X54Y103.G3     net (fanout=3)        0.495   lc3_1/si_mux0001<11>
+    SLICE_X54Y103.Y      Tilo                  0.275   lc3_1/temp_mux0001<7>
+                                                       lc3_1/temp_mux0001<7>38
+    SLICE_X54Y103.F3     net (fanout=1)        0.037   lc3_1/temp_mux0001<7>38/O
+    SLICE_X54Y103.X      Tilo                  0.254   lc3_1/temp_mux0001<7>
+                                                       lc3_1/temp_mux0001<7>39
+    SLICE_X51Y102.F4     net (fanout=3)        0.792   lc3_1/temp_mux0001<7>
+    SLICE_X51Y102.X      Tilo                  0.254   lc3_1/psr_2_0_cmp_eq000937
+                                                       lc3_1/psr_2_0_cmp_eq000937
+    SLICE_X55Y105.F3     net (fanout=2)        0.627   lc3_1/psr_2_0_cmp_eq000937
+    SLICE_X55Y105.X      Tilo                  0.254   lc3_1/psr_2_0_cmp_eq0009
+                                                       lc3_1/psr_2_0_cmp_eq000982
+    SLICE_X54Y106.G3     net (fanout=1)        0.188   lc3_1/psr_2_0_cmp_eq0009
+    SLICE_X54Y106.Y      Tilo                  0.275   lc3_1/psr_0_mux0000189
+                                                       lc3_1/psr_0_mux0000159
+    SLICE_X54Y106.F4     net (fanout=1)        0.057   lc3_1/psr_0_mux0000159/O
+    SLICE_X54Y106.X      Tilo                  0.254   lc3_1/psr_0_mux0000189
+                                                       lc3_1/psr_0_mux0000189
+    SLICE_X43Y109.F3     net (fanout=1)        0.706   lc3_1/psr_0_mux0000189
+    SLICE_X43Y109.X      Tilo                  0.254   lc3_1/psr<0>
+                                                       lc3_1/psr_0_mux0000320
+    SLICE_X43Y109.DX     net (fanout=1)        0.000   lc3_1/psr_0_mux0000
+    SLICE_X43Y109.CLK    Tdxck                 0.000   lc3_1/psr<0>
+                                                       lc3_1/psr_0
+    -------------------------------------------------  ---------------------------
+    Total                                      9.838ns (3.539ns logic, 6.299ns route)
+                                                       (36.0% logic, 64.0% route)
+
+--------------------------------------------------------------------------------
+
+
+All constraints were met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock clk100
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk100         |    9.971|         |         |         |
+---------------+---------+---------+---------+---------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0
+
+Constraints cover 442396 paths, 0 nets, and 13020 connections
+
+Design statistics:
+   Minimum period:   9.971ns{1}   (Maximum frequency: 100.291MHz)
+
+
+------------------------------------Footnotes-----------------------------------
+1)  The minimum period statistic assumes all single cycle delays.
+
+Analysis completed Wed Jan 12 13:17:15 2011 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 181 MB
+
+
+
