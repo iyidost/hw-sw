@@ -39,6 +39,7 @@ entity vga_wrapper is
 		VGA_OUT_BLUE	: out STD_LOGIC_VECTOR(7 downto 0);
 		VGA_OUT_GREEN	: out STD_LOGIC_VECTOR(7 downto 0);
 		VGA_OUT_RED		: out STD_LOGIC_VECTOR(7 downto 0);
+		screen_update	: in STD_LOGIC_VECTOR (15 downto 0);
 		car_x_input		: in STD_LOGIC_VECTOR(9 downto 0)
 		--btn_i				: in STD_LOGIC_VECTOR( 4 downto 0)
       ---rgb: out std_logic_vector(2 downto 0)
