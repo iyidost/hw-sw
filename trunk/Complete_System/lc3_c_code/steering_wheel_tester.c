@@ -1,8 +1,15 @@
+/*
+ * Steering Wheel moves box on screen
+ * Thursday 13/1 2011 16:45:42
+ * */
 #include <stdio.h>
 #include <lc3io.h>
 
 #define STEER_S	  				0xfe18u
 #define STEER_D	  				0xfe1au
+#define VGA_CAR_X	  			0xfe1cu
+#define SCREEN_WIDTH			640
+#define CAR_WIDTH				64
 #define SIZEOF_SIGNED_SHORT		32767
 #define SIZEOF_UNSIGNED_SHORT	65535
 
@@ -41,19 +48,14 @@ int main() {
 		// divide by 128 to reduce the area to -255 to +255
 		steer_val /= 128;
 
-		// Display fancy bar
-		bar_val = (steer_val / 25) + 10;
-		printf("[");
-		for (i = 0; i <= 20; i++)
-		{
-			if (i == bar_val)
-				printf("*");
-			else
-				printf(" ");
-		}
-		printf("] (%d)\n", steer_val);
+		// Change value from -255 -> +255 to pixels on the horizontal axis on the screen
+		steer_val = (steer_val + 255);
+		steer_val += (SCREEN_WIDTH / 2 - 510 / 2) / 2;
 
-		//printf("Steering Wheel Output: %d (%d,0x%x)\n\n", steer_val, steer_status, steer_status);
+		printf("Steering wheel x pos: %d\n", steer_val);
+
+		// Write x position to the VGA_CAR_X register
+		io_write(VGA_CAR_X, steer_val);
     }
     return 0;
 }
