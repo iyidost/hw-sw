@@ -298,7 +298,8 @@ vga_wrapper : entity work.vga_wrapper
 		VGA_OUT_PIXEL_CLOCK => pixelclk_out,
 		VGA_OUT_BLUE		=> b_out,
 		VGA_OUT_GREEN		=> g_out,
-		VGA_OUT_RED			=> r_out
+		VGA_OUT_RED			=> r_out,
+		btn_i					=> btn_i
    );
 
 --mem_cs <= '1' when bus_address < X"E000" else '0';
