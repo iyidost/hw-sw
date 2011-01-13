@@ -1,8 +1,10 @@
 \select@language {danish}
 \ttl@starttoc {figures@1}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Simpelt mock-up over systemet\relax }}{1}{figure.caption.1}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Videreudviklet mock-up over systemet\relax }}{2}{figure.caption.2}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Design system\relax }}{3}{figure.caption.1}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Design system\relax }}{4}{figure.caption.3}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
