@@ -38,12 +38,14 @@ entity vga_wrapper is
 		VGA_OUT_PIXEL_CLOCK : out STD_LOGIC;
 		VGA_OUT_BLUE	: out STD_LOGIC_VECTOR(7 downto 0);
 		VGA_OUT_GREEN	: out STD_LOGIC_VECTOR(7 downto 0);
-		VGA_OUT_RED		: out STD_LOGIC_VECTOR(7 downto 0)
+		VGA_OUT_RED		: out STD_LOGIC_VECTOR(7 downto 0);
+		btn_i				: in STD_LOGIC_VECTOR( 4 downto 0)
       ---rgb: out std_logic_vector(2 downto 0)
    );
 end vga_wrapper;
 
 architecture Behavioral of vga_wrapper is
+	signal refr_tick: std_logic;
    --signal rgb_reg 		: std_logic_vector(2 downto 0);
 	signal b_out_reg  	: STD_LOGIC_VECTOR(7 downto 0);
 	signal g_out_reg 		: STD_LOGIC_VECTOR(7 downto 0);
@@ -64,20 +66,15 @@ architecture Behavioral of vga_wrapper is
 	constant MAX_X: integer:=640;
    constant MAX_Y: integer:=480;
 	constant car_x_size	: integer:= 64;
---	constant car_y_size	: integer:= 96;
+   constant car_velocity: integer:=4;
 	constant car_y_top		: integer:= 300;
 	constant car_y_bottom	: integer:= 396;
-	constant car_x_left	: integer:= MAX_X/2 - car_x_size/2; 
-	constant car_x_right	: integer:= car_x_left + car_x_size - 1;
+--	constant car_x_left	: integer:= MAX_X/2 - car_x_size/2; 
+--	constant car_x_right	: integer:= car_x_left + car_x_size - 1;
+	signal 	car_x_left, car_x_right: unsigned(9 downto 0);
+	signal car_x_reg, car_x_next: unsigned(9 downto 0);
 
 begin
----- her skal ligge noget code fra pong graph til at flytte car.
-   car_on <=
-      '1' when (car_x_left<=pixel_x) and (pixel_x<=car_x_right) and
-               (car_y_top<=pixel_y) and (pixel_y<=car_y_bottom) else
-      '0';
-   car_color <= "11011010";
-
    -- instantiate VGA sync circuit
    vga_sync_unit: entity work.vga_sync
       port map(
@@ -111,32 +108,44 @@ begin
 			div => 2.0
 			)
 	      port map(clkIn=>clk, clkOut=> clk_out);
---   process (clk,reset)
---   begin
---      if reset='1' then
+   process (clk,reset)
+   begin
+      if reset='1' then
+			car_x_reg <= (others=>'0');
 --         b_out_reg <= (others=>'0');
 --			g_out_reg <= (others=>'0');
 --			r_out_reg <= (others=>'0');
---      elsif (clk_out'event and clk_out='1') then
-----				b_out_reg <= "11000000";
-----				g_out_reg <= "11000000";
-----				r_out_reg <= "11000000";
-----			if(pixel_x > "0101000000" and pixel_x < "0101010000" and pixel_y > "0011110000" and pixel_y < "0100000000") then
-------				vga_addr => x"000000000";
-------				vga_data_line => vga_tile_line;
-------				
-------				vga_addr => vga_addr & '1';
-----				b_out_reg <= "10000000";
-----				g_out_reg <= "10000000";
-----				r_out_reg <= "10000000";
-----			else
-----				b_out_reg <= "00000000";
-----				g_out_reg <= "00000000";
-----				r_out_reg <= "00000000";
-----			end if;
---
---      end if;
---   end process;
+      elsif (clk_out'event and clk_out='1') then
+			car_x_reg <= car_x_next;
+--				b_out_reg <= "11000000";
+--				g_out_reg <= "11000000";
+--				r_out_reg <= "11000000";
+--			if(pixel_x > "0101000000" and pixel_x < "0101010000" and pixel_y > "0011110000" and pixel_y < "0100000000") then
+----				vga_addr => x"000000000";
+----				vga_data_line => vga_tile_line;
+----				
+----				vga_addr => vga_addr & '1';
+--				b_out_reg <= "10000000";
+--				g_out_reg <= "10000000";
+--				r_out_reg <= "10000000";
+--			else
+--				b_out_reg <= "00000000";
+--				g_out_reg <= "00000000";
+--				r_out_reg <= "00000000";
+--			end if;
+
+      end if;
+   end process;
+	car_x_left <= car_x_reg;
+	car_x_right <= car_x_left + car_x_size -1;
+
+---- her skal ligge noget code fra pong graph til at flytte car.
+   car_on <=
+      '1' when (car_x_left<=unsigned(pixel_x)) and (unsigned(pixel_x)<=car_x_right) and
+               (car_y_top<=pixel_y) and (pixel_y<=car_y_bottom) else
+      '0';
+   car_color <= "11011010";
+
 	
 	   -- rgb multiplexing circuit
    process(car_on,car_color)
@@ -152,6 +161,21 @@ begin
 			b_out_reg <= "00000000";
       end if;
    end process;
+	
+	   -- new car x-position
+   process(car_x_reg,car_x_left,car_x_right,refr_tick,btn_i)
+   begin
+      car_x_next <= car_x_reg; -- no move
+      if refr_tick='1' then
+         if btn_i(1)='1' and car_x_right<(MAX_X-1-car_velocity) then
+            car_x_next <= car_x_reg + car_velocity; -- move down
+         elsif btn_i(0)='1' and car_x_left > car_velocity then
+            car_x_next <= car_x_reg - car_velocity; -- move up
+         end if;
+      end if;
+   end process;
+	
+	 refr_tick <= '1' when (pixel_y=481) and (pixel_x=0) else '0';
 	
    --rgb <= rgb_reg when video_on='1' else "000";
 	VGA_OUT_PIXEL_CLOCK <= clk_out;
