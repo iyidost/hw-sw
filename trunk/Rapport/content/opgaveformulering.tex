@@ -1,7 +1,12 @@
 \chapter{Opgaveformulering}\label{cha:opgaveformulering}
-\section{Case}
-Vi skal til vores 3 ugers projekt i HW/SW udvikle et kørende program på vores FPGA board, hvor vi har valgt at udvikle et køre-bil simulator spil. Vi ønsker at have noget simpel grafik der bevæger sig, altså en bil der kører "ud af vejen", der skal undgå div. forhindringer. Vi ønsker at tilslutte et rat som styrings element til vores bil via com. port og hvis dette ikke kan lade sig gøre, vil vi tilslutte det til computeren og kommunikere til boardet via seriel port.
-\billede{!htbp}{0.7}{MockUpSimple}{Simpelt mock-up over systemet}
-(den røde kasse symboliserer bilen som kan styre hhv. til højre og venstre, ved drej på det tilsluttede rat. De blå kasser symboliserer forhindringer på vejen, rammer man dem er spillet slut. Forhindringerne vises tilfældigt.)
-Neden for ses et mere avanceret mock-up over systemet, hvor vi, afhængigt af tiden op til aflevering, påtænker at indsætte flere forhindringer på vejen, påtænker flere forskellige baner at spille, skiftende baggrunde og bedre grafik. Vi begynder i det små, får de forskellige komponenter til at fungere korrekt sammen og udvikler derefter spillet til FPGA'en. Vi stiler efter, at nå mest muligt af vores ønskede krav iht. vores tænkte avancerede udgave af spillet og forbedre vores forståelse for sammenspillet mellem hardware og software udvikling. Der ønskes også at vi bruger lidt teknologier fra nogle af de andre fag, f.eks. noget DB til at gemme highscores i (med henvisning til OOAD faget) eller lidt statistik over highscores(med henvisning til Statistik faget) osv.
-\billede{!htbp}{0.7}{MockUpAdvanced}{Avanceret mock-up over systemet}
+I dette 3 ugers projekt skal der sammensættes en komplet computer, baseret på \texttt{von Neumann arkitekturen} udfra en udleveret implementeret \texttt{LC3 CPU}, computeren implementeres på et \texttt{Virtex II} FPGA board. Såfremt det bliver nødvendigt kan der være tale om at dele af spillet implementeres på en almindelig PC og med data sendt over seriel forbindelse til \texttt{LC3} computeren.
+
+Derefter udvikles et spil baseret på den implementerede computer. Det er valgt at udvikle et bil spil hvor bilen skal styres af et fysisk rat eller tastatur. Målet med spillet er at undgå forhindringer i form af andre biler, kasser og lignende som indsættes på kørebanen tilfældigt.
+
+På figur~\vref{fig:MockUpSimple} ses et simpelt mockup over hvordan spillet kunne se ud hvor der er indtegnet en simpel baggrund, en bil som man styrer samt forhindringer man skal undgå.
+\billede{!htbp}{0.5}{MockUpSimple}{Simpelt mock-up over systemet}
+
+Afhængigt af tiden op til aflevering, påtænkes der at udvide projektet med en eller flere ekstra tilføjelser. Disse tilføjelser kunne være at indsætte flere \textit{forskellige} forhindringer på vejen, eller at benytte flere \textit{forskellige} baggrunde, eller at have flere \textit{forskellige} baner, eller at lave bedre grafik eller at implementere lyd. På figur~\vref{fig:MockUpAdvanced} ses et videreudviklet mockup over spillet hvor points og tid også er vist.
+\billede{!htbp}{0.5}{MockUpAdvanced}{Videreudviklet mock-up over systemet}
+
+Desuden ville det være ønskeligt at bruge viden fra andre af semesterets kurser til projektet, herunder implementering af en database til highscores i spillet med henvisning til kurset \texttt{02344 OOAD og databaser}.

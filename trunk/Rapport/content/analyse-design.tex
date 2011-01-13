@@ -1,4 +1,8 @@
 \chapter{Analyse og design}\label{cha:analysedesign}
+Vores system er overordnet opbygget
+
+\billede{!htbp}{1}{Diagrammer/OverordnetSystem}{Design system}
+
 For at demonstrere vores spil skal der bruges forskellige sammensat enheder: PC, FPGA board og VGA skærm. Spillet er såsom også udviklet vha. flere programmeringssprog fra høje til lav niveau.
 
 Spillet er først implementeret på PC i C kode, derefter skal indholdet overføres til FPGA board vha. en serial forbindelse. Indholdet af spillet er gemmes i block ram på FPGA. En VGA skærm viser "output" altså baggrund,forgrund( bil, forhindringer), og er opdateret løbende, for man kan se og følge med hvad det sker og dermed kan spille. Spillet kan styres direkt fra FPGA board vha. en styrring enhed, i denne tilfælde har vi valgt at bruge en rat i stedet for en keyboard.
@@ -12,5 +16,3 @@ rat bruges til at styre billen som køre på forgrund.
 
 Figure xx vises vores overordnet system.
 (OBS! Vi skal selv tegne LC-3 system diagram som ligner denne figur)
-
-\billede{!htbp}{1}{SystemOverview}{Design system}
