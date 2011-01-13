@@ -39,7 +39,8 @@ entity vga_wrapper is
 		VGA_OUT_BLUE	: out STD_LOGIC_VECTOR(7 downto 0);
 		VGA_OUT_GREEN	: out STD_LOGIC_VECTOR(7 downto 0);
 		VGA_OUT_RED		: out STD_LOGIC_VECTOR(7 downto 0);
-		btn_i				: in STD_LOGIC_VECTOR( 4 downto 0)
+		car_x_input		: in STD_LOGIC_VECTOR(9 downto 0)
+		--btn_i				: in STD_LOGIC_VECTOR( 4 downto 0)
       ---rgb: out std_logic_vector(2 downto 0)
    );
 end vga_wrapper;
@@ -163,15 +164,16 @@ begin
    end process;
 	
 	   -- new car x-position
-   process(car_x_reg,car_x_left,car_x_right,refr_tick,btn_i)
+   process(car_x_reg,car_x_left,car_x_right,refr_tick,car_x_input)
    begin
       car_x_next <= car_x_reg; -- no move
       if refr_tick='1' then
-         if btn_i(1)='1' and car_x_right<(MAX_X-1-car_velocity) then
-            car_x_next <= car_x_reg + car_velocity; -- move down
-         elsif btn_i(0)='1' and car_x_left > car_velocity then
-            car_x_next <= car_x_reg - car_velocity; -- move up
-         end if;
+--         if btn_i(1)='1' and car_x_right<(MAX_X-1-car_velocity) then
+--            car_x_next <= car_x_reg + car_velocity; -- move down
+--         elsif btn_i(0)='1' and car_x_left > car_velocity then
+--            car_x_next <= car_x_reg - car_velocity; -- move up
+--         end if;
+				  car_x_next <= unsigned(car_x_input);
       end if;
    end process;
 	
