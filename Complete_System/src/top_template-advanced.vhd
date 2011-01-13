@@ -161,6 +161,9 @@ signal steer_wheel_start: std_logic;
 signal steer_wheel_done: std_logic;
 signal steer_wheel_data: std_logic_vector(11 downto 0);
 
+-- VGA
+signal vga_car_x: std_logic_vector(9 downto 0);
+
 component lc3 is
    port (
       clk        : in    std_logic;
@@ -299,7 +302,7 @@ vga_wrapper : entity work.vga_wrapper
 		VGA_OUT_BLUE		=> b_out,
 		VGA_OUT_GREEN		=> g_out,
 		VGA_OUT_RED			=> r_out,
-		btn_i					=> btn_i
+		car_x_input			=> vga_car_x
    );
 
 --mem_cs <= '1' when bus_address < X"E000" else '0';
@@ -370,6 +373,9 @@ bus_data <= not tx_full & "000000000000000" when bus_address = x"FE04" else (oth
 -- Status register
 steer_wheel_start <= '1' when bus_address = x"FE18" else '0';
 bus_data <= steer_wheel_done & "000000000000000" when bus_address = x"FE18" else (others => 'Z');
+
+-- VGA
+vga_car_x <= bus_data(9 downto 0) when bus_address = x"FE1C";-- else (others => 'Z');
 
 -- Data register
 bus_data <= steer_wheel_data & "0000" when bus_address = x"FE1A" else (others => 'Z');
