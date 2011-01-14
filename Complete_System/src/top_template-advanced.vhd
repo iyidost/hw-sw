@@ -163,6 +163,9 @@ signal steer_wheel_data: std_logic_vector(11 downto 0);
 
 -- VGA
 signal vga_car_x: std_logic_vector(9 downto 0);
+signal vga_obstacle_x: std_logic_vector (9 downto 0);
+signal vga_obstacle_y: std_logic_vector (9 downto 0);
+signal ROM_read: std_logic_vector(13 downto 0);
 
 component lc3 is
    port (
@@ -302,7 +305,10 @@ vga_wrapper : entity work.vga_wrapper
 		VGA_OUT_BLUE		=> b_out,
 		VGA_OUT_GREEN		=> g_out,
 		VGA_OUT_RED			=> r_out,
-		car_x_input			=> vga_car_x
+		car_x_input			=> vga_car_x,
+		obstacle_x_input	=> vga_obstacle_x,
+		obstacle_y_input	=> vga_obstacle_y
+--		ROM_read				=> ROM_read
    );
 
 --mem_cs <= '1' when bus_address < X"E000" else '0';
@@ -375,7 +381,22 @@ steer_wheel_start <= '1' when bus_address = x"FE18" else '0';
 bus_data <= steer_wheel_done & "000000000000000" when bus_address = x"FE18" else (others => 'Z');
 
 -- VGA
-vga_car_x <= bus_data(9 downto 0) when bus_address = x"FE1C";-- else (others => 'Z');
+process(cpu_clk)
+begin
+if (cpu_clk'event and cpu_clk='1') then
+      if bus_WE='1' and bus_address = x"FE1C" then
+			vga_car_x <= bus_data(9 downto 0);
+		end if;
+      if bus_WE='1' and bus_address = x"FE1E" then
+			vga_obstacle_x <= bus_data(9 downto 0);
+		end if;
+      if bus_WE='1' and bus_address = x"FE20" then
+			vga_obstacle_y <= bus_data(9 downto 0);
+		end if;
+   end if;
+end process;
+
+--vga_addr <= bus_data (8 downto 0) when bus_address = x"FE30";
 
 -- Data register
 bus_data <= steer_wheel_data & "0000" when bus_address = x"FE1A" else (others => 'Z');
