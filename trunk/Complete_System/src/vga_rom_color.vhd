@@ -1,21 +1,21 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-entity vga_rom_color is
+entity vga_rom_tile_color is
    port(
       clk: in std_logic;
       addr: in std_logic_vector(4 downto 0);
       data: out std_logic_vector(15 downto 0)
    );
-end vga_rom_color;
+end vga_rom_tile_color;
 
-architecture arch of vga_rom_color is
+architecture arch of vga_rom_tile_color is
    constant ADDR_WIDTH: integer:=5;
    constant DATA_WIDTH: integer:=16;
    type rom_type is array (0 to 2**ADDR_WIDTH-1)
         of std_logic_vector(DATA_WIDTH-1 downto 0);
    -- ROM definition
-   constant HEX2LED_ROM: rom_type:=(  -- 2^4-by-7
+   constant TILE_COLOR_ROM: rom_type:=(  -- 2^4-by-7
 -----------------------------------------
 -- Memory data for color for tiles --
 -----------------------------------------
@@ -46,5 +46,5 @@ begin
         addr_reg <= addr;
       end if;
    end process;
-   data <= HEX2LED_ROM(to_integer(unsigned(addr_reg)));
+   data <= TILE_COLOR_ROM(to_integer(unsigned(addr_reg)));
 end arch;
