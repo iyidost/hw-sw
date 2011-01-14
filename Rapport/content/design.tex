@@ -1,9 +1,7 @@
 \chapter{Design}\label{cha:design}
-Vores system som er beskrevet på figur~\vref{fig:Diagrammer/OverordnetSystem}, er overordnet opbygget af et \texttt{FPGA board} der implementerer en computer kørt af en \texttt{LC3 CPU}. Til computeren er der af eksterne I/O komponenter tilknyttet en skærm, et I/O board\footnote{Digilent DIO4\texttrademark I/O board} samt et rat som essentielt er en variabel modstand. Desuden benyttes der to-vejs seriel kommunikation til en PC til upload af bruger programmer til \texttt{LC3} computeren samt verificering af samme.
+Vores system som overordnet er beskrevet på figur~\vref{fig:Diagrammer/OverordnetSystem}, er opbygget af et \texttt{FPGA board} der implementerer en computer kørt af en \texttt{LC3 CPU}. Til computeren er der af eksterne I/O komponenter tilknyttet en skærm, et I/O board\footnote{Digilent DIO4\texttrademark I/O board} samt et rat som essentielt er en variabel modstand. Desuden benyttes der to-vejs seriel kommunikation til en PC til upload af bruger programmer til \texttt{LC3} computeren samt verificering af disse.
 
 \billede{!htbp}{1}{Diagrammer/OverordnetSystem}{Design system}
-
-For at demonstrere vores spil skal der bruges forskellige sammensat enheder: PC, FPGA board og VGA skærm. Spillet er såsom også udviklet vha. flere programmeringssprog fra høje til lav niveau.
 
 Spillet er først implementeret på PC i C kode, derefter skal indholdet overføres til FPGA board vha. en serial forbindelse. Indholdet af spillet er gemmes i block ram på FPGA. En VGA skærm viser "output" altså baggrund,forgrund( bil, forhindringer), og er opdateret løbende, for man kan se og følge med hvad det sker og dermed kan spille. Spillet kan styres direkt fra FPGA board vha. en styrring enhed, i denne tilfælde har vi valgt at bruge en rat i stedet for en keyboard.
 
