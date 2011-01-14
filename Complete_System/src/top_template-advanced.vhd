@@ -163,9 +163,16 @@ signal steer_wheel_data: std_logic_vector(11 downto 0);
 
 -- VGA
 signal vga_car_x: std_logic_vector(9 downto 0);
-signal vga_obstacle_x: std_logic_vector (9 downto 0);
-signal vga_obstacle_y: std_logic_vector (9 downto 0);
+signal vga_obstacle1_x: std_logic_vector (9 downto 0);
+signal vga_obstacle1_y: std_logic_vector (9 downto 0);
+signal vga_obstacle2_x: std_logic_vector (9 downto 0);
+signal vga_obstacle2_y: std_logic_vector (9 downto 0);
+signal vga_obstacle3_x: std_logic_vector (9 downto 0);
+signal vga_obstacle3_y: std_logic_vector (9 downto 0);
+
 signal ROM_read: std_logic_vector(13 downto 0);
+
+
 
 component lc3 is
    port (
@@ -306,8 +313,13 @@ vga_wrapper : entity work.vga_wrapper
 		VGA_OUT_GREEN		=> g_out,
 		VGA_OUT_RED			=> r_out,
 		car_x_input			=> vga_car_x,
-		obstacle_x_input	=> vga_obstacle_x,
-		obstacle_y_input	=> vga_obstacle_y
+		obstacle1_x_input	=> vga_obstacle1_x,
+		obstacle1_y_input	=> vga_obstacle1_y,
+		obstacle2_x_input	=> vga_obstacle2_x,
+		obstacle2_y_input	=> vga_obstacle2_y,
+		obstacle3_x_input	=> vga_obstacle3_x,
+		obstacle3_y_input	=> vga_obstacle3_y
+
 --		ROM_read				=> ROM_read
    );
 
@@ -388,10 +400,22 @@ if (cpu_clk'event and cpu_clk='1') then
 			vga_car_x <= bus_data(9 downto 0);
 		end if;
       if bus_WE='1' and bus_address = x"FE1E" then
-			vga_obstacle_x <= bus_data(9 downto 0);
+			vga_obstacle1_x <= bus_data(9 downto 0);
 		end if;
       if bus_WE='1' and bus_address = x"FE20" then
-			vga_obstacle_y <= bus_data(9 downto 0);
+			vga_obstacle1_y <= bus_data(9 downto 0);
+		end if;
+		      if bus_WE='1' and bus_address = x"FE22" then
+			vga_obstacle2_x <= bus_data(9 downto 0);
+		end if;
+      if bus_WE='1' and bus_address = x"FE24" then
+			vga_obstacle2_y <= bus_data(9 downto 0);
+		end if;
+		if bus_WE='1' and bus_address = x"FE26" then
+			vga_obstacle3_x <= bus_data(9 downto 0);
+		end if;
+      if bus_WE='1' and bus_address = x"FE28" then
+			vga_obstacle3_y <= bus_data(9 downto 0);
 		end if;
    end if;
 end process;
