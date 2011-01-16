@@ -83,17 +83,18 @@ architecture Behavioral of vga_wrapper is
    constant MAX_Y: integer:=480;
 	
 	-- Car constant and signal
-	constant car_x_size	: integer:= 64;
+	constant car_y_size	: integer:= 64;
    constant car_velocity: integer:=4;
-	constant car_y_top		: integer:= 364;
-	constant car_y_bottom	: integer:= 460;
-	signal 	car_x_left, car_x_right: unsigned(9 downto 0);
-	signal car_x_reg, car_x_next: unsigned(9 downto 0);
+	signal 	car_y_top		: unsigned(9 downto 0);
+	signal 	car_y_bottom	: unsigned(9 downto 0);
+	constant car_x_left		: integer:= 530;
+	constant	car_x_right		: integer:= 626;
+	signal car_y_reg, car_y_next: unsigned(9 downto 0);
 	
 
 -- Obstacle1 constant and signal
-	constant obstacle1_x_size	: integer:= 64;
-	constant obstacle1_y_size	: integer:= 96;
+	constant obstacle1_x_size	: integer:= 96;
+	constant obstacle1_y_size	: integer:= 64;
 	--   constant obstacle_velocity: integer:=4;
 --	constant obstacle_x_left		: integer:= 300;
 --	constant obstacle_x_right	: integer:= 364;
@@ -105,8 +106,8 @@ architecture Behavioral of vga_wrapper is
 	signal 	obstacle1_y_reg, obstacle1_y_next: unsigned(9 downto 0);
 	
 	-- Obstacle2 constant and signal
-	constant obstacle2_x_size	: integer:= 48;
-	constant obstacle2_y_size	: integer:= 64;
+	constant obstacle2_x_size	: integer:= 64;
+	constant obstacle2_y_size	: integer:= 48;
 	--   constant obstacle_velocity: integer:=4;
 --	constant obstacle_x_left		: integer:= 300;
 --	constant obstacle_x_right	: integer:= 364;
@@ -119,8 +120,8 @@ architecture Behavioral of vga_wrapper is
 
 
 -- Obstacle3 constant and signal
-	constant obstacle3_x_size	: integer:= 48;
-	constant obstacle3_y_size	: integer:= 64;
+	constant obstacle3_x_size	: integer:= 64;
+	constant obstacle3_y_size	: integer:= 48;
 	--   constant obstacle_velocity: integer:=4;
 --	constant obstacle_x_left		: integer:= 300;
 --	constant obstacle_x_right	: integer:= 364;
@@ -171,7 +172,7 @@ begin
   process (clk,reset)
    begin
       if reset='1' then
-			car_x_reg <= (others=>'0');
+			car_y_reg <= (others=>'0');
 			obstacle1_x_reg <= (others=>'0');
 			obstacle1_y_reg <= (others=>'0');
 			obstacle2_x_reg <= (others=>'0');
@@ -182,7 +183,7 @@ begin
 --			g_out_reg <= (others=>'0');
 --			r_out_reg <= (others=>'0');
       elsif (clk_out'event and clk_out='1') then
-				car_x_reg <= car_x_next;
+				car_y_reg <= car_y_next;
 				obstacle1_x_reg <= obstacle1_x_next;
 				obstacle1_y_reg <= obstacle1_y_next;
 				obstacle2_x_reg <= obstacle2_x_next;
@@ -192,7 +193,7 @@ begin
 --			
 --			
 --			if refr_tick='1' then
---				car_x_reg <= unsigned(car_x_input);
+--				car_y_reg <= unsigned(car_x_input);
 --				obstacle_x_reg <= unsigned(obstacle_x_input);
 --				obstacle_y_reg <= unsigned(obstacle_y_input);
 --			end if;
@@ -202,13 +203,13 @@ begin
 
       end if;
    end process;
-	car_x_left <= car_x_reg;
-	car_x_right <= car_x_left + car_x_size -1;
+	car_y_top <= car_y_reg;
+	car_y_bottom <= car_y_top + car_y_size - 1;
 
 -- Car on signal
    car_on <=
-      '1' when (car_x_left<=unsigned(pixel_x)) and (unsigned(pixel_x)<=car_x_right) and
-               (car_y_top<=pixel_y) and (pixel_y<=car_y_bottom) else
+      '1' when (car_x_left<=pixel_x) and (pixel_x<=car_x_right) and
+               (car_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=car_y_bottom) else
       '0';
    car_color <= "11011010";
 
@@ -297,11 +298,11 @@ begin
 	
 --	    new car x-position
 --		 new obstacle x,y-position
-   process(car_x_reg,refr_tick,car_x_input,obstacle1_x_reg,obstacle1_x_input,obstacle1_y_reg,obstacle1_y_input
+   process(car_y_reg,refr_tick,car_x_input,obstacle1_x_reg,obstacle1_x_input,obstacle1_y_reg,obstacle1_y_input
 	,obstacle2_x_reg,obstacle2_x_input,obstacle2_y_reg,obstacle2_y_input
 	,obstacle3_x_reg,obstacle3_x_input,obstacle3_y_reg,obstacle3_y_input)
    begin
-      car_x_next <= car_x_reg; -- no move
+      car_y_next <= car_y_reg; -- no move
 		obstacle1_y_next <= obstacle1_y_reg; -- no move
 		obstacle1_x_next <= obstacle1_x_reg; -- no move
 		obstacle2_y_next <= obstacle2_y_reg; -- no move
@@ -310,11 +311,11 @@ begin
 		obstacle3_x_next <= obstacle3_x_reg; -- no move
       if refr_tick='1' then
 --         if btn_i(1)='1' and car_x_right<(MAX_X-1-car_velocity) then
---            car_x_next <= car_x_reg + car_velocity; -- move down
+--            car_y_next <= car_y_reg + car_velocity; -- move down
 --         elsif btn_i(0)='1' and car_x_left > car_velocity then
---            car_x_next <= car_x_reg - car_velocity; -- move up
+--            car_y_next <= car_y_reg - car_velocity; -- move up
 --         end if;
-				  car_x_next <= unsigned(car_x_input);
+				  car_y_next <= unsigned(car_x_input);
 				  obstacle1_x_next <= unsigned(obstacle1_x_input);
 				  obstacle1_y_next <= unsigned(obstacle1_y_input);
 				  obstacle2_x_next <= unsigned(obstacle2_x_input);
