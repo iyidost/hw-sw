@@ -22,7 +22,7 @@ architecture arch of vga_rom_tile_color is
 
 -- Bytes 0 to 7 of color for tiles 0 to 3
 -- Frontcolor is 15 to 8 Background is 7 to 0
-X"FFAA",X"0000",X"0000",X"0000",
+X"496D",X"496D",X"0000",X"0000",
 -- Bytes 0 to 7 of color for tiles 4 to 7
 X"0000",X"0000",X"0000",X"0000",
 -- Bytes 0 to 7 of color for tiles 8 to 11
