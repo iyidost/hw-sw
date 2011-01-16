@@ -3,12 +3,12 @@
 
 #define STEER_S	  				0xfe18u
 #define STEER_D	  				0xfe1au
-#define VGA_CAR_X	  			0xfe1cu
+#define VGA_CAR_Y	  			0xfe1cu
 #define VGA_OBSTACLES_START_X	0xfe1eu
 #define VGA_OBSTACLES_START_Y	0xfe20u
 
-#define SCREEN_WIDTH			640
-#define SCREEN_HEIGHT			480
+#define SCREEN_WIDTH			480
+#define SCREEN_HEIGHT			640
 
 #define CAR_WIDTH				64
 #define CAR_HEIGHT				96
@@ -59,6 +59,7 @@ int main()
 				{
 					// Update obstacle(s)
 					/*printf("Shown obstacles: %d (Counter: %d)\n", shown_obstacles, slowDownObstaclesCounter);
+					printf("Car (%d,%d %d,%d)\n", car.x, car.y, car.width, car.height);
 					for (i = 0; i < OBSTACLES_COUNT; i++)
 					{
 						printf("Obstacle #%d (%d,%d %d,%d)\n", (i + 1), obstacles[i].x, obstacles[i].y, obstacles[i].width, obstacles[i].height);
@@ -157,11 +158,21 @@ void steering_wheel_update()
 	steer_val /= 128;
 
 	// Change value from -255 -> +255 to pixels on the horizontal axis on the screen
-	car.x = (steer_val + 255);
-	car.x += (SCREEN_WIDTH / 2 - 510 / 2) / 2;
+	car.y = (steer_val + 255);
+	//car.y += (SCREEN_WIDTH / 2 - 510 / 2) / 2;
+
+	car.y = (255 * 2) - car.y;
+
+	if (car.y > (SCREEN_WIDTH - CAR_WIDTH))
+	{
+		car.y = SCREEN_WIDTH - CAR_WIDTH;
+	}
+
+	// Reverse the value
+	//printf("Car.y: %d\n", car.y);
 
 	// Write car position to VGA
-	io_write(VGA_CAR_X, car.x);
+	io_write(VGA_CAR_Y, car.y);
 }
 
 void obstacle_update()
@@ -170,12 +181,12 @@ void obstacle_update()
 
 	for (i = 0; i < shown_obstacles; i++)
 	{
-		obstacles[i].y += 5;
+		obstacles[i].x += 5;
 
-		if (obstacles[i].y >= SCREEN_HEIGHT)
+		if (obstacles[i].x >= SCREEN_HEIGHT)
 		{
-			obstacles[i].x = car.x;
-			obstacles[i].y = 0;
+			obstacles[i].y = car.y;
+			obstacles[i].x = 0;
 		}
 
 		set_obstacle_pos(obstacles[i], i);
@@ -231,18 +242,18 @@ void reset_game()
 	slowDownObstaclesCounter = 0;
 	slowDownCounter = 0;
 
-	car.x = 0;
-	car.y = 364;
-	car.width = CAR_WIDTH;
-	car.height = CAR_HEIGHT;
+	car.x = 530;
+	car.y = 0;
+	car.width = CAR_HEIGHT;
+	car.height = CAR_WIDTH;
 
 	// Write obstacle positions
 	for (i = 0; i < OBSTACLES_COUNT; i++)
 	{
-		obstacles[i].x = 0;
-		obstacles[i].y = (i == 0) ? 0 : SCREEN_HEIGHT + 350;
-		obstacles[i].width = (i == 0) ? CAR_WIDTH : 48;
-		obstacles[i].height = (i == 0) ? CAR_HEIGHT : 48;
+		obstacles[i].x = (i == 0) ? 0 : SCREEN_HEIGHT + 350;
+		obstacles[i].y = 0;
+		obstacles[i].width = (i == 0) ? CAR_HEIGHT : 64;
+		obstacles[i].height = (i == 0) ? CAR_WIDTH : 48;
 
 		set_obstacle_pos(obstacles[i], i);
 	}
