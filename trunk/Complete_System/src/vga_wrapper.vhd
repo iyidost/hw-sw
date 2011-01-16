@@ -48,27 +48,24 @@ entity vga_wrapper is
 		obstacle3_x_input: in STD_LOGIC_VECTOR(9 downto 0);
 		obstacle3_y_input: in STD_LOGIC_VECTOR(9 downto 0)
 
-		--vga_addr			: in STD_LOGIC_VECTOR(8 downto 0)
-		--btn_i				: in STD_LOGIC_VECTOR( 4 downto 0)
-      ---rgb: out std_logic_vector(2 downto 0)
    );
 end vga_wrapper;
 
 architecture Behavioral of vga_wrapper is
+	
+	constant MAX_X: integer:=640;
+   constant MAX_Y: integer:=480;
+	
 	signal refr_tick		: std_logic;
-   --signal rgb_reg 		: std_logic_vector(2 downto 0);
 	signal b_out_reg  	: STD_LOGIC_VECTOR(7 downto 0);
 	signal g_out_reg 		: STD_LOGIC_VECTOR(7 downto 0);
 	signal r_out_reg 		: STD_LOGIC_VECTOR(7 downto 0);
    --signal video_on		: STD_LOGIC;
 	signal clk_out			: STD_LOGIC;
 	signal blank_z			: STD_LOGIC;
-	
-	signal vga_tile_line	: STD_LOGIC_VECTOR(15 downto 0);
-	signal vga_tile_color: STD_LOGIC_VECTOR(15 downto 0);
+
 	signal pixel_x			: STD_LOGIC_VECTOR (9 downto 0);
 	signal pixel_y			: STD_LOGIC_VECTOR (9 downto 0);
-	signal vga_data_line : STD_LOGIC_VECTOR (9 downto 0);
 	signal car_color		: STD_LOGIC_VECTOR (7 downto 0);
 	signal obstacle1_color: STD_LOGIC_VECTOR (7 downto 0);
 	signal obstacle2_color: STD_LOGIC_VECTOR (7 downto 0);
@@ -78,11 +75,8 @@ architecture Behavioral of vga_wrapper is
 	signal obstacle1_on	: STD_LOGIC;
 	signal obstacle2_on	: STD_LOGIC;
 	signal obstacle3_on	: STD_LOGIC;
-	
-	constant MAX_X: integer:=640;
-   constant MAX_Y: integer:=480;
-	
-	-- Car constant and signal
+
+-- Car constant and signal
 	constant car_y_size	: integer:= 64;
    constant car_velocity: integer:=4;
 	signal 	car_y_top		: unsigned(9 downto 0);
@@ -91,13 +85,9 @@ architecture Behavioral of vga_wrapper is
 	constant	car_x_right		: integer:= 626;
 	signal car_y_reg, car_y_next: unsigned(9 downto 0);
 	
-
 -- Obstacle1 constant and signal
 	constant obstacle1_x_size	: integer:= 96;
 	constant obstacle1_y_size	: integer:= 64;
-	--   constant obstacle_velocity: integer:=4;
---	constant obstacle_x_left		: integer:= 300;
---	constant obstacle_x_right	: integer:= 364;
 	--X axis
 	signal 	obstacle1_x_left, obstacle1_x_right: unsigned(9 downto 0);
 	signal 	obstacle1_x_reg, obstacle1_x_next: unsigned(9 downto 0);
@@ -108,9 +98,6 @@ architecture Behavioral of vga_wrapper is
 	-- Obstacle2 constant and signal
 	constant obstacle2_x_size	: integer:= 64;
 	constant obstacle2_y_size	: integer:= 48;
-	--   constant obstacle_velocity: integer:=4;
---	constant obstacle_x_left		: integer:= 300;
---	constant obstacle_x_right	: integer:= 364;
 	--X axis
 	signal 	obstacle2_x_left, obstacle2_x_right: unsigned(9 downto 0);
 	signal 	obstacle2_x_reg, obstacle2_x_next: unsigned(9 downto 0);
@@ -118,22 +105,27 @@ architecture Behavioral of vga_wrapper is
 	signal 	obstacle2_y_top, obstacle2_y_bottom: unsigned(9 downto 0);
 	signal 	obstacle2_y_reg, obstacle2_y_next: unsigned(9 downto 0);
 
-
 -- Obstacle3 constant and signal
 	constant obstacle3_x_size	: integer:= 64;
 	constant obstacle3_y_size	: integer:= 48;
-	--   constant obstacle_velocity: integer:=4;
---	constant obstacle_x_left		: integer:= 300;
---	constant obstacle_x_right	: integer:= 364;
 	--X axis
 	signal 	obstacle3_x_left, obstacle3_x_right: unsigned(9 downto 0);
 	signal 	obstacle3_x_reg, obstacle3_x_next: unsigned(9 downto 0);
 	--y axis
 	signal 	obstacle3_y_top, obstacle3_y_bottom: unsigned(9 downto 0);
 	signal 	obstacle3_y_reg, obstacle3_y_next: unsigned(9 downto 0);
+
+-- Tile signal
+	signal bit_addr		: STD_LOGIC_VECTOR(3 downto 0);
+	signal tile_row_addr : STD_LOGIC_VECTOR(3 downto 0);
+	signal tile_addr		: STD_LOGIC_VECTOR(4 downto 0);
+	signal tile_bit		: STD_LOGIC;
+	signal vga_tile_line	: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_tile_color: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_data_line : STD_LOGIC_VECTOR (8 downto 0);
+	signal vga_addr		: STD_LOGIC_VECTOR(8 downto 0);
 	
-	
-	
+
 
 begin
    -- instantiate VGA sync circuit
@@ -149,20 +141,20 @@ begin
 					pixel_y			=> pixel_y, 
 					VGA_COMP_SYNCH => VGA_COMP_SYNCH);
 					
-	-- VGA ROM TILE COLOR				
---	vga_rom_tile_color: entity work.vga_rom_tile_color
---		port map(  
---		clk 	=> clk_out,
---      addr  => vga_addr(8 downto 4),
---      data	=> vga_tile_color
---		);
---	-- VGA Tile				
---	vga_rom_tile: entity work.vga_rom_tile
---		port map(  
---		clk 	=> clk_out,
---      addr  => vga_addr,
---      data	=> vga_tile_line
---		);
+	--- VGA ROM TILE COLOR				
+	vga_rom_tile_color: entity work.vga_rom_tile_color
+		port map(  
+		clk 	=> clk_out,
+      addr  => vga_addr(8 downto 4),
+      data	=> vga_tile_color
+		);
+	-- VGA Tile				
+	vga_rom_tile: entity work.vga_rom_tile
+		port map(  
+		clk 	=> clk_out,
+      addr  => vga_addr,
+      data	=> vga_tile_line
+		);
    -- rgb buffer
 	ClockDivider_unit: entity ClockDivider
 			GENERIC MAP(
@@ -179,9 +171,6 @@ begin
 			obstacle2_y_reg <= (others=>'0');
 			obstacle3_x_reg <= (others=>'0');
 			obstacle3_y_reg <= (others=>'0');
---         b_out_reg <= (others=>'0');
---			g_out_reg <= (others=>'0');
---			r_out_reg <= (others=>'0');
       elsif (clk_out'event and clk_out='1') then
 				car_y_reg <= car_y_next;
 				obstacle1_x_reg <= obstacle1_x_next;
@@ -199,13 +188,19 @@ begin
 --			end if;
 --			
 --
-
-
       end if;
    end process;
+	tile_addr <= "00000" when (pixel_x(4)<= '0') else
+		"00001";
+	
+	tile_row_addr <= pixel_y(3 downto 0);
+	bit_addr <= pixel_x(3 downto 0);
+	vga_addr <= tile_addr & tile_row_addr;
+	tile_bit <= vga_tile_line(to_integer(unsigned(not bit_addr)));
+
+	
 	car_y_top <= car_y_reg;
 	car_y_bottom <= car_y_top + car_y_size - 1;
-
 -- Car on signal
    car_on <=
       '1' when (car_x_left<=pixel_x) and (pixel_x<=car_x_right) and
@@ -213,13 +208,10 @@ begin
       '0';
    car_color <= "11011010";
 
-
-	
 	obstacle1_x_left <= obstacle1_x_reg;
 	obstacle1_x_right <= obstacle1_x_left + obstacle1_x_size -1;
 	obstacle1_y_top <= obstacle1_y_reg;
 	obstacle1_y_bottom <= obstacle1_y_top + obstacle1_y_size -1;
-   
 	
 	obstacle2_x_left <= obstacle2_x_reg;
 	obstacle2_x_right <= obstacle2_x_left + obstacle2_x_size -1;
@@ -230,16 +222,13 @@ begin
 	obstacle3_x_right <= obstacle3_x_left + obstacle3_x_size -1;
 	obstacle3_y_top <= obstacle3_y_reg;
 	obstacle3_y_bottom <= obstacle3_y_top + obstacle3_y_size -1;
-   
-	
+
 -- Obstacle1 on signal
 		obstacle1_on <=
       '1' when (obstacle1_x_left<=unsigned(pixel_x)) and (unsigned(pixel_x)<=obstacle1_x_right) and
                (obstacle1_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=obstacle1_y_bottom) else
       '0';
    obstacle1_color <= "11100000";
-
-
 
 -- Obstacle2 on signal
 		obstacle2_on <=
@@ -248,7 +237,6 @@ begin
       '0';
    obstacle2_color <= "00011100";
 
-
 -- Obstacle3 on signal
 		obstacle3_on <=
       '1' when (obstacle3_x_left<=unsigned(pixel_x)) and (unsigned(pixel_x)<=obstacle3_x_right) and
@@ -256,12 +244,8 @@ begin
       '0';
    obstacle3_color <= "11100011";
 
-
-	
-
-	
 	   -- rgb multiplexing circuit
-   process(car_on,car_color,obstacle1_on,obstacle1_color,obstacle2_on,obstacle2_color)
+   process(car_on,car_color,obstacle1_on,obstacle1_color,obstacle2_on,obstacle2_color,tile_bit,vga_tile_color)
    begin
       if car_on='1' then
 				r_out_reg <= car_color(7 downto 5) & "00000";
@@ -290,9 +274,15 @@ begin
 --				g_out_reg <= vga_tile_color(4 downto 2) & "00000";
 --				b_out_reg <= vga_tile_color(1 downto 0) & "000000";
       else
-         r_out_reg <= "01100100";
-			g_out_reg <= "01100100";
-			b_out_reg <= "01100100";
+			if tile_bit ='1' then
+				r_out_reg <= vga_tile_color(15 downto 13) & "00000";
+				g_out_reg <= vga_tile_color(12 downto 10) & "00000";
+				b_out_reg <= vga_tile_color(9 downto 8)   & "000000";
+			else
+				r_out_reg <= vga_tile_color(7 downto 5) & "00000";
+				g_out_reg <= vga_tile_color(4 downto 2) & "00000";
+				b_out_reg <= vga_tile_color(1 downto 0) & "000000";
+			end if;
       end if;
    end process;
 	
@@ -324,8 +314,7 @@ begin
 				  obstacle3_y_next <= unsigned(obstacle3_y_input);
       end if;
    end process;
-	
-	
+
 	 refr_tick <= '1' when (pixel_y=481) and (pixel_x=0) else '0';
 	
    --rgb <= rgb_reg when video_on='1' else "000";
