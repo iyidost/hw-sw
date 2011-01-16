@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------------------
--- Company: 
+-- Company:
 -- Engineer: 
 -- 
 -- Create Date:    13:24:28 01/07/2011 
@@ -82,7 +82,7 @@ architecture Behavioral of vga_wrapper is
 	signal 	car_y_top		: unsigned(9 downto 0);
 	signal 	car_y_bottom	: unsigned(9 downto 0);
 	constant car_x_left		: integer:= 530;
-	constant	car_x_right		: integer:= 626;
+	constant	car_x_right		: integer:= 625;
 	signal car_y_reg, car_y_next: unsigned(9 downto 0);
 	
 -- Obstacle1 constant and signal
@@ -116,15 +116,21 @@ architecture Behavioral of vga_wrapper is
 	signal 	obstacle3_y_reg, obstacle3_y_next: unsigned(9 downto 0);
 
 -- Tile signal
-	signal bit_addr		: STD_LOGIC_VECTOR(3 downto 0);
-	signal tile_row_addr : STD_LOGIC_VECTOR(3 downto 0);
-	signal tile_addr		: STD_LOGIC_VECTOR(4 downto 0);
-	signal tile_bit		: STD_LOGIC;
-	signal vga_tile_line	: STD_LOGIC_VECTOR(15 downto 0);
-	signal vga_tile_color: STD_LOGIC_VECTOR(15 downto 0);
-	signal vga_data_line : STD_LOGIC_VECTOR (8 downto 0);
-	signal vga_addr		: STD_LOGIC_VECTOR(8 downto 0);
-	
+	signal bit_addr			: STD_LOGIC_VECTOR(3 downto 0);
+	signal tile_row_addr		: STD_LOGIC_VECTOR(3 downto 0);
+	signal tile_addr			: STD_LOGIC_VECTOR(4 downto 0);
+	signal tile_bit			: STD_LOGIC;
+	signal vga_tile_line		: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_tile_color	: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_data_line 	: STD_LOGIC_VECTOR (8 downto 0);
+	signal vga_addr			: STD_LOGIC_VECTOR(8 downto 0);
+--- Car Sprite signal
+		--- signal vga_sprite_line	
+	signal vga_sprite_addr	: STD_LOGIC_VECTOR(8 downto 0);
+	signal vga_sprite_data	: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_sprite_bit	: STD_LOGIC;
+	signal sprite_bit_add	: STD_LOGIC_VECTOR(3 downto 0);
+	--signal vga_sprite_line	: unsigned(3 downto 0);
 
 
 begin
@@ -155,6 +161,14 @@ begin
       addr  => vga_addr,
       data	=> vga_tile_line
 		);
+	-- VGA ROM SPRITES 
+	vga_rom_sprites: entity work.vga_rom_sprites
+		port map(
+			clk 	=> clk_out,
+			addr  => vga_sprite_addr,
+			data	=> vga_sprite_data
+		);
+	
    -- rgb buffer
 	ClockDivider_unit: entity ClockDivider
 			GENERIC MAP(
@@ -190,14 +204,24 @@ begin
 --
       end if;
    end process;
+	
+	
+	--- Tiles 
 	tile_addr <= "00000" when (pixel_x(4)<= '0') else
 		"00001";
-	
 	tile_row_addr <= pixel_y(3 downto 0);
 	bit_addr <= pixel_x(3 downto 0);
 	vga_addr <= tile_addr & tile_row_addr;
 	tile_bit <= vga_tile_line(to_integer(unsigned(not bit_addr)));
-
+	
+	--- Sprites
+	sprite_bit_add <= ((pixel_x - car_x_left) mod 16);
+	--sprite_bit_add <=  STD_LOGIC_VECTOR(to_integer(vga_sprite_line)(3 downto 0 );
+	vga_sprite_addr <= sprite_bit_add & ((unsigned(pixel_y) - car_y_top(8 downto 0)))
+		when (car_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=car_y_bottom)
+		else "000000000";
+	vga_sprite_bit <= vga_sprite_data(to_integer(unsigned(not sprite_bit_add)));
+	
 	
 	car_y_top <= car_y_reg;
 	car_y_bottom <= car_y_top + car_y_size - 1;
@@ -247,7 +271,7 @@ begin
 	   -- rgb multiplexing circuit
    process(car_on,car_color,obstacle1_on,obstacle1_color,obstacle2_on,obstacle2_color,tile_bit,vga_tile_color)
    begin
-      if car_on='1' then
+      if car_on='1' and vga_sprite_bit='1' then
 				r_out_reg <= car_color(7 downto 5) & "00000";
 				g_out_reg <= car_color(4 downto 2) & "00000";
 				b_out_reg <= car_color(1 downto 0) & "000000";
