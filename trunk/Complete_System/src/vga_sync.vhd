@@ -23,7 +23,8 @@ architecture arch of vga_sync is
    constant VB: integer			:=  29;  --v. back porch
    constant VR: integer			:=   2;   --v. retrace
    -- mod-2 counter
-   signal mod2_reg, mod2_next	: STD_LOGIC;
+   signal mod2_next	: STD_LOGIC;
+	--mod2_reg, 
    -- sync counters
    signal v_count_reg, v_count_next: unsigned(9 downto 0);
    signal h_count_reg, h_count_next: unsigned(9 downto 0);
@@ -37,23 +38,24 @@ begin
    process (clk,reset)
    begin
       if reset='1' then
-         mod2_reg <= '0';
+         --- mod2_reg <= '0';
          v_count_reg <= (others=>'0');
          h_count_reg <= (others=>'0');
          v_sync_reg <= '0';
          h_sync_reg <= '0';
       elsif (clk'event and clk='1') then
-         mod2_reg <= mod2_next;
+        ---  mod2_reg <= mod2_next;
          v_count_reg <= v_count_next;
          h_count_reg <= h_count_next;
          v_sync_reg <= v_sync_next;
          h_sync_reg <= h_sync_next;
       end if;
    end process;
+	mod2_next <= '1';
    -- mod-2 circuit to generate 25 MHz enable tick
-   mod2_next <= not mod2_reg;
+    --- mod2_next <= not mod2_reg;
    -- 25 MHz pixel tick
-   pixel_tick <= '1' when mod2_reg='1' else '0';
+   pixel_tick <= '1' when mod2_next='1' else '0';
    -- status
    h_end <=  -- end of horizontal counter
       '1' when h_count_reg=(HD+HF+HB+HR-1) else --799
