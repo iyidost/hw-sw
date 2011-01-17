@@ -65,6 +65,8 @@ architecture Behavioral of vga_wrapper is
 	signal blank_z			: STD_LOGIC;
 
 	signal pixel_x			: STD_LOGIC_VECTOR (9 downto 0);
+	signal pixel_x_reg1	: STD_LOGIC_VECTOR (9 downto 0);
+	signal pixel_x_reg2	: STD_LOGIC_VECTOR (9 downto 0);
 	signal pixel_y			: STD_LOGIC_VECTOR (9 downto 0);
 	signal car_color		: STD_LOGIC_VECTOR (7 downto 0);
 	signal obstacle1_color: STD_LOGIC_VECTOR (7 downto 0);
@@ -82,6 +84,7 @@ architecture Behavioral of vga_wrapper is
 	signal 	car_y_top		: unsigned(9 downto 0);
 	signal 	car_y_bottom	: unsigned(9 downto 0);
 	constant car_x_left		: integer:= 530;
+	signal 	car_x_left_v	: STD_LOGIC_VECTOR(9 downto 0);
 	constant	car_x_right		: integer:= 625;
 	signal car_y_reg, car_y_next: unsigned(9 downto 0);
 	
@@ -125,12 +128,13 @@ architecture Behavioral of vga_wrapper is
 	signal vga_data_line 	: STD_LOGIC_VECTOR (8 downto 0);
 	signal vga_addr			: STD_LOGIC_VECTOR(8 downto 0);
 --- Car Sprite signal
-		--- signal vga_sprite_line	
 	signal vga_sprite_addr	: STD_LOGIC_VECTOR(8 downto 0);
 	signal vga_sprite_data	: STD_LOGIC_VECTOR(15 downto 0);
 	signal vga_sprite_bit	: STD_LOGIC;
 	signal sprite_bit_add	: STD_LOGIC_VECTOR(3 downto 0);
-	--signal vga_sprite_line	: unsigned(3 downto 0);
+	signal vga_sprite_row	: STD_LOGIC_VECTOR(9 downto 0);
+	signal vga_sprite_column: STD_LOGIC_VECTOR(9 downto 0);
+	signal vga_sprite_line	: STD_LOGIC_VECTOR(9 downto 0);
 
 
 begin
@@ -172,10 +176,10 @@ begin
    -- rgb buffer
 	ClockDivider_unit: entity ClockDivider
 			GENERIC MAP(
-			div => 2.0
+			div => 4.0
 			)
 	      port map(clkIn=>clk, clkOut=> clk_out);
-  process (clk,reset)
+  process (clk_out,reset)
    begin
       if reset='1' then
 			car_y_reg <= (others=>'0');
@@ -185,6 +189,7 @@ begin
 			obstacle2_y_reg <= (others=>'0');
 			obstacle3_x_reg <= (others=>'0');
 			obstacle3_y_reg <= (others=>'0');
+			pixel_x_reg1 			 <= (others=>'0');
       elsif (clk_out'event and clk_out='1') then
 				car_y_reg <= car_y_next;
 				obstacle1_x_reg <= obstacle1_x_next;
@@ -193,7 +198,10 @@ begin
 				obstacle2_y_reg <= obstacle2_y_next;
 				obstacle3_x_reg <= obstacle3_x_next;
 				obstacle3_y_reg <= obstacle3_y_next;
---			
+				pixel_x_reg1	 <= pixel_x;
+				pixel_x_reg2	 <= pixel_x_reg1;
+				
+--				pixel_
 --			
 --			if refr_tick='1' then
 --				car_y_reg <= unsigned(car_x_input);
@@ -205,7 +213,6 @@ begin
       end if;
    end process;
 	
-	
 	--- Tiles 
 	tile_addr <= "00000" when (pixel_x(4)<= '0') else
 		"00001";
@@ -215,22 +222,46 @@ begin
 	tile_bit <= vga_tile_line(to_integer(unsigned(not bit_addr)));
 	
 	--- Sprites
-	sprite_bit_add <= ((pixel_x - car_x_left) mod 16);
-	--sprite_bit_add <=  STD_LOGIC_VECTOR(to_integer(vga_sprite_line)(3 downto 0 );
-	vga_sprite_addr <= sprite_bit_add & ((unsigned(pixel_y) - car_y_top(8 downto 0)))
-		when (car_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=car_y_bottom)
-		else "000000000";
-	vga_sprite_bit <= vga_sprite_data(to_integer(unsigned(not sprite_bit_add)));
-	
+--	sprite_bit_add <=  STD_LOGIC_VECTOR(to_integer(vga_sprite_line))(3 downto 0);
+--	vga_sprite_addr <= sprite_bit_add & ((unsigned(pixel_y) - car_y_top(8 downto 0)))
+--		when (car_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=car_y_bottom)
+--		else "000000000";
 	
 	car_y_top <= car_y_reg;
 	car_y_bottom <= car_y_top + car_y_size - 1;
 -- Car on signal
    car_on <=
-      '1' when (car_x_left<=pixel_x) and (pixel_x<=car_x_right) and
+      '1' when (car_x_left <= pixel_x_reg1) and (pixel_x_reg1  <= car_x_right) and
                (car_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=car_y_bottom) else
       '0';
    car_color <= "11011010";
+
+	--- Sprite 
+	--- 	signal pixel_x			: STD_LOGIC_VECTOR (9 downto 0);
+	---- 	constant car_x_left		: integer:= 530;
+	car_x_left_v <= STD_LOGIC_VECTOR(to_signed(car_x_left, 10));
+	sprite_bit_add <= pixel_x_reg1 - car_x_left_v (3 downto 0);
+	--- vga_sprite_row <= unsigned(pixel_y) - car_y_top(5 downto 4);
+	vga_sprite_row <= pixel_y - STD_LOGIC_VECTOR(car_y_top);
+	
+	--- signal pixel_y			: STD_LOGIC_VECTOR (9 downto 0);
+	--- constant car_x_left		: integer:= 530;
+	--- vga_sprite_column <= unsigned(pixel_x) - car_x_left (6 downto 4)  ;
+	vga_sprite_column <= pixel_x - car_x_left_v;--- (6 downto 4);
+	
+	
+	--- signal pixel_y			: STD_LOGIC_VECTOR (9 downto 0);
+	--- signal 	car_y_top		: unsigned(9 downto 0);
+	--- vga_sprite_line	<= unsigned(pixel_y) - car_y_top(3 downto 0);
+	vga_sprite_line	<= pixel_y - STD_LOGIC_VECTOR(car_y_top);
+	
+	--- Row 2bit + column 3bit + line 4bit
+--	vga_sprite_addr <= vga_sprite_row & vga_sprite_column & vga_sprite_line
+	vga_sprite_addr <= vga_sprite_row(5 downto 4) & vga_sprite_column(6 downto 4) & vga_sprite_line(3 downto 0)
+			when (car_x_left<=pixel_x) and (pixel_x<=car_x_right) and
+			(car_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=car_y_bottom)
+		else "000000000";
+	vga_sprite_bit <= vga_sprite_data(to_integer(unsigned(not sprite_bit_add)));
 
 	obstacle1_x_left <= obstacle1_x_reg;
 	obstacle1_x_right <= obstacle1_x_left + obstacle1_x_size -1;
@@ -287,16 +318,6 @@ begin
 				r_out_reg <= obstacle3_color(7 downto 5) & "00000";
 				g_out_reg <= obstacle3_color(4 downto 2) & "00000";
 				b_out_reg <= obstacle3_color(1 downto 0) & "000000";
---
---		elsif draw_on = '1' and vga_tile_line = '1' then
---				r_out_reg <= vga_tile_color(15 downto 13) & "00000";
---				g_out_reg <= vga_tile_color(12 downto 10) & "00000";
---				b_out_reg <= vga_tile_color(9 downto 8) & "000000";
---
---		elsif draw_on = '1' and vga_tile_line = '0' then
---				r_out_reg <= vga_tile_color(7 downto 5) & "00000";
---				g_out_reg <= vga_tile_color(4 downto 2) & "00000";
---				b_out_reg <= vga_tile_color(1 downto 0) & "000000";
       else
 			if tile_bit ='1' then
 				r_out_reg <= vga_tile_color(15 downto 13) & "00000";
@@ -340,8 +361,6 @@ begin
    end process;
 
 	 refr_tick <= '1' when (pixel_y=481) and (pixel_x=0) else '0';
-	
-   --rgb <= rgb_reg when video_on='1' else "000";
 	VGA_OUT_PIXEL_CLOCK <= clk_out;
 	VGA_OUT_BLANK_Z <= blank_z;
 	VGA_OUT_BLUE <= b_out_reg when blank_z='1' else "00000000";
