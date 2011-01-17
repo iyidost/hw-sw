@@ -54,7 +54,10 @@ entity system_complete is
 		-- A/D Converter for Steering Wheel
 		nCS      				: out std_logic;
 		SDATA1      			: in std_logic;
-		SCLK     				: out std_logic
+		SCLK     				: out std_logic;
+		
+		-- Vibrator
+		vibe						: out std_logic
    );
 end system_complete;
 
@@ -169,6 +172,7 @@ signal vga_obstacle2_x: std_logic_vector (9 downto 0);
 signal vga_obstacle2_y: std_logic_vector (9 downto 0);
 signal vga_obstacle3_x: std_logic_vector (9 downto 0);
 signal vga_obstacle3_y: std_logic_vector (9 downto 0);
+signal vga_refresh_tick: std_logic;
 
 signal ROM_read: std_logic_vector(13 downto 0);
 
@@ -318,7 +322,8 @@ vga_wrapper : entity work.vga_wrapper
 		obstacle2_x_input	=> vga_obstacle2_x,
 		obstacle2_y_input	=> vga_obstacle2_y,
 		obstacle3_x_input	=> vga_obstacle3_x,
-		obstacle3_y_input	=> vga_obstacle3_y
+		obstacle3_y_input	=> vga_obstacle3_y,
+		refresh_tick		=> vga_refresh_tick
 
 --		ROM_read				=> ROM_read
    );
@@ -392,6 +397,9 @@ bus_data <= not tx_full & "000000000000000" when bus_address = x"FE04" else (oth
 steer_wheel_start <= '1' when bus_address = x"FE18" else '0';
 bus_data <= steer_wheel_done & "000000000000000" when bus_address = x"FE18" else (others => 'Z');
 
+-- VGA Refresh tick for timing on C++
+bus_data <= vga_refresh_tick & "000000000000000" when bus_address = x"FE2A" else (others => 'Z');
+
 -- VGA
 process(cpu_clk)
 begin
@@ -416,6 +424,9 @@ if (cpu_clk'event and cpu_clk='1') then
 		end if;
       if bus_WE='1' and bus_address = x"FE28" then
 			vga_obstacle3_y <= bus_data(9 downto 0);
+		end if;
+		if bus_WE='1' and bus_address = x"FE2C" then
+			vibe <= bus_data(0);
 		end if;
    end if;
 end process;
