@@ -1,12 +1,22 @@
 \chapter{Opgaveformulering}\label{cha:opgaveformulering}
-I dette 3 ugers projekt skal der sammensættes en komplet computer, baseret på \texttt{von Neumann arkitekturen} udfra en udleveret implementeret \texttt{LC3 CPU}, computeren implementeres på et \texttt{Virtex II} FPGA board. Såfremt det bliver nødvendigt kan der være tale om at dele af spillet implementeres på en almindelig PC og med data sendt over seriel forbindelse til \texttt{LC3} computeren.
+I dette 3 ugers projekt skal der sammensættes en komplet computer, baseret på \texttt{von Neumann arkitekturen} udfra en udleveret implementeret \texttt{LC3 CPU}, computeren implementeres på et \texttt{Virtex II} FPGA board.
 
-Derefter udvikles et spil baseret på den implementerede computer. Det er valgt at udvikle et bil spil hvor bilen skal styres af et fysisk rat eller tastatur. Målet med spillet er at undgå forhindringer i form af andre biler, kasser og lignende som indsættes på kørebanen tilfældigt.
+LC3 Cpu’en er leveret til os som en black box, hvortil vi skal tilslutte de andre nødvendige komponenter for at have en komplet kørende computer; memory, vga, et rat påsat en A/D-converter som I/O til LC3’en. Et eksternt stykke hardware i form af en skærm er også nødvendig.
 
-På figur~\vref{fig:MockUpSimple} ses et simpelt mockup over hvordan spillet kunne se ud hvor der er indtegnet en simpel baggrund, en bil som man styrer samt forhindringer man skal undgå.
+Såfremt det bliver nødvendigt, kan der være tale om at dele af spillet implementeres på en almindelig PC og med data sendt over seriel forbindelse til \texttt{LC3} computeren. 
+Derefter udvikles et spil baseret på den implementerede computer. Det er valgt at udvikle et bil spil, hvor bilen skal styres af et fysisk rat eller tastatur. Målet med spillet er at undgå forhindringer i form af andre biler, kasser og lignende som indsættes på kørebanen tilfældigt.
+
+På figur~\vref{fig:MockUpSimple} ses et simpelt mock-up over hvordan spillet kunne se ud, hvor der er indtegnet en simpel baggrund, en bil man styrer samt forhindringer man skal undgå.
+
 \billede{!htbp}{0.5}{MockUpSimple}{Simpelt mock-up over systemet}
 
-Afhængigt af tiden op til aflevering, påtænkes der at udvide projektet med en eller flere ekstra tilføjelser. Disse tilføjelser kunne være at indsætte flere \textit{forskellige} forhindringer på vejen, eller at benytte flere \textit{forskellige} baggrunde, eller at have flere \textit{forskellige} baner, eller at lave bedre grafik eller at implementere lyd. På figur~\vref{fig:MockUpAdvanced} ses et videreudviklet mockup over spillet hvor points og tid også er vist.
+Afhængigt af tiden op til aflevering, påtænkes der at udvide projektet med en eller flere ekstra tilføjelser. Disse tilføjelser kunne være at indsætte flere \textit{forskellige} forhindringer på vejen, eller at benytte flere \textit{forskellige} baggrunde, eller at have flere \textit{forskellige} baner, eller at lave bedre grafik eller at implementere lyd.
+
+På figur~\vref{fig:MockUpAdvanced} ses et tænkt videreudviklet mock-up over spillet, hvor points og tid også er vist.
+
 \billede{!htbp}{0.5}{MockUpAdvanced}{Videreudviklet mock-up over systemet}
 
-Desuden ville det være ønskeligt at bruge viden fra andre af semesterets kurser til projektet, herunder implementering af en database til highscores i spillet med henvisning til kurset \texttt{02344 OOAD og databaser}.
+Vores mål, og krav fra kunden, er at implementere et minimum af funktionalitet, som beskrevet i den opgave case som ligger til grund for projektet, inden for den givne tidshorisont. Ikraft af vores roller som udviklere, stiler vi naturligvis efter at lave verdens bedste simulator spil på den bedst kørende LC3 computer.     
+Vi påtænker at kode hardwaren i \texttt{VHDL} og applikationen i \texttt{C}.
+
+Desuden er det ønskeligt fra kundens side, at bruge viden fra andre af semesterets kurser til projektet, herunder f.eks. implementering af en database til at gemme highscores i spillet, med henvisning til kurset \texttt{02344 OOAD og databaser}.  
