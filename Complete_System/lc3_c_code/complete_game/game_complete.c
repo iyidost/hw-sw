@@ -6,6 +6,8 @@
 #define VGA_CAR_Y	  			0xfe1cu
 #define VGA_OBSTACLES_START_X	0xfe1eu
 #define VGA_OBSTACLES_START_Y	0xfe20u
+#define VIBRATOR				0xfe2cu
+#define VGA_REFRESH_TICK		0xfe2au
 
 #define SCREEN_WIDTH			480
 #define SCREEN_HEIGHT			640
@@ -41,14 +43,24 @@ void set_obstacle_pos(OBJECT object, short obstacle);
 int main()
 {
 	short game_state = GAME_STATE_IN_GAME;
+	short clocks = 0;
 	short i;
 
-	reset_game();
+	//reset_game();
 
     // Main game loop
     while (1)
     {
-    	switch (game_state)
+    	do
+    	{
+    		i = io_read(VGA_REFRESH_TICK);
+    		//printf("Received: %d 0x%x\n", i, i);
+    	}
+    	while (i != 1);
+
+    	printf("Tick!\n");
+
+    	/*switch (game_state)
     	{
 			case GAME_STATE_IN_GAME:
 			{
@@ -57,16 +69,6 @@ int main()
 
 				if (slowDownCounter > 500)
 				{
-					// Update obstacle(s)
-					/*printf("Shown obstacles: %d (Counter: %d)\n", shown_obstacles, slowDownObstaclesCounter);
-					printf("Car (%d,%d %d,%d)\n", car.x, car.y, car.width, car.height);
-					for (i = 0; i < OBSTACLES_COUNT; i++)
-					{
-						printf("Obstacle #%d (%d,%d %d,%d)\n", (i + 1), obstacles[i].x, obstacles[i].y, obstacles[i].width, obstacles[i].height);
-					}
-
-					printf("\n\n");*/
-
 					obstacle_update();
 					slowDownCounter = 0;
 					slowDownObstaclesCounter++;
@@ -117,6 +119,7 @@ int main()
 						slowDownCounter = 0;
 					}
 
+					io_write(VIBRATOR, 0);
 					game_state = GAME_STATE_IN_GAME;
 				}
 				else
@@ -124,7 +127,7 @@ int main()
 					slowDownCounter++;
 				}
 				break;
-    	}
+    	}*/
     }
     return 0;
 }
@@ -229,6 +232,8 @@ int does_collide(OBJECT A, OBJECT B)
 	{
 		return 0;
 	}
+
+	io_write(VIBRATOR, 1);
 
 	return 1;
 }
