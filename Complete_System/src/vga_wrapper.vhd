@@ -77,6 +77,7 @@ architecture Behavioral of vga_wrapper is
 	signal obstacle1_on	: STD_LOGIC;
 	signal obstacle2_on	: STD_LOGIC;
 	signal obstacle3_on	: STD_LOGIC;
+	signal middle_line_on: STD_LOGIC;
 
 -- Car constant and signal
 	constant car_y_size	: integer:= 64;
@@ -134,8 +135,11 @@ architecture Behavioral of vga_wrapper is
 	signal sprite_bit_add	: STD_LOGIC_VECTOR(3 downto 0);
 	signal vga_sprite_row	: STD_LOGIC_VECTOR(9 downto 0);
 	signal vga_sprite_column: STD_LOGIC_VECTOR(9 downto 0);
-	signal vga_sprite_line	: STD_LOGIC_VECTOR(9 downto 0);
-
+--	signal vga_sprite_line	: STD_LOGIC_VECTOR(9 downto 0);
+	constant middle_line_top1		: integer:= 224;
+	constant middle_line_buttom1	: integer:= 236;
+	constant middle_line_top2		: integer:= 244;
+	constant middle_line_buttom2	: integer:= 256;
 
 begin
    -- instantiate VGA sync circuit
@@ -213,9 +217,19 @@ begin
       end if;
    end process;
 	
-	--- Tiles 
+	middle_line_on <=
+		'1' when ((middle_line_top1 <pixel_y) and (pixel_y<middle_line_buttom1)) or
+					(( middle_line_top2 <pixel_y) and (pixel_y<middle_line_buttom2)) else
+		'0';
+	
+	
+	-- Tiles 
 	tile_addr <= "00000" when (pixel_x(4)<= '0') else
 		"00001";
+--tile_addr <= "00010" when (pixel_y(8 downto 4)= "01110") or (pixel_y(8 downto 4)= "01111") else
+--				"00000" when (pixel_x(4)<= '0')
+--			else
+--		"00001";
 	tile_row_addr <= pixel_y(3 downto 0);
 	bit_addr <= pixel_x(3 downto 0);
 	vga_addr <= tile_addr & tile_row_addr;
@@ -253,11 +267,11 @@ begin
 	--- signal pixel_y			: STD_LOGIC_VECTOR (9 downto 0);
 	--- signal 	car_y_top		: unsigned(9 downto 0);
 	--- vga_sprite_line	<= unsigned(pixel_y) - car_y_top(3 downto 0);
-	vga_sprite_line	<= pixel_y - STD_LOGIC_VECTOR(car_y_top);
+	--- vga_sprite_line	<= pixel_y - STD_LOGIC_VECTOR(car_y_top);
 	
 	--- Row 2bit + column 3bit + line 4bit
 --	vga_sprite_addr <= vga_sprite_row & vga_sprite_column & vga_sprite_line
-	vga_sprite_addr <= vga_sprite_row(5 downto 4) & vga_sprite_column(6 downto 4) & vga_sprite_line(3 downto 0)
+	vga_sprite_addr <= vga_sprite_row(5 downto 4) & vga_sprite_column(6 downto 4) & vga_sprite_row(3 downto 0)
 			when (car_x_left<=pixel_x) and (pixel_x<=car_x_right) and
 			(car_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=car_y_bottom)
 		else "000000000";
@@ -318,6 +332,10 @@ begin
 				r_out_reg <= obstacle3_color(7 downto 5) & "00000";
 				g_out_reg <= obstacle3_color(4 downto 2) & "00000";
 				b_out_reg <= obstacle3_color(1 downto 0) & "000000";
+		elsif middle_line_on = '1' then
+				r_out_reg <= "11110101";
+				g_out_reg <= "11110101";
+				b_out_reg <= "11110101";
       else
 			if tile_bit ='1' then
 				r_out_reg <= vga_tile_color(15 downto 13) & "00000";

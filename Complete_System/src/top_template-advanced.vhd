@@ -322,8 +322,8 @@ vga_wrapper : entity work.vga_wrapper
 		obstacle2_x_input	=> vga_obstacle2_x,
 		obstacle2_y_input	=> vga_obstacle2_y,
 		obstacle3_x_input	=> vga_obstacle3_x,
-		obstacle3_y_input	=> vga_obstacle3_y,
-		refresh_tick		=> vga_refresh_tick
+		obstacle3_y_input	=> vga_obstacle3_y
+--		refresh_tick		=> vga_refresh_tick
    );
 
 -------------------------------------------------------------------------------
