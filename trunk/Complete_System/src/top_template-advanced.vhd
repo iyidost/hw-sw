@@ -172,7 +172,10 @@ signal vga_obstacle2_x: std_logic_vector (9 downto 0);
 signal vga_obstacle2_y: std_logic_vector (9 downto 0);
 signal vga_obstacle3_x: std_logic_vector (9 downto 0);
 signal vga_obstacle3_y: std_logic_vector (9 downto 0);
-signal vga_refresh_tick: std_logic;
+signal vga_movement_pixel 		: STD_LOGIC_VECTOR(7 downto 0);
+signal vga_refresh_tick			: std_logic;
+signal vga_refresh_tick_input	: std_logic;
+signal vga_refresh_tick_reg	: std_logic;
 
 signal ROM_read: std_logic_vector(13 downto 0);
 
@@ -322,8 +325,9 @@ vga_wrapper : entity work.vga_wrapper
 		obstacle2_x_input	=> vga_obstacle2_x,
 		obstacle2_y_input	=> vga_obstacle2_y,
 		obstacle3_x_input	=> vga_obstacle3_x,
-		obstacle3_y_input	=> vga_obstacle3_y
---		refresh_tick		=> vga_refresh_tick
+		obstacle3_y_input	=> vga_obstacle3_y,
+		movement_pixel		=>	vga_movement_pixel,
+		refresh_tick		=> vga_refresh_tick
    );
 
 -------------------------------------------------------------------------------
@@ -385,15 +389,18 @@ bus_data <= not tx_full & "000000000000000" when bus_address = x"FE04" else (oth
 steer_wheel_start <= '1' when bus_address = x"FE18" else '0';
 bus_data <= steer_wheel_done & "000000000000000" when bus_address = x"FE18" else (others => 'Z');
 
--- VGA Refresh tick for timing on C++
-bus_data <= vga_refresh_tick & "000000000000000" when bus_address = x"FE2A" else (others => 'Z');
-
+-- VGA Refresh tick for timing on LC3 game logic
+bus_data <= "000000000000000" & vga_refresh_tick_reg when bus_address = x"FE2A" and bus_RE = '1' else (others => 'Z');
+ 
 -- VGA
 process(cpu_clk)
 begin
 if (cpu_clk'event and cpu_clk='1') then
       if bus_WE='1' and bus_address = x"FE1C" then
 			vga_car_x <= bus_data(9 downto 0);
+		end if;
+		if bus_WE='1' and bus_address = x"FE30" then
+			vga_movement_pixel <= bus_data(7 downto 0);
 		end if;
       if bus_WE='1' and bus_address = x"FE1E" then
 			vga_obstacle1_x <= bus_data(9 downto 0);
@@ -416,8 +423,13 @@ if (cpu_clk'event and cpu_clk='1') then
 		if bus_WE='1' and bus_address = x"FE2C" then
 			vibe <= bus_data(0);
 		end if;
+		if (bus_WE='1' and bus_address = x"FE2A") or (vga_refresh_tick = '1') then
+			vga_refresh_tick_reg <= vga_refresh_tick_input;
+		end if;
    end if;
 end process;
+
+vga_refresh_tick_input <= bus_data(0) when bus_address = x"FE2A" else '1';
 
 --vga_addr <= bus_data (8 downto 0) when bus_address = x"FE30";
 
