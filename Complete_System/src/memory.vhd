@@ -6,7 +6,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 entity memory is
    generic(
-      ADDR_WIDTH				: integer:=12;
+      ADDR_WIDTH				: integer:=13;
       DATA_WIDTH				: integer:=16
    );
    port(
