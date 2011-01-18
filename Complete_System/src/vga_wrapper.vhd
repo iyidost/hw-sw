@@ -154,6 +154,17 @@ architecture Behavioral of vga_wrapper is
 	--y axis
 	signal 	obstacle3_y_top, obstacle3_y_bottom: unsigned(9 downto 0);
 	signal 	obstacle3_y_reg, obstacle3_y_next: unsigned(9 downto 0);
+	
+-- Obstacle3 constant and signal
+	constant obstacle3_inv_x_size	: integer:= 128;
+	constant obstacle3_inv_y_size	: integer:= 64;
+	--X axis
+	signal 	obstacle3_inv_x_left, obstacle3_inv_x_right: unsigned(9 downto 0);
+	signal 	obstacle3_inv_x_reg, obstacle3_inv_x_next: unsigned(9 downto 0);
+	--y axis
+	signal 	obstacle3_inv_y_top, obstacle3_inv_y_bottom: unsigned(9 downto 0);
+	signal 	obstacle3_inv_y_reg, obstacle3_inv_y_next: unsigned(9 downto 0);
+
 
 -- Tile signal
 	signal bit_addr			: STD_LOGIC_VECTOR(3 downto 0);
@@ -198,6 +209,11 @@ architecture Behavioral of vga_wrapper is
 	signal vga_obstacle2_row	: STD_LOGIC_VECTOR(9 downto 0);
 	signal vga_obstacle2_column: STD_LOGIC_VECTOR(9 downto 0);
 	
+--- Obstacle 1 invert signal
+	signal vga_obstacle2_inv_addr		: STD_LOGIC_VECTOR(8 downto 0);
+	signal vga_obstacle2_inv_data		: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_obstacle2_inv_bit		: STD_LOGIC;
+	
 --- Obstacle 3 Sprite
 	signal vga_obstacle3_addr	: STD_LOGIC_VECTOR(8 downto 0);
 	signal vga_obstacle3_data	: STD_LOGIC_VECTOR(15 downto 0);
@@ -205,6 +221,11 @@ architecture Behavioral of vga_wrapper is
 	signal obstacle3_bit_add	: STD_LOGIC_VECTOR(3 downto 0);
 	signal vga_obstacle3_row	: STD_LOGIC_VECTOR(9 downto 0);
 	signal vga_obstacle3_column: STD_LOGIC_VECTOR(9 downto 0);
+	
+--- Obstacle 3 invert signal
+	signal vga_obstacle3_inv_addr		: STD_LOGIC_VECTOR(8 downto 0);
+	signal vga_obstacle3_inv_data		: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_obstacle3_inv_bit		: STD_LOGIC;
 
 	constant middle_line_top1		: integer:= 224;
 	constant middle_line_buttom1	: integer:= 236;
@@ -301,6 +322,7 @@ begin
 			clk 	=> clk_out,
 			addr  => vga_obstacle3_inv_addr,
 			data	=> vga_obstacle3_inv_data
+			);
 		
    -- rgb buffer
 	ClockDivider_unit: entity ClockDivider
@@ -498,7 +520,7 @@ begin
 --   obstacle3_color <= "11100011";
 
 	   -- rgb multiplexing circuit
-   process(vga_car_inv_bit,car_on,vga_obstacle1_bit,vga_obstacle2_bit,vga_obstacle3_bit,tile_bit,vga_tile_color)
+   process(vga_car_inv_bit,car_on,vga_obstacle1_bit,vga_obstacle2_bit,vga_obstacle3_bit,vga_obstacle1_inv_bit,vga_obstacle2_inv_bit,vga_obstacle3_inv_bit,tile_bit,vga_tile_color)
    begin
 		if 	car_on='1' and vga_car_inv_bit='1' then
 				r_out_reg <= X"A9";
@@ -518,10 +540,18 @@ begin
 				r_out_reg <= X"FF";
 				g_out_reg <= X"D7";
 				b_out_reg <= X"00";
+		elsif vga_obstacle2_inv_bit = '1' then
+				r_out_reg <= X"FF";
+				g_out_reg <= X"8C";
+				b_out_reg <= X"00";
 		elsif vga_obstacle2_bit = '1' then
 				r_out_reg <= "11111111";
 				g_out_reg <= "00000000";
 				b_out_reg <= "11111111";
+		elsif vga_obstacle3_inv_bit = '1' then
+				r_out_reg <= X"FF";
+				g_out_reg <= X"8C";
+				b_out_reg <= X"00";
 		elsif vga_obstacle3_bit = '1' then
 				r_out_reg <= X"55";
 				g_out_reg <= X"6B";
