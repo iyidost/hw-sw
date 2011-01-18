@@ -324,19 +324,7 @@ vga_wrapper : entity work.vga_wrapper
 		obstacle3_x_input	=> vga_obstacle3_x,
 		obstacle3_y_input	=> vga_obstacle3_y,
 		refresh_tick		=> vga_refresh_tick
-
---		ROM_read				=> ROM_read
    );
-
---mem_cs <= '1' when bus_address < X"E000" else '0';
---mem_re <= bus_RE and mem_cs;
---mem_we <= bus_WE and mem_cs;
-
---uart_cs <= '1' when bus_address > X"E000" AND bus_address < X"FFFF" else '0';
---uart_we <= bus_WE and uart_cs;
---
---vga_cs <= '1' when bus_address = IO_STDOUT_S OR bus_address = IO_STDOUT_D else '0';
---vga_we <= bus_WE and vga_cs;
 
 -------------------------------------------------------------------------------
 -- System Buttons logic
@@ -413,7 +401,7 @@ if (cpu_clk'event and cpu_clk='1') then
       if bus_WE='1' and bus_address = x"FE20" then
 			vga_obstacle1_y <= bus_data(9 downto 0);
 		end if;
-		      if bus_WE='1' and bus_address = x"FE22" then
+		if bus_WE='1' and bus_address = x"FE22" then
 			vga_obstacle2_x <= bus_data(9 downto 0);
 		end if;
       if bus_WE='1' and bus_address = x"FE24" then
