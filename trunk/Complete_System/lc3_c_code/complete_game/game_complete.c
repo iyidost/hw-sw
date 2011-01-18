@@ -26,7 +26,7 @@
 typedef struct {
    short x, y, width, height;
 } OBJECT;
-
+ 
 OBJECT car;
 OBJECT obstacles[3];
 short shown_obstacles;
