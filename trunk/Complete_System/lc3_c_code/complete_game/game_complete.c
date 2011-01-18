@@ -31,6 +31,9 @@ OBJECT car;
 OBJECT obstacles[3];
 short shown_obstacles;
 short obstaclePos = 0;
+short obstacle_spawns = 0;
+unsigned int velocity = 1000u;
+unsigned int points = 0;
 
 void steering_wheel_update();
 void obstacle_update();
@@ -93,6 +96,11 @@ int main()
 					{
 						// Crash! Change game state
 						game_state = GAME_STATE_GAME_OVER;
+						printf("\n\n====================\n");
+						printf("==== GAME OVER! ====\n");
+						printf("====================\n");
+						printf("Points: %d\n", points);
+						printf("====================\n\n");
 					}
 				}
 
@@ -119,7 +127,7 @@ int main()
 			}
     	}
 
-    	sleep(1000u, 1);
+    	sleep(velocity, 1);
     }
 
     return 0;
@@ -155,7 +163,6 @@ void steering_wheel_update()
 
 	// Change value from -255 -> +255 to pixels on the horizontal axis on the screen
 	car.y = (steer_val + 255);
-	//car.y += (SCREEN_WIDTH / 2 - 510 / 2) / 2;
 
 	car.y = (255 * 2) - car.y;
 
@@ -164,28 +171,61 @@ void steering_wheel_update()
 		car.y = SCREEN_WIDTH - CAR_WIDTH;
 	}
 
-	// Reverse the value
-	//printf("Car.y: %d\n", car.y);
-
 	// Write car position to VGA
 	io_write(VGA_CAR_Y, car.y);
 }
 
 void obstacle_update()
 {
-	short i;
+	short collision = 0;
+	short i, n;
 
 	for (i = 0; i < shown_obstacles; i++)
 	{
-		obstacles[i].x += 1;
+		// Move obstacle one pixel
+		obstacles[i].x++;
 
+		// Is obstacle outside screen?
 		if (obstacles[i].x >= SCREEN_HEIGHT)
 		{
+			// Points is given per vehicle which has passed the screen each
+			// vehicle gives a number of points according to the number of
+			// the vehicle.
+			points += (i + 1);
+
+			// Count number of times first obstacle has been all the way through
+			// the screen
+			if (i == 0)
+			{
+				obstacle_spawns++;
+			}
+
+			// Set the new y position of the obstacle to be within the screen width
+			// and reset the x position to zero
 			obstacles[i].y = (obstaclePos > (SCREEN_WIDTH - obstacles[i].width)) ? (SCREEN_WIDTH - obstacles[i].width) : obstaclePos;
 			obstacles[i].x = 0;
 		}
 
+		// Write obstacle position to the LC3 VGA
 		set_obstacle_pos(obstacles[i], i);
+	}
+
+	// If the first obstacle has been spawned over 5 times and not all
+	// obstacles have been shown yet (according to OBSTACLES_COUNT)
+	// and the last spawned obstacle's x position is 200 (to prevent
+	// collision)
+	if (obstacle_spawns > 5 && shown_obstacles < OBSTACLES_COUNT && obstacles[shown_obstacles - 1].x == 200)
+	{
+		// Reset the number of spawns
+		obstacle_spawns = 0;
+
+		// Add one obstacle
+		shown_obstacles++;
+	}
+	else if (obstacle_spawns >= 1 && shown_obstacles >= OBSTACLES_COUNT)
+	{
+		velocity -= 100u;
+		obstacle_spawns = 0;
 	}
 }
 
@@ -236,7 +276,10 @@ void reset_game()
 	// Turn off vibrator
 	io_write(VIBRATOR, 0);
 
+	obstacle_spawns = 0;
 	shown_obstacles = 1;
+	velocity = 1000u;
+	points = 0;
 
 	car.x = 530;
 	car.y = 0;
