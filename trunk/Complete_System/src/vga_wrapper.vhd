@@ -170,7 +170,6 @@ architecture Behavioral of vga_wrapper is
 	signal vga_obstacle2_row	: STD_LOGIC_VECTOR(9 downto 0);
 	signal vga_obstacle2_column: STD_LOGIC_VECTOR(9 downto 0);
 	
-	
 --- Obstacle 3 Sprite
 	signal vga_obstacle3_addr	: STD_LOGIC_VECTOR(8 downto 0);
 	signal vga_obstacle3_data	: STD_LOGIC_VECTOR(15 downto 0);
@@ -178,14 +177,14 @@ architecture Behavioral of vga_wrapper is
 	signal obstacle3_bit_add	: STD_LOGIC_VECTOR(3 downto 0);
 	signal vga_obstacle3_row	: STD_LOGIC_VECTOR(9 downto 0);
 	signal vga_obstacle3_column: STD_LOGIC_VECTOR(9 downto 0);
-	
-
 
 	constant middle_line_top1		: integer:= 224;
 	constant middle_line_buttom1	: integer:= 236;
 	constant middle_line_top2		: integer:= 244;
 	constant middle_line_buttom2	: integer:= 256;
 	signal pixel_x_movement : STD_LOGIC_VECTOR(9 downto 0);
+	constant middle_line_lenght_x : integer:= 96;
+	constant middle_line_wide_space :integer := 112;
 
 begin
    -- instantiate VGA sync circuit
@@ -253,8 +252,6 @@ begin
 			data	=> vga_obstacle3_data
 		);
 		
-		
-		
    -- rgb buffer
 	ClockDivider_unit: entity ClockDivider
 			GENERIC MAP(
@@ -286,12 +283,20 @@ begin
       end if;
    end process;
 	
+	pixel_x_movement <= pixel_x + movement_pixel;
+	
+	
 	middle_line_on <=
-		'1' when ((middle_line_top1 <pixel_y) and (pixel_y<middle_line_buttom1)) or
-					(( middle_line_top2 <pixel_y) and (pixel_y<middle_line_buttom2)) else
+		'1' when (((middle_line_top1 <pixel_y) and (pixel_y<middle_line_buttom1)) or
+					(( middle_line_top2 <pixel_y) and (pixel_y<middle_line_buttom2))) and
+					((pixel_x_movement > 0 and pixel_x_movement < 96) 
+					or (pixel_x_movement > 208 and pixel_x_movement < 304) 
+					or (pixel_x_movement > 416 and pixel_x_movement < 512))
+					else
 		'0';
 	
-	pixel_x_movement <= pixel_x + movement_pixel;
+	
+	
 	
 	-- Tiles 
 	tile_addr <= "00000" when (pixel_x_movement(4) <= '0') else
@@ -333,34 +338,7 @@ begin
 		else "000000000";
 	vga_car_bit <= vga_car_data(to_integer(unsigned(not car_bit_add)));
 	
-	
-	
-		--- Car INV 
---	car_inv_y_top <= car_inv_y_reg;
---	car_inv_y_bottom <= car_inv_y_top + car_inv_y_size - 1;
----- Car on signal
---   car_inv_on <=
---      '1' when (car_inv_x_left <= pixel_x_reg1) and (pixel_x_reg1  <= car_inv_x_right) and
---               (car_inv_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=car_inv_y_bottom) else
---      '0';
---   ---car_color <= "11011010";
---
---	--- Sprite 
---	--- 	signal pixel_x			: STD_LOGIC_VECTOR (9 downto 0);
---	---- 	constant car_x_left		: integer:= 530;
---	car_inv_x_left_v <= STD_LOGIC_VECTOR(to_signed(car_inv_x_left, 10));
---	car_inv_bit_add <= pixel_x_reg1 - car_inv_x_left_v (3 downto 0);
---	--- vga_car_row <= unsigned(pixel_y) - car_y_top(5 downto 4);
---	vga_inv_car_row <= pixel_y - STD_LOGIC_VECTOR(car_inv_y_top);
---	vga_inv_car_column <= pixel_x - car_inv_x_left_v;
---	
---	
---	--- Row 2bit + column 3bit + line 4bit
-----	vga_car_addr <= vga_car_row & vga_car_column & vga_sprite_line
---	vga_inv_car_addr <= vga_inv_car_row(5 downto 4) & vga_inv_car_column(6 downto 4) & vga_inv_car_row(3 downto 0)
---			when (car_inv_x_left<=pixel_x) and (pixel_x<=car_inv_x_right) and
---			(car_inv_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=car_inv_y_bottom)
---		else "000000000";
+	---- Car invented
 	vga_car_inv_addr <= vga_car_row(5 downto 4) & vga_car_column(6 downto 4) & vga_car_row(3 downto 0)
 			when (car_x_left<=pixel_x) and (pixel_x<=car_x_right) and
 			(car_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=car_y_bottom)
@@ -383,12 +361,10 @@ begin
 	obstacle3_y_top <= obstacle3_y_reg;
 	obstacle3_y_bottom <= obstacle3_y_top + obstacle3_y_size -1;
 
-
 	-- OBSTACLE 1 drawing values
 	obstacle1_bit_add <= unsigned(pixel_x_reg1) - obstacle1_x_left(3 downto 0);
 	vga_obstacle1_row <= pixel_y - STD_LOGIC_VECTOR(obstacle1_y_top);
 	
-
 	vga_obstacle1_column <= unsigned(pixel_x) - obstacle1_x_left;
 	
 	--- Row 2bit + column 3bit + line 4bit
@@ -427,10 +403,6 @@ begin
 		else "000000000";
 	vga_obstacle3_bit <= vga_obstacle3_data(to_integer(unsigned(not obstacle3_bit_add)));
 
-
-
-
-
 ---- Obstacle1 on signal
 --		obstacle1_on <=
 --      '1' when (obstacle1_x_left<=unsigned(pixel_x)) and (unsigned(pixel_x)<=obstacle1_x_right) and
@@ -460,9 +432,6 @@ begin
 				g_out_reg <= X"A9";
 				b_out_reg <= X"A9";
       elsif car_on='1' and vga_car_bit='1' then
---				r_out_reg <= car_color(7 downto 5) & "00000";
---				g_out_reg <= car_color(4 downto 2) & "00000";
---				b_out_reg <= car_color(1 downto 0) & "000000";
 ---- old color DodgerBlue X"1E",X"90",X"FF"
 				r_out_reg <= X"00";
 				g_out_reg <= X"00";
