@@ -1,9 +1,9 @@
-Vores system som overordnet er beskrevet på figur~\vref{fig:Diagrammer/OverordnetSystem}, er opbygget af et \texttt{FPGA board} der implementerer en computer med en black box \texttt{LC3 CPU}. Til computeren er der af eksterne I/O komponenter tilknyttet en skærm, et I/O board\footnote{Digilent DIO4\texttrademark I/O board}, til Digilent boardet er tilsluttet et rat som essentielt er en variabel modstand. Desuden benyttes der to-vejs seriel kommunikation til en PC til upload af bruger-programmer til \texttt{LC3} computeren samt verificering af disse.
+Vores system som overordnet er beskrevet på figur~\vref{fig:Diagrammer/OverordnetSystem}, er opbygget af et \texttt{FPGA board} der implementerer en computer med en black box \texttt{LC3 CPU}. Til computeren er der af eksterne I/O komponenter tilknyttet en skærm og et I/O board\footnote{Digilent DIO4\texttrademark I/O board}, til Digilent boardet er der tilsluttet et rat som essentielt er en variabel modstand. Desuden benyttes der to-vejs seriel kommunikation til en PC til upload af bruger-programmer til \texttt{LC3} computeren samt verificering af disse.
 
 \billede{!htbp}{0.5}{Diagrammer/OverordnetSystem}{Design system}
 
-Spillogikken er skrevet på PC i C kode, derefter skal indholdet overføres til FPGA board vha. en serial forbindelse. Indholdet af spillet gemmes i block ram på FPGA. En VGA skærm viser output og er opdateret løbende, for at man kan se og følge med i hvad der sker og dermed kan styre spille. Spillet kan styres direkte fra FPGA board ved hjælp af en styrings enhed, denne er et rat der blevet implementeret.
+Spillogikken er skrevet på PC i C kode, derefter skal indholdet overføres til FPGA board vha. en serial forbindelse. Indholdet af spillet gemmes i block ram på FPGA. En VGA skærm viser output og er opdateret løbende, for at man kan se og følge med i hvad der sker og dermed kan styre spillet. Spillet kan styres direkte fra FPGA board ved hjælp af en styrings enhed, denne er et rat der er blevet implementeret.
 
-LC-3 system design består af forskellige komponenter som er sat sammen. De forskellige komponenter: CPU, rat I/O, Memory (RAM og ROM), UART, VGA og DIO-4 board.
+LC-3 system design består af forskellige komponenter som er sat sammen. De forskellige komponenter er CPU, rat I/O, Memory (RAM og ROM), UART, VGA og DIO-4 board.
 
-Til dette projekt har det været nødvendigt at tilkoble en VGA skærm og en A/D converter.
+Til dette projekt har det været nødvendigt at tilkoble en VGA skærm og et rat via en A/D converter.
