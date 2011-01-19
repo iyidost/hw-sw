@@ -155,7 +155,7 @@ namespace PC_Highscore
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             shouldRead = false;
-            Application.Exit(0);
+            Application.Exit();
         }
     }
 }
