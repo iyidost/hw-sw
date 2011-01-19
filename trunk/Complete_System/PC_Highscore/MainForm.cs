@@ -151,5 +151,11 @@ namespace PC_Highscore
                 connection.Close();
             }
         }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            shouldRead = false;
+            Application.Exit(0);
+        }
     }
 }
