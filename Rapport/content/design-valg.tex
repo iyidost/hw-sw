@@ -1,18 +1,18 @@
 \section{Design valg}
 
 \subsection{Wrapper}
-Til LC3 systemet valgtes det at bruge wrappers til de elementer der både har et input og et output, dette gjorte det nemmere at samle padding og tristate buffer. Ved at lave en wrapper kunne der sendes signaler videre ned i LC3 systemet fra bussen.
+Til LC3 systemet valgtes det at bruge wrappers til de vhdl moduler der både har et input og et output, dette gjorte det nemmere at samle padding og tri state buffers. Ved at lave en wrapper kunne der sendes signaler videre ned i LC3 systemet fra bussen.
 
 \subsection{Padding}
-Padding er en metode hvorved længden af en bitstreng ændres. Da det var nødvendigt at ændre bus adresse længden i f.eks. UART'en fra en længde på 16 bit ned til 8 bit, da det er den længde UART forventer. Dette gøres ved at når UART wrapperen modtager et signal sender den kun de 8 mindst betydende bit videre ned til UART'en at arbejde med, og når et signal modtages fra UART'en paddes der med 0'er foran, så der bliver sendt et signal tilbage til bussen der er konstrueret således '00000000' og UART signal. Derved ender vi med et signal på 16 bit igen, som er den længde bussen arbejder med. 
+Padding er en metode hvorved længden af en bitstreng ændres. Da det var nødvendigt, at ændre bus adresse længden i f.eks. UART'en fra en længde på 16 bit ned til 8 bit, da det er den længde UART forventer. Dette gøres ved, at når UART wrapperen modtager et signal sender den kun de 8 mindst betydende bit videre ned til UART'en at arbejde med, og når et signal modtages fra UART'en paddes der med 0'er foran, så der bliver sendt et signal tilbage til bussen der er konstrueret således '00000000' samt UART signalet. Derved ender vi med et signal på 16 bit igen, som er den længde bussen arbejder med. 
 
 %Eksempel fra koden
 
 \subsection{Tri State Buffer}
-En tri state buffer fungerer således at der bliver sendt et enable signal der et andet signale angiver om der må skrives eller læses fra et element, og derudover sørger for at hvis det ikke er det element der skal bruge signalet, kun vil modtage Z'er der i et signal er en tom værdi. På denne måde er det muligt at styre hvilke elementer der bliver skrevet og læst fra på en given clock cycle. 
+En tri state buffer fungerer således at der bliver sendt et enable signal og et andet signal der angiver om der må skrives eller læses fra et element, og derudover sørger for at hvis det ikke er det element der skal bruge signalet, kun vil modtage Z'er der i et signal er en tom værdi. På denne måde er det muligt at styre, hvilke elementer der bliver skrevet og læst fra på en given clock cycle. 
 
-%Eksempel fra koden
+%Eksempel fra koden + diagram
 
 \subsection{Chip Selector}
-Chip selector gør det muligt at lave en kontrol af hvilke adresse der bliver skrevet til, og igennem et I/O adresse register, er det blevet bestem hvilke værdi der har med hvilke signaler at gøre. Ved at tjekke på denne adresse kan man derved bestemme om et signal til tri state bufferen skal være 1 eller 0.
+Chip selector gør det muligt at lave en kontrol af hvilke adresser der bliver skrevet til og igennem et I/O adresse register, er det blevet bestemt hvilke værdier der har med hvilke signaler at gøre. Ved at tjekke på denne adresse kan man derved bestemme om et signal til tri state bufferen skal være 1 eller 0.
 %Billede af chip selector

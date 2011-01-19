@@ -1,8 +1,16 @@
 \section{Grafik}
-Til projektet efter minimum implementeringen var udført, blev grafikken til spillet udvidet. 
+Til projektet efter minimum implementeringen var færdiggjort, blev grafikken til spillet udvidet. 
+
+% Tilføj værktøjer til appendix og referere til dem herfra
+% Tilføj værktøjer til appendix og referere til dem herfra
+% Tilføj værktøjer til appendix og referere til dem herfra
+% Tilføj værktøjer til appendix og referere til dem herfra
+% Tilføj værktøjer til appendix og referere til dem herfra
+% Tilføj værktøjer til appendix og referere til dem herfra
+% Tilføj værktøjer til appendix og referere til dem herfra
+
+\subsection{Tiles}
+Tiles blev lavet ved hjælp af værktøjer\footnote{http://matisen.dk/dtu/02321/tile\_maker.php}, udarbejdet i forbindelse med projektet. De genererede hex arrays blev lagt ind i en Tile ROM. Værdierne 0 eller 1 arrayet bruges til at bestemme farven på hver pixel. I anden ROM er forgrunds og baggrundsfarve defineret for hver tile, disse farver er af 8 bits længde da der zero paddes.
 
 \subsection{Sprites}
- Dette skete ved at der blevet tegnet nogle png filer i photoshop, der derefter blev konverteret til et hex array ved hjælp af værktøjeret\footnote{matisen.dk/dtu/02321}, udviklet i forbindelse med projektet. Disse Hex arrays blev lagt ind i en VGA\_ROM som tegnede rammen for objektet, derefter blev der ud fra png filen lave en inverted udgave som blev gemt i en anden ROM som udgjorte masken til objektet. Til hver af disse ROM der tildelt 1 farve hvor de værdier der er sat til 1 fik denne farve. Ved hjælp af denne metode kunne rammen og masken få 2 forskellige farver og danne et objekt med 8 bit farver.
- 
-\subsection{Tiles}
-Tiles blev lavet ved hjælp af værktøjet\footnote{http://matisen.dk/dtu/02321/tile\_maker.php}, udarbejdet i forbindelse med projektet. Disse hex array blev lagt ind i en Tile ROM, hvor værdien 0 eller 1 bestemmer farven på tilen ud fra en anden ROM hvor farven til en bestemt tile er defineret.
+Sprites blev tegnet i Adobe Photoshop og gemt i png format, derefter blev de konverteret til et hex array ved hjælp af online værktøjer\footnote{http://matisen.dk/dtu/02321}, udviklet i forbindelse med projektet. Disse Hex arrays blev lagt ind i en VGA\_ROM som tegnede rammen for objektet, derefter blev der ud fra png filen lave en inverted udgave som blev gemt i en anden ROM som udgjorte masken til objektet. Til hver af disse ROM der tildelt 1 farve hvor de værdier der er sat til 1 fik denne farve. Ved hjælp af denne metode kunne rammen og masken få 2 forskellige farver og danne et objekt med 24 bit farver.
