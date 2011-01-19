@@ -1,2 +1,7 @@
 \section{LC3 Instruktioner}
-Lorem ipsum dolor...
+Instruktionerne til LC3 processoren er skrevet i \texttt{C}. Omdrejningspunktet i programmet er main løkken. Der er implementeret en variabel \texttt{game\_state} som definerer hvilken game state spillet er i, afhængig af spillets game state foretages forskellige handlinger i main løkken.
+
+Der er implementeret en \texttt{sleep(...)} metode som ved hjælp af \texttt{VGA\_REFRESH\_TICK} udfører en simpel forsinkelses handling.
+\lstinputlisting[firstline=45,lastline=62,firstnumber=45,language=c]{code/lc3/game_complete.c}
+
+Da LC3 cpu'en ikke understøtter \texttt{long} er der istedet tilføjet et \texttt{multiplier} argument til metoden som blot venter det angivne antal \texttt{ticks} ganget med \texttt{multiplier} ved hjælp af et for loop.
