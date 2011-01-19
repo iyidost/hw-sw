@@ -1,15 +1,9 @@
-Vores system som overordnet er beskrevet på figur~\vref{fig:Diagrammer/OverordnetSystem}, er opbygget af et \texttt{FPGA board} der implementerer en computer kørt af en \texttt{LC3 CPU}. Til computeren er der af eksterne I/O komponenter tilknyttet en skærm, et I/O board\footnote{Digilent DIO4\texttrademark I/O board} samt et rat som essentielt er en variabel modstand. Desuden benyttes der to-vejs seriel kommunikation til en PC til upload af bruger programmer til \texttt{LC3} computeren samt verificering af disse.
+Vores system som overordnet er beskrevet på figur~\vref{fig:Diagrammer/OverordnetSystem}, er opbygget af et \texttt{FPGA board} der implementerer en computer med en black box \texttt{LC3 CPU}. Til computeren er der af eksterne I/O komponenter tilknyttet en skærm, et I/O board\footnote{Digilent DIO4\texttrademark I/O board}, til Digilent boardet er tilsluttet et rat som essentielt er en variabel modstand. Desuden benyttes der to-vejs seriel kommunikation til en PC til upload af bruger-programmer til \texttt{LC3} computeren samt verificering af disse.
 
-\billede{!htbp}{1}{Diagrammer/OverordnetSystem}{Design system}
+\billede{!htbp}{0.5}{Diagrammer/OverordnetSystem}{Design system}
 
-Spillet er først implementeret på PC i C kode, derefter skal indholdet overføres til FPGA board vha. en serial forbindelse. Indholdet af spillet gemmes i block ram på FPGA. En VGA skærm viser "output" altså baggrund,forgrund( bil, forhindringer), og er opdateret løbende, for at man kan se og følge med i hvad det sker og dermed kan spille. Spillet kan styres direkte fra FPGA board vha. en styrrings enhed, i dette tilfælde har vi valgt at bruge et rat i stedet for et keyboard.
+Spillogikken er skrevet på PC i C kode, derefter skal indholdet overføres til FPGA board vha. en serial forbindelse. Indholdet af spillet gemmes i block ram på FPGA. En VGA skærm viser output og er opdateret løbende, for at man kan se og følge med i hvad der sker og dermed kan styre spille. Spillet kan styres direkte fra FPGA board ved hjælp af en styrings enhed, denne er et rat der blevet implementeret.
 
-LC-3 system efter vores design består af forskellige komponenter som er sat sammen, dette kan tælles: CPU, rat, MEM, UART og forbindende ”busser”.
+LC-3 system design består af forskellige komponenter som er sat sammen. De forskellige komponenter: CPU, rat I/O, Memory (RAM og ROM), UART, VGA og DIO-4 board.
 
-Udover VGA skærm kan man koble flere hardware enheder til når der er behov for det. De kan være lydkort,... o.s.v.
-CPU har til formål at udføre de beregninger som ligger til grund for hvilke instruktioner som skal udføres, dvs. hvad applikationen ”siger” der skal ske hvornår....
-MEM bruges generelt til at gemme div. Data, bl.a. de respektive instruktioner som skal udføres ...
-UART bruges til at ”holde” styr på at sende/modtage data instruktioner til/fra komponenterne i computeren ....
-rattet bruges til at styre bilen, som kører i forgrunden.
-Figur xx viser vores overordnede system.
-(OBS! Vi skal selv tegne LC-3 system diagram som ligner denne figur)
+Til dette projekt har det været nødvendigt at tilkoble en VGA skærm og en A/D converter.
