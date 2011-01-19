@@ -63,7 +63,6 @@ void sleep(unsigned int ticks, unsigned int multiplier)
 int main()
 {
 	short game_state = GAME_STATE_IN_GAME;
-	short clocks = 0;
 	short i;
 
 	// Reset game before start
@@ -94,29 +93,36 @@ int main()
 				{
 					if (does_collide(car, obstacles[i]) == 1)
 					{
-						// Crash! Change game state
+						// Car collided with obstacle, game over.
 						game_state = GAME_STATE_GAME_OVER;
-						printf("\n\n====================\n");
-						printf("==== GAME OVER! ====\n");
-						printf("====================\n");
-						printf("Points: %d\n", points);
-						printf("====================\n\n");
+						printf("%d\n", points);
 					}
 				}
-
 				break;
 			}
 
 			case GAME_STATE_GAME_OVER:
 			{
+				short inputChar;
+
 				// Vibrator on
 				io_write(VIBRATOR, 1);
 
-				// Wait 10000 * 40 ticks
-				sleep(10000u, 40);
+				// Wait 10000 * 10 ticks
+				sleep(10000u, 10);
 
 				// Vibrator off
 				io_write(VIBRATOR, 0);
+
+				// Wait until 's' (for start) is received from the high score program
+				do
+				{
+					// Wait until data is received from STDIN
+					while (io_read(STDIN_S) != IO_READY);
+
+					inputChar = io_read(STDIN_D);
+				}
+				while (inputChar != 's');
 
 				// Reset game
 				reset_game();
@@ -224,7 +230,7 @@ void obstacle_update()
 	}
 	else if (obstacle_spawns >= 1 && shown_obstacles >= OBSTACLES_COUNT)
 	{
-		velocity -= 100u;
+		velocity -= 50u;
 		obstacle_spawns = 0;
 	}
 }
@@ -245,6 +251,10 @@ int does_collide(OBJECT A, OBJECT B)
 	rightB = B.x + B.width;
 	topB = B.y;
 	bottomB = B.y + B.height;
+
+	//printf("Collision detection:\n");
+	//printf("Car: %d,%d %d,%d\n", A.x, A.y, A.width, A.height);
+	//printf("Obstacle: %d,%d %d,%d\n\n", B.x, B.y, B.width, B.height);
 
 	if (bottomA <= topB)
 	{
@@ -289,10 +299,24 @@ void reset_game()
 	// Write obstacle positions
 	for (i = 0; i < OBSTACLES_COUNT; i++)
 	{
-		obstacles[i].x = (i == 0) ? 0 : SCREEN_HEIGHT + 350;
-		obstacles[i].y = 0;
-		obstacles[i].width = (i == 0) ? CAR_HEIGHT : 64;
-		obstacles[i].height = (i == 0) ? CAR_WIDTH : 48;
+		obstacles[i].x = SCREEN_HEIGHT;
+		obstacles[i].y = SCREEN_WIDTH;
+
+		if (i == 1)
+		{
+			obstacles[i].width = 96;
+			obstacles[i].height = 64;
+		}
+		else if (i == 2)
+		{
+			obstacles[i].width = 128;
+			obstacles[i].height = 64;
+		}
+		else
+		{
+			obstacles[i].width = 96;
+			obstacles[i].height = 48;
+		}
 
 		set_obstacle_pos(obstacles[i], i);
 	}
