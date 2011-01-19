@@ -15,5 +15,33 @@ rattet bruges til at styre bilen, som kører i forgrunden.
 Figur xx viser vores overordnede system.
 (OBS! Vi skal selv tegne LC-3 system diagram som ligner denne figur)
 
-  
-  	
+ 
+ \section{Ram}
+ LC3 complete system RAM implementering.
+Vi har valgte at bruge single-port synchronous RAM. Vi valgte single-port RAM fordi vi i første omgang ikke har brug for at skrive til eller læse fra 2 adresser samtidig, som duel-port RAM ville have givet os lov til. Synchronous tillader at vi bruge block rammen på FPGA boardet, og ikke CLBs rammen, der er forbeholdt til logic og asynchronous RAM. Til det vi skulle lave var der ingen grund til at bruge asynchronous, da alle vores udregninger ikke behøver at blive behandlet sammen clock cycle. Vi implementerede vores RAM, ved at følge bogen (indsæt eksempel/reference) og derefter justere længden af adressen så det passede til den størrelse vores program der blev kørt på FPGA'en havde, ved at reducere størrelsen på rammen, sørgede vi for at syntetiseringen af vores LC3 system ikke tog unødvendig langt tid. Vi blev dog løbende nød til at ændre på adressen længden af hukommelsen, da vores C kode blev længere. Hvad bruger vi rammen til ud over vores c kode?  
+
+ Vi valgte til vores Ram at lave en Wrapper, der indeholder en tristatebuffer og oversætter signalet til den rigtige længde.
+Tristate Bufferen sørger for at signal kun kan gå den ene vej, så der enten kan blive læste fra Rammen eller skrevet til den på en given clock cycle. Dette indeholder alle vores elementer, og dette gør sammen med kontrol på bus adressen at vi kun kan skrive eller læse fra det vi ønsker.
+Padding er den måde vi løser at vi har en bus adresse på 16 bit, men i vores hukommelse kun bruger eksempelvis 14 bit, så vælger vi at bruge de 14 mindst betydende bit når hukommelsen modtager en bus adresse. Hvis hukommelsen sender en adresse til bussen, er denne for kort, dette løses ved at sætte 0'er foran, så vi ender med '00' og adressen fra hukommelsen.
+
+\section{UART}
+UART er en forkortelse for Universal asynchronous reciever and transmitter. Vi gik ud fra eksemplet i bogen, og valgte at implementere UART'en da det ville gøre vores debugging meget nemmere.  Vi valgte at lave en wrapper til UART'en da vores bus signal er 16 bit langt og det signal vi bruger i UART'en kun er 8 bit. Dette blev gjort ved at når der sendes til UART'en bruges kun (7 downto 0), altså de 8 mindst betydende bits. Og hvis i signal sendes fra UART'en paddes der med 0'er foran de 8 sendte bit. %Eventuelt bare lave et afsnit om vores wrapper/ padding da det går igen i en del af elementerne.
+Vi brugte UART'en til at teste om Rammen og CPU kommunikerede korret sammen, via et test program givet til os, dette var et echo program der skrev de input tastaturet fik ud på skærmen.
+
+
+\section{Wrapper}
+Til LC3 systemet valgtes det at bruge wrappers til de elementer der både har et input og et output, dette gjorte det nemmere at samle padding og tristate buffer. Ved at lave en wrapper kunne der sendes signaler videre ned i LC3 systemet fra bussen.
+
+\section{Padding}
+Padding er en metode hvorved længden af en bitstreng ændres. Da det var nødvendigt at ændre bus adresse længden i f.eks. UART'en fra en længde på 16 bit ned til 8 bit, da det er den længde UART forventer. Dette gøres ved at når UART wrapperen modtager et signal sender den kun de 8 mindst betydende bit videre ned til UART'en at arbejde med, og når et signal modtages fra UART'en paddes der med 0'er foran, så der bliver sendt et signal tilbage til bussen der er konstrueret således '00000000' og UART signal. Derved ender vi med et signal på 16 bit igen, som er den længde bussen arbejder med. 
+
+%Eksempel fra koden
+
+\section{Tri State Buffer}
+En tri state buffer fungerer således at der bliver sendt et enable signal der et andet signale angiver om der må skrives eller læses fra et element, og derudover sørger for at hvis det ikke er det element der skal bruge signalet, kun vil modtage Z'er der i et signal er en tom værdi. På denne måde er det muligt at styre hvilke elementer der bliver skrevet og læst fra på en given clock cycle. 
+
+%Eksempel fra koden
+
+\section{Chip Selector}
+Chip selector gør det muligt at lave en kontrol af hvilke adresse der bliver skrevet til, og igennem et I/O adresse register, er det blevet bestem hvilke værdi der har med hvilke signaler at gøre. Ved at tjekke på denne adresse kan man derved bestemme om et signal til tri state bufferen skal være 1 eller 0.
+%Billede af chip selector
