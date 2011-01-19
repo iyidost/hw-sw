@@ -8,6 +8,7 @@
 #define VGA_OBSTACLES_START_Y	0xfe20u
 #define VIBRATOR				0xfe2cu
 #define VGA_REFRESH_TICK		0xfe2au
+#define ROAD_MOVE				0xfe30u
 
 #define SCREEN_WIDTH			480
 #define SCREEN_HEIGHT			640
@@ -64,6 +65,7 @@ int main()
 {
 	short game_state = GAME_STATE_IN_GAME;
 	short i;
+	short roadMove = 0;
 
 	// Reset game before start
 	reset_game();
@@ -82,6 +84,18 @@ int main()
     	{
 			case GAME_STATE_IN_GAME:
 			{
+				// Move road
+				io_write(ROAD_MOVE, roadMove);
+
+				if (roadMove < 192)
+				{
+					roadMove += 2;
+				}
+				else
+				{
+					roadMove = 0;
+				}
+
 				// Update steering wheel
 				steering_wheel_update();
 
