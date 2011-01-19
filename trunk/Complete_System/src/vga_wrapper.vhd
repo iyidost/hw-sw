@@ -355,15 +355,17 @@ begin
       end if;
    end process;
 	
-	pixel_x_movement <= pixel_x + movement_pixel;
+	pixel_x_movement <= pixel_x - movement_pixel;
 	
 	
 	middle_line_on <=
 		'1' when (((middle_line_top1 <pixel_y) and (pixel_y<middle_line_buttom1)) or
 					(( middle_line_top2 <pixel_y) and (pixel_y<middle_line_buttom2))) and
 					((pixel_x_movement > 0 and pixel_x_movement < 96) 
-					or (pixel_x_movement > 208 and pixel_x_movement < 304) 
-					or (pixel_x_movement > 416 and pixel_x_movement < 512))
+					or (pixel_x_movement > 192 and pixel_x_movement < 288) 
+					or (pixel_x_movement > 384 and pixel_x_movement < 480)
+					or (pixel_x_movement > 576 and pixel_x_movement < 672)
+					)
 					else
 		'0';
 	
