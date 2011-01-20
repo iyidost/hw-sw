@@ -1,11 +1,6 @@
 \section{VGA}
-I starten af projektet blev der udarbejdet et VGA sync modul, på grund af fysisk plads mangel måtte dette modificeres til at benytte XSGA på Virtex-II PRO motherboardet. Dette blev gjort ved at tage enhed 12.1 vga\_sync fra lab bogen~\cite{chu} og modificere den om til de timings som motherboardet bruger\footnote{http://www.digilentinc.com/Data/Products/XUPV2P/XUPV2P\_User\_Guide.pdf table 2-6 page 37}.
+I starten af projektet blev der udarbejdet et VGA sync modul, på grund af fysisk plads mangel måtte dette modificeres til at benytte XSGA på Virtex-II PRO motherboardet. Dette blev gjort ved at tage enhed 12.1 vga\_sync fra lab bogen~\cite{chu} og modificere den om til de timings som motherboardet bruger~\cite{hardwaremanual tabel 2-6 side 37}.
 Efter test af sync enhed blev 640 x 480 @ 60 Hz valgt som standard indstilling for projektet.
 VGA Wrapper modulet forbinder til VGA sync, indeholder logikstyringen til ROM til alle de forskellige grafiske elementer, spiller objektet, modstander objektet og tiles. Dette er valgt i stedet for at have logik styringen liggende i hoved VHDL modulet, da på denne måde var nemmere at dele op og teste på enkelte dele af LC3 computeren. Foruden er der en clock divider som sætter 100MHz clock til 25MHz clock og denne bliver brugt i VGA sync og ROM. 
 
 Input består af X-position af bilen, X og Y på de forskellig forhindringer og en movement pixel. Movement Pixel gør at bevægelse med midterstriber og baggrund i form af tiles.
-
-% Der skal lidt mere kød på her:
-% - Hvordan wrapperen er designet?
-% - Logik, sprites, etc.
-% - Der er skrevet om ROM i andet afsnit
