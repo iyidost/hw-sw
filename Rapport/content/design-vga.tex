@@ -3,4 +3,10 @@ I starten af projektet blev der udarbejdet et VGA sync modul, på grund af fysis
 Efter test af sync enhed blev 640 x 480 @ 60 Hz valgt som standard indstilling for projektet.
 VGA Wrapper modulet forbinder til VGA sync, indeholder logikstyringen til ROM til alle de forskellige grafiske elementer, spiller objektet, modstander objektet og tiles. Dette er valgt i stedet for at have logik styringen liggende i hoved VHDL modulet, da på denne måde var nemmere at dele op og teste på enkelte dele af LC3 computeren. Foruden er der en clock divider som sætter 100MHz clock til 25MHz clock og denne bliver brugt i VGA sync og ROM. 
 
-Input består af X-position af bilen, X og Y på de forskellig forhindringer og en movement pixel. Movement Pixel gør at bevægelse med midterstriber og baggrund i form af tiles.
+Input består af X-position af bilen, X og Y på de forskellig forhindringer og en movement pixel. Movement Pixel gør at der er bevægelse med midterstriber og baggrund.
+Dette gøres ved hjælp af 
+\lstinputlisting[firstline=358,lastline=358,firstnumber=358,language=vhdl]{code/vhdl/vga_wrapper.vhd}
+hvor pixel\_x\_movement er flytning af x-aksel.
+Output består af de faste VGA signaler, som til skærm og et refresh\_tick som bruger i LC3 instruktioner. 
+
+Muxing af de forskellig grafik lag sker i wrapper og sendes til VGA sync.
