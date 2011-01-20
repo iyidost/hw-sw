@@ -6,7 +6,7 @@ VGA Wrapper modulet forbinder til VGA sync, indeholder logikstyringen til ROM ti
 Input består af X-position af bilen, X og Y på de forskellig forhindringer og en movement pixel. Movement Pixel gør at der er bevægelse med midterstriber og baggrund.
 Dette gøres ved hjælp af 
 \lstinputlisting[firstline=358,lastline=358,firstnumber=358,language=vhdl]{code/vhdl/vga_wrapper.vhd}
-hvor pixel\_x\_movement er flytning af x-aksel.
+hvor pixel\_x\_movement er flytning af x-aksen.
 Output består af de faste VGA signaler, som til skærm og et refresh\_tick som bruger i LC3 instruktioner. 
 
 Muxing af de forskellig grafik lag sker i wrapper og sendes til VGA sync.
