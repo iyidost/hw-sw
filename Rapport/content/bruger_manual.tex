@@ -1,31 +1,24 @@
 \section{Bruger manual}
-Efter udviklingen af \texttt{VHDL} til hardware implementeringen og for vores vedkommende, dertil svarende \texttt{C-}kode til softwaren, skal man i Xilinx miljøet compile sit projekt for at få genereret en bit fil som man skal uploade til \texttt{FPGA} boardet. Ved kompilering af \texttt{C-}koden lægges det ned i \texttt{LC3-}computerens RAM. Når \texttt{C-}koden compiles, genereres en \texttt{.obj} (objekt) fil som skal køres på den i forvejen kørende \texttt{LC3-}computer.
-Efter endt kompilering og upload af bit & .obj fil til \texttt{FPGA} board, hvilket principielt er en form for fejlfinding (idet der tjekkes om alle signaler og komponenter er korrekt sat sammen), er man klar til at spille spillet. Når ovenstående er gjort, uden compiler eller andre typer fejl er \texttt{LC3-}computeren kørt i stilling til at kunne køre selve spillet.
+\subsection*{Før du kan afprøve spillet}
+\subsubsection*{Upload af firmware til FPGA Boardet}
+Det forventes at XILINX\textregistered miljøet er installeret på computeren på forhånd og FPGA boardet er tilsluttet til computeren via USB og Seriel forbindelse.
+Firmware uploades dernæst til FPGA boardet ved at benytte den genererede .bit fil. Højreklik på filen og vælg "Upload to FPGA board".
 
-Det ser sådan ud når alt kompilering er ok:
-figur~\vref{fig:photo}
+\subsubsection*{Start highscore applikationen}
+Start nu \textbf{PC\_Highscore.exe}, denne applikation vil nu kommunikere med FPGA boardet og registrere scores.
+
+\subsection*{Ekstra: Opdater software på LC3 computeren}
+Skulle du få brug for at installere opdateret software på LC3 computeren gøres dette ved at højreklikke på \texttt{.obj} filen og vælge "Run on FPGA", derefter genstarter LC3 computeren og den opdaterede software benyttes nu.
+
+Bemærk at software opdateringen igen skal installeres hvis FPGA boardet har været slukket.
+
 \billede{!htbp}{0.5}{photo}{Billede af kørende spil}
+\billede{!htbp}{0.5}{photo-3}{Billede af tilsluttet rat}
 
-Som beskrevet tidligere i rapporten, bruger vi et rat som input til at kommunikere med spillet og styre bilen. Rattet er et input signal til \texttt{LC3-}computeren og disse to moduler er sat sammen via et \texttt{Diligent FX2 MIB} board hvortil der er tilsluttet en A/D converter. 
+\subsection*{Sådan spiller du \textbf{Speed Devil}}
+Bilen styres ved at dreje på rattet. Formålet med spillet er at undgå sammenstød med elementer på vejen, i tilfælde af man rammer en af forhindringerne er spillet slut og Game Over vinduet vises på computeren.
 
-figur~\vref{fig:photo-3}
-\billede{!htbp}{0.5}{photo}{Billede af tilsluttet rat}
+Man får 1 point for at overhale den gule bil, 2 point for at overhale den pink ATV og 3 point for at overhale kampvognen. Når man er Game Over, kan man indtaste sit navn og få sin score på highscore listen, når man trykker gem starter spillet igen, såfremt man ikke ønsker at skrive sig på listen kan man blot lukke highscore vinduet og et nyt spil startes uden tilføjelser til highscore listen.
+Hastigheden for de andre biler øges med tiden, således at spillet bliver mere udfordrende over tid.
 
-For at få en kort gennemgang af hvordan man spiller spillet, tjek venligst "Spil manual" afsnittet. 
-
-
-\subsection{Spil manual}
-\begin{enumerate}
-\item[1. Forbind alle de nødvendige moduler sammen: PC, FPGA board, VGA skræm, rattet.]
-\item[2. Højre klik på VHDL projektfilen(bit filen), vælg ”upload to FPGA board”.]
-\item[3. Compilér C-koden og upload den genererede .obj-fil til LC3 computer.]
-\item[4. Kør den genererede PC_Highscore.exe fil fra Visual Studio for at starte database applikationen.]
-\item[5. Spillet er klart.]
-\end{enumerate}
-
-\subsection{Regler}
-For at kunne spille, skal man bruge et rat som forbindes til \texttt{FPGA} boardet via en \texttt{A/D} converter. Bilen styres ved at dreje på rattet.
-Man skal så vidt muligt undgå sammenstød med de andre biler på banen, i tilfælde af man rammer en af bilerne er spillet slut og Game Over vinduet vises. Man får 1 point for at overhale den gule bil, 2 point for at overhale den pink bil og 3 point for at overhale kampvognen. Når man er Game Over, kan man indtaste sit navn og få sin score på highscore listen. Ved at lukke dette highscore vindue, startes et nyt spil.
-Hastigheden for de andre biler øges med tiden, således at man bliver udfordret over tid. 
-%Efter hver runde kan man se antal af de modkørende biler man har passeret. 
-Der er ikke multiplayer funktion i spillet, men det er muligt for hver spiller at indtaste sit navn efter spillet er afsluttet, dermed kan man se en listet statistik for alle spillere, som har spillet.  
+Ved hjælp af highscore listen, er det muligt at konkurrere i spillet mod hinanden.
