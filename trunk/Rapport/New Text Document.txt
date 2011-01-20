@@ -1,0 +1,9 @@
+\chapter{Konklusion}\label{cha:konklusion}
+
+Projektet var hårdt at komme i gang med, da det har været svært at begynde et fornuftigt sted. Hele LC3 systemet skulle opbygges fra bunden, dette gjorde dog samtidig at igennem en stor arbejdsindsats opnåede man en større forståelse for interaktionen mellem hardware og software i praksis. Især opbygningen af en computer og hvordan de forskellige moduler i en computer fungerer og kommuniker sammen, var en stor omgang. Det der var mest problematisk ved opstarten af projektet, var forståelsen af hvilke moduler der var nødvendige for at kunne designe en simpel computer. Forståelsen for Von Neumann modellen generelt er blevet større. Dette blev løst ved hjælp af samtale med underviser, hjælpelærer og forelæsninger. Derefter påbegyndtes arbejdet med designet af de forskellige moduler til minimumsimplementeringen. Minimumsimplementeringen var implementeret i slutningen af uge 2, dette gav tid til at videreudvikle projektet. De punkter der hovedsageligt efterfølgende blev forbedret var VGA og C koden. 
+Dette har givet en større indsigt i VHDL design med opbygning af alle komponenterne i low level og disse komponenter i LC3'en bruges i samspil med et stykke software - herunder simulator spillet.  
+ 
+Forholdet mellem high-level og low-level er ganske omfattende er erfaringen, men med indsigt i dette via 3 ugers projektet og de andre semester fag, er denne omfattende størrelse blevet mere overskuelig.
+Dog er tidsfaktoren en afgørende faktor for udviklingen af produktet kontra ønskede opnåede mål, der kan forestilles at man ude i erhvervslivet har mere tid til udviklingen, men man er generelt tilfredse med det der er opnået. 
+
+Gruppens generelle mening er, at dette 3 ugers projekt har været det mest omfattende samt det mest lærerige kursus i gruppens nuværende tid. 
