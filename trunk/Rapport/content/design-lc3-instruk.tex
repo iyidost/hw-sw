@@ -1,11 +1,25 @@
 \section{LC3 Instruktioner}
-Instruktionerne til LC3 processoren er skrevet i \texttt{C}. Udgangspunktet i programmet er main løkken. Der er implementeret en variabel \texttt{game\_state} som definerer hvilken game state spillet er i, afhængig af spillets game state foretages forskellige handlinger i main løkken.
+Instruktionerne til LC3 processoren er skrevet i \texttt{C}. Udgangspunktet i programmet er main løkken. Der er implementeret en variabel \texttt{game\_state} som definerer hvilken game state spillet er i, afhængig af spillets game state foretages forskellige handlinger i main løkken. Der er implementeret en \texttt{GAME\_STATE\_IN\_GAME} og en \texttt{GAME\_STATE\_GAME\_OVER}.
 
+En \texttt{struct} er defineret til at definere alle spil objekter på skærmen herunder bilen som styres af brugeren og alle forhindringer som bilen skal undgå.
+\lstinputlisting[firstline=27,lastline=29,firstnumber=27,language=c]{code/lc3/game_complete.c}
+
+\subsection*{Kollisions detektion}
+Der er implementeret en simpel bounding box collision detection til at detektere når bilen rammer en forhindring, metoden \texttt{int does\_collide(OBJECT A, OBJECT B)} kaldes for hver forhindring der eksisterer på skærmen ved hvert gennemløb af main løkken.
+
+Metoden beregner værdierne af alle siderne af begge objekter og tjekker derefter om der er opstået en overlapning mellem de to objekter, såfremt dette er tilfældet returneres \textbf{1}, hvis ingen kollision er detekteret returneres \textbf{0}.
+
+Herunder forefindes udsnit af \texttt{does\_collide()} metoden.
+\lstinputlisting[firstline=252,lastline=290,firstnumber=252,language=c]{code/lc3/game_complete.c}
+
+\subsection*{Timing}
 Der er implementeret en \texttt{sleep(...)} metode som ved hjælp af \texttt{VGA\_REFRESH\_TICK} udfører en simpel forsinkelses handling.
 \lstinputlisting[firstline=45,lastline=62,firstnumber=45,language=c]{code/lc3/game_complete.c}
 
 Da LC3 cpu'en ikke understøtter \texttt{long} er der istedet tilføjet et \texttt{multiplier} argument til metoden som blot venter det angivne antal \texttt{ticks} ganget med \texttt{multiplier} ved hjælp af et for loop.
 
-% Mere:
-% - Collision detection
-% - Pseudo random
+\subsection*{Pseudo tilfældighed}
+For at gøre spillets gameplay mindre konsistent har det været nødvendigt at benytte en form for tilfældighedsgenerator til at bestemme hvor på skærmen en ny forhindring skal starte. Da der i den benyttede udgave af C på grund af ressource mangel ikke er indbygget understøttelse for \texttt{time.h} eller \texttt{stdlib.h} som implementerer henholdsvis tid og tilfældighedsgenerator, er der udviklet en pseudo tilfældighedsgenerator.
+
+Denne tilfældighedsgenerator fungerer ved at en variabel tælles op ved hvert gennnemløb af main løkken og nulstilles hver gang den når en værdi svarende til skærmens bredde, på den måde genereres en delvist tilfældigt position. Udsnit af optællingen forefindes herunder.
+\lstinputlisting[firstline=77,lastline=81,firstnumber=77,language=c]{code/lc3/game_complete.c}
