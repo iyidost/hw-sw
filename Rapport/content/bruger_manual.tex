@@ -17,19 +17,15 @@ For at få en kort gennemgang af hvordan man spiller spillet, tjek venligst "Spi
 \subsection{Spil manual}
 \begin{enumerate}
 \item[1. Forbind alle de nødvendige moduler sammen: PC, FPGA board, VGA skræm, rattet.]
-\item[2. Højre klik på VHDL projektfilen(bit filen), vælg ”upload to FPGA board”.
-
-~\vref{fig:uploadToFPGA}
-\billede{!htbp}{0.5}{photo}{Billede af bit fil upload}
-]
+\item[2. Højre klik på VHDL projektfilen(bit filen), vælg ”upload to FPGA board”.]
 \item[3. Compilér C-koden og upload den genererede .obj-fil til LC3 computer.]
 \item[4. Kør den genererede PC_Highscore.exe fil fra Visual Studio for at starte database applikationen.]
 \item[5. Spillet er klart.]
 \end{enumerate}
 
 \subsection{Regler}
-For at kunne spille, skal man bruge et rat som forbindes til FPGA boardet via en A/D converter. Bilen styres ved at dreje på rattet.
+For at kunne spille, skal man bruge et rat som forbindes til \texttt{FPGA} boardet via en \texttt{A/D} converter. Bilen styres ved at dreje på rattet.
 Man skal så vidt muligt undgå sammenstød med de andre biler på banen, i tilfælde af man rammer en af bilerne er spillet slut og Game Over vinduet vises. Man får 1 point for at overhale den gule bil, 2 point for at overhale den pink bil og 3 point for at overhale kampvognen. Når man er Game Over, kan man indtaste sit navn og få sin score på highscore listen. Ved at lukke dette highscore vindue, startes et nyt spil.
 Hastigheden for de andre biler øges med tiden, således at man bliver udfordret over tid. 
 %Efter hver runde kan man se antal af de modkørende biler man har passeret. 
-Der er ikke multiplayer funktion i spillet, men det er muligt for hver spiller at indtaste sit navn efter spillet er afsluttet, dermed kan man se statistik for alle spillere som har spillet med.
+Der er ikke multiplayer funktion i spillet, men det er muligt for hver spiller at indtaste sit navn efter spillet er afsluttet, dermed kan man se en listet statistik for alle spillere, som har spillet.  
