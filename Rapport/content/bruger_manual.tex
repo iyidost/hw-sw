@@ -1,5 +1,5 @@
 \section{Bruger manual}
-Efter udviklingen af \texttt{VHDL} til hardware implementeringen og for vores vedkommende, dertil svarende \texttt{C-}kode til softwaren, skal man i Xilinx miljøet compile sit projekt for at få lavet en bit fil som man skal uploade til \texttt{FPGA} boardet. Ved kompilering af \texttt{C-}koden lægges det ned i \texttt{LC3-}computerens RAM.   
+Efter udviklingen af \texttt{VHDL} til hardware implementeringen og for vores vedkommende, dertil svarende \texttt{C-}kode til softwaren, skal man i Xilinx miljøet compile sit projekt for at få genereret en bit fil som man skal uploade til \texttt{FPGA} boardet. Ved kompilering af \texttt{C-}koden lægges det ned i \texttt{LC3-}computerens RAM. Når \texttt{C-}koden compiles, genereres en \texttt{.obj} (objekt) fil som skal køres på den i forvejen kørende \texttt{LC3-}computer 
 Efter endt kompilering og upload af bit fil til \texttt{FPGA} board, hvilket principielt er en form for fejlfinding (idet der tjekkes om alle signaler og komponenter er korrekt sat sammen), er man klar til at spille spillet. Når ovenstående er gjort, uden compiler eller andre typer fejl er \texttt{LC3-}computeren kørt i stilling/gjort klar til at kunne køre selve spillet.
 Det ser sådan ud når alt kompilering er ok:
 figur~\vref{fig:photo}
@@ -7,7 +7,7 @@ figur~\vref{fig:photo}
 
 Som beskrevet tidligere i rapporten, bruger vi et rat som input til at kommunikere med spillet og styre bilen. Rattet er et input signal til \texttt{LC3-}computeren og disse to moduler er sat sammen via et \texttt{Digilent FX2 MIB} board hvortil der er tilsluttet en A/D converter. 
 
-~\vref{fig:photo-3}
+figur~\vref{fig:photo-3}
 \billede{!htbp}{0.5}{photo}{Billede af tilsluttet rat}
 
 For at få en kort gennemgang af hvordan man spiller spillet, tjek venligst "Spil manual" afsnittet. 
@@ -30,7 +30,7 @@ Billede: ???
 
 Billede: ???
 
-4. Kør C program(Spillets logik) fra Eclipse, og man er klar til at føre spillet. 
+4. Kør C program(Spillets logik) via LC3 compiler tilføjet i Eclipse, og man er klar til at køre spillet. 
 Billede: ???
 
 
@@ -40,4 +40,4 @@ For at kunne spille, skal man bruge et rat som forbindes til FPGA boardet via en
 Man skal så vidt muligt undgå sammenstød med de andre biler på banen, i tilfælde af man rammer en af bilerne er spillet slut og Game Over vinduet vises. Man får 1 point for at overhale den gule bil, 2 point for at overhale den pink bil og 3 point for at overhale kampvognen. Når man er Game Over, kan man indtaste sit navn og få sin score på highscore listen. Ved at lukke dette highscore vindue, startes et nyt spil.
 Hastigheden for de andre biler øges med tiden, således at man bliver udfordret over tid. 
 %Efter hver runde kan man se antal af de modkørende biler man har passeret. 
-Der er ikke multiplayer funktion i spillet, men det er muligt for hver spiller at indtaste sit navn efter spillet er afsluttet, dermed kan man se statistik for alle spiller som har spillet med.
+Der er ikke multiplayer funktion i spillet, men det er muligt for hver spiller at indtaste sit navn efter spillet er afsluttet, dermed kan man se statistik for alle spillere som har spillet med.
