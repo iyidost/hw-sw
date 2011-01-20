@@ -1,5 +1,5 @@
 \section{Highscore database}
-Som proof-of-concept er der udviklet en applikation til PC'en som kommunikerer med LC3 Computeren over en seriel forbindelse for at lagre highscores i en database, applikationen er skrevet i C\#.
+Som proof-of-concept er der udviklet en applikation til PC'en som kommunikerer med LC3 Computeren over en seriel forbindelse for at lagre highscores i en database, applikationen er skrevet i C\#. Highscore applikationen er udviklet med henblik på at vise hvordan viden opnået fra kurset \texttt{02344 OOAD og databaser} kan benyttes i forbindelse med dette projekt.
 
 \begin{wrapfigure}{r}{0.4\textwidth}
   \begin{center}
@@ -14,8 +14,6 @@ Applikationen benytter en database til at lagre highscores, det er valgt at beny
 
 En simpel tabel er oprettet til at indeholde highscore listen, bemærk at \texttt{submitted\_at} angiver tiden for oprettelsen af scoren i unix tid\footnote{Unix tid er angivet i antal sekunder siden d. 1. Januar 1970} formatet.
 
-%\billede{!htbp}{0.3}{HighscoreBoard}{Screenshot af highscore applikationen}
-
 \lstset{language=SQL}
 \begin{lstlisting}
 CREATE TABLE highscore(
@@ -24,5 +22,3 @@ CREATE TABLE highscore(
 	submitted_at int
 );
 \end{lstlisting}
-
-% Henvis til OOAD og DB
