@@ -1,7 +1,7 @@
 \section{LC3 Instruktioner}
 Instruktionerne til LC3 processoren er skrevet i \texttt{C}. Udgangspunktet i programmet er main løkken. Der er implementeret en variabel \texttt{game\_state} som definerer hvilken game state spillet er i, afhængig af spillets game state foretages forskellige handlinger i main løkken. Der er implementeret en \texttt{GAME\_STATE\_IN\_GAME} og en \texttt{GAME\_STATE\_GAME\_OVER}.
 
-En \texttt{struct} er defineret til at definere alle spil objekter på skærmen herunder bilen som styres af brugeren og alle forhindringer som bilen skal undgå.
+En \texttt{struct} er defineret til at repræsentere et spil objekt på skærmen, herunder bilen som styres af brugeren og alle forhindringer som bilen skal undgå.
 \lstinputlisting[firstline=27,lastline=29,firstnumber=27,language=c]{code/lc3/game_complete.c}
 
 \subsection*{Kollisions detektion}
