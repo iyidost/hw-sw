@@ -361,7 +361,7 @@ begin
 	middle_line_on <=
 		'1' when (((middle_line_top1 <pixel_y) and (pixel_y<middle_line_buttom1)) or
 					(( middle_line_top2 <pixel_y) and (pixel_y<middle_line_buttom2))) and
-					((pixel_x_movement > 0 and pixel_x_movement < 96) 
+					((pixel_x_movement < 96) 
 					or (pixel_x_movement > 192 and pixel_x_movement < 288) 
 					or (pixel_x_movement > 384 and pixel_x_movement < 480)
 					or (pixel_x_movement > 576 and pixel_x_movement < 672)
@@ -440,6 +440,8 @@ begin
 	vga_obstacle1_row <= pixel_y - STD_LOGIC_VECTOR(obstacle1_y_top);
 	
 	vga_obstacle1_column <= unsigned(pixel_x) - obstacle1_x_left;
+	
+	
 	
 	--- Row 2bit + column 3bit + line 4bit
 	vga_obstacle1_addr <= vga_obstacle1_row(5 downto 4) & vga_obstacle1_column(6 downto 4) & vga_obstacle1_row(3 downto 0)
