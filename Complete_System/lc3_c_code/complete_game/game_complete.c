@@ -266,10 +266,6 @@ int does_collide(OBJECT A, OBJECT B)
 	topB = B.y;
 	bottomB = B.y + B.height;
 
-	//printf("Collision detection:\n");
-	//printf("Car: %d,%d %d,%d\n", A.x, A.y, A.width, A.height);
-	//printf("Obstacle: %d,%d %d,%d\n\n", B.x, B.y, B.width, B.height);
-
 	if (bottomA <= topB)
 	{
 		return 0;
