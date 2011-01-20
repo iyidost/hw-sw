@@ -1,13 +1,11 @@
 \chapter{Diskussion}\label{cha:diskussion}
-Under 3 uger arbejdet med projekt, har vi lært og oplevet mange nye tinge. Det tales om både gode og svære tilgang. \
 
-De gode:\
-•	Vi får implementeret vores advandced/udvidelse version af spillet, og det virker som forventning. Bilens form og farver kan tegnes efter vores vilje, den kan styres fra raten.\
-•	Point statistik for hver spiller kan vises på skærm vha. en lokale database. Dette er en ekstra tinges som vi har implementeret ved brug af viden fra kurset OOAD Database.\
-•	\
+Igennem 3 uger projektet er der blevet arbejdet med at designe og implementere et 2 D bilspil. Der er blevet lagt en stor arbejdsindsats fra gruppen,, blandt andet ved at arbejde i weekenderne, og derfor har det været muligt at nå minimumsimplementeringen tidligt i forløbet. Dette har gjort at der er blevet tilføjet flere features løbende. Spiller objektet er gået fra at være en rød kasse, der kunne bevæge sig til højre og venstre på skærmen til at være en tegnet sprite, der forestiller en racerbil med 2 forskellige 24 bit farver. Objekterne spilleren skal undgå, er ligesom spiller objektet, gået fra at være en boks til at være en sprite i 2 forskellige 24 bit farver. De modstandere der blevet tegner er en guld nissan, en lilla ATV, og en army grøn tank.
+ I stedet for at styre spillerobjektet med knapper på DIO4 I/O boardet, er det muligt at styre spillerobjektet med et modificeret PS2/PC rat der er tilsluttet via en A/C converter. Dette var ikke så svært som forventet, og giver meget til spil oplevelsen at man kører en bil.
+  Der er også blevet udviklet en highscore applikation, der kører på en lokal pc, der via serial kablet kan sende spillerens score til en database hvor der gemmes navn og score, dette trækker på viden fra kurset 02344 OOAD og Databaser.
 
-De svære:\
-•	Det tager meget længere tid at implementere hele computeren system og få dem op at køre end vi regner med i starten. Hardware/Vhld delen tog os 2 uger at blive færdig med. \
-•	Især UART og MEM var en udfordring for os at implementere, der ligger masse ”tricks” bag i. \
-•	Efter implementering af hver komponent, har vi det svært at få dem til at ”snakke” sammen med LC-3 CPU, der opstod fejl i forskellige steder i vores program, som tog os ekstrem lang tid at finde rundt og rette dem.\
-•	For at nå vores tidsplanlægning om deadline for arbejde er vi nødt til at bruge weekenderne på laboratoriet. \
+ Der var en del udfordringer under vejs, nogle at de mest tidskrævende var at få UART og RAM til at virke efter hensigten, da disse var nødvendige for at kunne uploade noget til FPGA boardet, dette blev dog gjort nemmere ved de udleverede testprogrammer, så fokus ikke var på udviklingen at brugbare testprogrammer. Derfor var det nødvendigt at bruge nogle design valg, der gjorte det muligt at sende og modtage fra disse to VHDL moduler til bussen. Da dette var på implementeret kunnet udviklingen af spillet og dets logik begynde. 
+ Da det grundlæggende i LC3 computeren var på plads, begyndtes arbejdet med spillogik og anden styring fra C, dette gjorte arbejdet nemmere. % da vi har Mini the codemonkey!
+ 
+\input{content/videreudv}
+
