@@ -1,7 +1,9 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.1.5)  14 JAN 2011 13:14
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.1.19)  20 JAN 2011 12:30
 entering extended mode
 **diskussion.tex
-("C:\DTU\HWSW Rapport\Rapport\content\diskussion.tex"
+
+("C:\Documents and Settings\s000536\Desktop\svncheckout\Rapport\content\diskuss
+ion.tex"
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -201,7 +203,6 @@ Missing character: There is no d in font nullfont!
 Missing character: There is no c in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no / in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no v in font nullfont!
@@ -465,11 +466,8 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no . in font nullfont!
-Missing character: There is no â in font nullfont!
-Missing character: There is no € in font nullfont!
-Missing character: There is no ¢ in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 4--8
+Overfull \hbox (20.0pt too wide) in paragraph at lines 4--7
 []
  []
 
@@ -603,7 +601,6 @@ Missing character: There is no w in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no / in font nullfont!
 Missing character: There is no V in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no l in font nullfont!
@@ -1015,7 +1012,7 @@ Missing character: There is no . in font nullfont!
  
 Here is how much of TeX's memory you used:
  7 strings out of 494019
- 210 string characters out of 3148165
+ 312 string characters out of 3126785
  48862 words of memory out of 3000000
  3395 multiletter control sequences out of 15000+200000
  3640 words of font info for 14 fonts, out of 3000000 for 9000
