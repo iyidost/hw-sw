@@ -1,13 +1,17 @@
 \section{Videreudvikling}
 \subsection{Hardware}
-Der er latches i projektet, hvilke kan give fejl og gøre det meget svært at rette disse, til videreudvikling af hardwaren ville dette derfor være noget, der ville blive prioriteret. Opbygningen af ROMs kunne forbedres, da disse er implementeret og fungerer, men ikke er lavet efter en entydigt plan. Det kunne være interessant at benytte lydkortet, og lave simpel lyd i spillet som f.eks. feedback når en forhindring rammes.
+Der er latches i projektet, hvilke kan give fejl og gøre det meget svært at rette disse, til videreudvikling af hardwaren ville dette derfor være noget, der ville blive prioriteret. Opbygningen af ROM kunne forbedres, da disse er implementeret og fungerer, men ikke er lavet efter en entydigt plan. Det kunne være interessant at benytte lydkortet, og lave simpel lyd i spillet som f.eks. feedback når en forhindring rammes.
+
+En betydelig forbedring på grafikken kunne være at lave en masking ROM og en farve ROM, og sørge for at der kunne sendes signaler dertil, indeholdende information om fra om hvilken ROM der skulle læses fra. Dette signal skulle kunne sendes fra C, og derved generere random modstandere med random farve. Derudover ville det give mulighed for objekterne kan indeholde flere farver. 2 bit ville give mulighed for 4 farver af 24 bit.
+
+Klar deling af forskellige moduler, blandt andet tri state buffer der ligger i hoved VHDL modulet. Dette burde ligge under tilhørende wrapper.
 
 \subsection{Spil/Gameplay}
 Der er opnået produkt der kører og fungere som et bilspil, hvilke var målet med projektet. Derfor er der stadig mulighed for udvidelser af spillet.
 Der kunne være bedre grafik, i og med, de 24 bit farver ikke bliver udnyttet til fulde som projektet er nu.
 Flere baner med forskellige grafik på vejen var også en oplagt mulighed for en udvidelse til spillet.
 En større database med flere data gemt, ud over point, f.eks tid, statistik over hændelser i spillet, hvis det var samme spiller der spillede, dette kunne også inddrage kurset \texttt{02323 Sandsynlighedsregning og Statistik}.
-Power ups\footnote{Med power ups forstås objekter der kan samles på banen som giver ekstra muligheder for spilleren i en kort periode af tid.} blev også diskuteret, da der allerede er implementeret 1 knap på rattet der ikke bliver benyttet til noget, dette kunne for eksempel være slow motion eller immunitet i en kort periodeaf tid.
+Power ups\footnote{Med power ups forstås objekter der kan samles på banen som giver ekstra muligheder for spilleren i en kort periode af tid.} blev også diskuteret, da der allerede er implementeret 1 knap på rattet der ikke bliver benyttet til noget, dette kunne for eksempel være slow motion eller immunitet i en kort periode af tid.
 
 Dette ville muligvis også kræve en mere detaljeret brugerflade, med både score, power ups, bane og liv på skærmen. En anden udvidelse kunne være at have 2 spillere, enten på samme computer eller over nettet.
 
