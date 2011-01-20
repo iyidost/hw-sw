@@ -1,11 +1,11 @@
 % Standard margener - og undgå, at header/footer forsvinder på denne side
 \changepage{0cm}{0cm}{0cm}{0cm}{}{0cm}{0cm}{}{}
-
 \section*{Timeregnskab}
-\begin{center}
-\begin{tabular}{|l|l|*{6}{x{1.2cm}|}x{1.3cm}|}%|r|r|r|r|r|}
+Af følgende timeregnskab fremkommer arbejdstimer for de enkelte medlemmer i gruppen opdelt efter område og dato, kommentar feltet benyttes til at angive yderligere information om dagens arbejde samt årsag til eventuelt fravær.
+
+\begin{tabular}{|l|l|*{6}{x{0.4cm}|}q{7cm}|}
 	\hline
-	Dato     & Deltager & Design & Impl. & Test & Dok. & Andet & I alt & Kommentarer\tn
+	\begin{sideways}\parbox{30mm}{Dato}\end{sideways}  & \begin{sideways}\parbox{30mm}{Deltager}\end{sideways} & \begin{sideways}\parbox{30mm}{Design}\end{sideways} & \begin{sideways}\parbox{30mm}{Impl.}\end{sideways} & \begin{sideways}\parbox{30mm}{Test}\end{sideways} & \begin{sideways}\parbox{30mm}{Dok.}\end{sideways} & \begin{sideways}\parbox{30mm}{Andet}\end{sideways} & \begin{sideways}\parbox{30mm}{I alt}\end{sideways} & Kommentarer\tn
 	\hline
 	1-3-11 & Mathias & 2 & 4 &  &  &  & 6 & Færdiggørelse af wiring af rat som input device.\tn
 	\hline
@@ -61,11 +61,17 @@
 	\hline
 	1-8-11 & Mathias &  & 8 & 4 &  &  & 12 & Samling af system herunder memory, chip selector og uart og testing af disse\tn
 	\hline
+\end{tabular}	
+
+\begin{tabular}{|l|l|*{6}{x{0.4cm}|}q{7cm}|}
+	\hline
+	\begin{sideways}\parbox{30mm}{Dato}\end{sideways}  & \begin{sideways}\parbox{30mm}{Deltager}\end{sideways} & \begin{sideways}\parbox{30mm}{Design}\end{sideways} & \begin{sideways}\parbox{30mm}{Impl.}\end{sideways} & \begin{sideways}\parbox{30mm}{Test}\end{sideways} & \begin{sideways}\parbox{30mm}{Dok.}\end{sideways} & \begin{sideways}\parbox{30mm}{Andet}\end{sideways} & \begin{sideways}\parbox{30mm}{I alt}\end{sideways} & Kommentarer\tn
+	\hline
 	1-8-11 & Sami &  & 6 & 2 & 1 &  & 9 & Samling af system herunder memory, chip selector og uart, lidt rap. Skriv\tn
 	\hline
 	1-8-11 & Nikolai &  &  &  &  &  & 0 & Familie fødselsdag\tn
 	\hline
-	1-8-11 & Anders &  &  &  &  &  & 0 & Familie fødselsdag\tn
+	1-8-11 & Anders &  &  &  &  &  & 0 & Fri\tn
 	\hline
 	1-9-11 & Jakob & 4 &  &  &  &  & 4 & Implement af RAM dok\tn
 	\hline
@@ -137,6 +143,12 @@
 	\hline
 	1-15-11 & Nikolai &  &  &  &  &  & 0 & Fri\tn
 	\hline
+\end{tabular}
+
+\begin{tabular}{|l|l|*{6}{x{0.4cm}|}q{7cm}|}
+	\hline
+	\begin{sideways}\parbox{30mm}{Dato}\end{sideways}  & \begin{sideways}\parbox{30mm}{Deltager}\end{sideways} & \begin{sideways}\parbox{30mm}{Design}\end{sideways} & \begin{sideways}\parbox{30mm}{Impl.}\end{sideways} & \begin{sideways}\parbox{30mm}{Test}\end{sideways} & \begin{sideways}\parbox{30mm}{Dok.}\end{sideways} & \begin{sideways}\parbox{30mm}{Andet}\end{sideways} & \begin{sideways}\parbox{30mm}{I alt}\end{sideways} & Kommentarer\tn
+	\hline
 	1-16-11 & Jakob &  & 7 & 1 &  & 2 & 10 & Implementering af grafik/sprites og tegning af disse\tn
 	\hline
 	1-16-11 & Mathias &  & 7 & 1 &  & 2 & 10 & Implementering af grafik/sprites og tegning af disse\tn
@@ -145,7 +157,7 @@
 	\hline
 	1-16-11 & Anders &  &  &  &  &  & 0 & Syg\tn
 	\hline
-	1-16-11 & Nikolai & 2 & 3 & 2 &  &  & 7 & Grafik, bin hex convert\tn
+	1-16-11 & Nikolai & 2 & 3 & 2 &  &  & 7 & Grafik\tn
 	\hline
 	1-17-11 & Mathias &  & 7 & 2 & 1 &  & 10 & Tools til grafik m.m. samt spil logik (c kode) samt test af disse, desuden start på timing i c vha. sync ticks.\tn
 	\hline
@@ -167,39 +179,37 @@
 	\hline
 	1-18-11 & Jakob &  & 8 & 4 &  &  & 12 & Grafik, nye sprites og masks til alle sprites + rom, road movement.\tn
 	\hline
-	1-19-11 & Mathias &  &  &  &  &  & 0 & \tn
+	1-19-11 & Mathias &  &  &  & 11 &  & 11 & Rapport: Opsætning, Tools, Rat, Opgaveformulering, Highscore app\tn
 	\hline
-	1-19-11 & Anders &  &  &  &  &  & 0 & Rapport: Opsætning, Tools, Rat, Opgaveformulering, Highscore app\tn
+	1-19-11 & Anders &  & 3 &  & 10 &  & 13 & Poster og Dokumentation, vejmovement\tn
 	\hline
-	1-19-11 & Nikolai &  &  &  &  &  & 0 & \tn
+	1-19-11 & Nikolai &  &  &  & 8 &  & 8 & Poster,Bruger manuel\tn
 	\hline
-	1-19-11 & Jakob &  &  &  &  &  & 0 & Finish med poster og Dokumentation.\tn
+	1-19-11 & Jakob &  & 3 &  & 7 &  & 10 & Poster og Dokumentation, vejmovement\tn
 	\hline
 	1-19-11 & Sami &  &  &  &  &  & 0 & \tn
 	\hline
-	1-20-11 & Mathias &  &  &  &  &  & 0 & \tn
+	1-20-11 & Mathias &  &  &  & 9 &  & 9 & Færdiggørelse af poster. Dokumentation: Opgaveformulering, Værktøjer, Instruk., Rat, Highscore app.\tn
 	\hline
-	1-20-11 & Anders &  &  &  &  &  & 0 & \tn
+	1-20-11 & Anders &  &  &  & 8 &  & 8 & Færdiggørelse af poster. Dokumentation: RAM, DIO4 I/O, UART, Grafik, Diskussion.\tn
 	\hline
-	1-20-11 & Jakob &  &  &  &  &  & 0 & \tn
+	1-20-11 & Jakob &  &  &  & 9 &  & 9 & Dokumentation: VGA.\tn
 	\hline
-	1-20-11 & Nikolai &  &  &  &  &  & 0 & \tn
+	1-20-11 & Nikolai &  &  &  & 8 &  & 8 & Gennemcheck poster og dokumentation.\tn
 	\hline
-	1-20-11 & Sami &  &  &  &  &  & 0 & \tn
+	1-20-11 & Sami &  &  &  & 9 &  & 9 & Dok. Opg. formulering / bruger manual\tn
 	\hline
-	& Total & 85 & 256 & 44 & 62 & 14 & 477\tn
+	& Total & 85 & 262 & 44 & 141 & 14 & 562 & \tn
 \hline
 \end{tabular}
-\end{center}
 
 \subsection*{Akkumuleret timeregnskab}
-% Sidst opdateret ons. d. 19/1 kl. 15:30
 \begin{center}
 \begin{tabular}{|l|*{6}{c|}}
 \hline
 Mathias & Anders & Nikolai & Jakob & Sami & \textbf{Total}\\
 \hline
-119 & 100 & 81 & 114 & 63 & \textbf{477}\\
+139 & 121 & 97 & 133 & 72 & \textbf{562}\\
 \hline
 \end{tabular}
 \end{center}
