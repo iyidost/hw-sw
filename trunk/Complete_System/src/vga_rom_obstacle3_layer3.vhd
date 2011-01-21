@@ -16,7 +16,7 @@ architecture arch of vga_rom_obstacle3_layer3 is
         of std_logic_vector(DATA_WIDTH-1 downto 0);
    -- ROM definition
    constant obstacle3_ROM: rom_type:=(  -- 2^9-by-16
--- OBSTACLE3 
+-- OBSTACLE 3 layer 3
 -- Tile #1
 X"0000",X"0000",X"0000",X"0000",X"0007",X"0007",X"0007",X"0007",X"0007",X"0007",X"0007",X"0007",X"0007",X"0007",X"0000",X"0000",
 -- Tile #2

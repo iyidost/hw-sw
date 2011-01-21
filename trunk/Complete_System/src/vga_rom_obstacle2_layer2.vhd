@@ -16,7 +16,7 @@ architecture arch of vga_rom_obstacle2_layer2 is
         of std_logic_vector(DATA_WIDTH-1 downto 0);
    -- ROM definition
    constant obstacle2_inv_ROM: rom_type:=(  -- 2^9-by-16
--- OBSTACLE2_inv
+-- OBSTACLE 2 layer 2
 
 -- Tile #1
 X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"001F",X"0006",X"0000",X"000F",

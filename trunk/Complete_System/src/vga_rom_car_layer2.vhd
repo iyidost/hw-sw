@@ -17,7 +17,7 @@ architecture arch of vga_rom_car_layer2 is
    -- ROM definition
    constant CAR_ROM: rom_type:=(  -- 2^9-by-16
 ----------------------------------------------------------
--- Memory data for the car pics (current one tile only) --
+-- Memory data for the car pics  --
 ----------------------------------------------------------
 -- Tile #1
 X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"03DF",X"03DF",X"03DF",

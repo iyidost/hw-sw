@@ -63,8 +63,5 @@ begin
 	data_inout <= data_out when RE = '1' AND addr < x"FE00" else "ZZZZZZZZZZZZZZZZ";
 	mem_WE <= '1' when WE = '1' AND addr > x"03ff" AND addr < x"FE00" else '0';
 	
-	-- Temp fix. - Output values of buttons and switches BLOW ME ! LORTEEEDDEDE  KODE
---	data_inout <= "00000000000" & buttons when RE = '1' AND addr = x"FE0E" else
---	"00000000" & switches when RE = '1' AND addr = x"FE0A" else
---	data_out when RE = '1' else "ZZZZZZZZZZZZZZZZ";
+
 end Behavioral;
