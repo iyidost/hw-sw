@@ -1,0 +1,110 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+entity vga_rom_obstacle3_layer2 is
+   port(
+      clk: in std_logic;
+      addr: in std_logic_vector(8 downto 0);
+      data: out std_logic_vector(15 downto 0)
+   );
+end vga_rom_obstacle3_layer2;
+
+architecture arch of vga_rom_obstacle3_layer2 is
+   constant ADDR_WIDTH: integer:=9;
+   constant DATA_WIDTH: integer:=16;
+   type rom_type is array (0 to 2**ADDR_WIDTH-1)
+        of std_logic_vector(DATA_WIDTH-1 downto 0);
+   -- ROM definition
+   constant obstacle3_inv_ROM: rom_type:=(  -- 2^9-by-16
+-- OBSTACLE3_inv 
+-- Tile #1
+X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0007",
+-- Tile #2
+X"0000",X"0000",X"0000",X"0000",X"0009",X"0001",X"0001",X"4C01",X"4C01",X"4C01",X"4C01",X"0001",X"0005",X"0003",X"0000",X"FFD3",
+-- Tile #3
+X"0000",X"0000",X"0000",X"0000",X"FE3F",X"FF8F",X"FFF3",X"FFFC",X"FFFF",X"FFFF",X"FFFF",X"FFFF",X"FFFF",X"FFFF",X"0000",X"FFF7",
+-- Tile #4
+X"0000",X"0000",X"0000",X"0000",X"FFEF",X"FF8F",X"FE6F",X"FEEF",X"3D4F",X"CD4F",X"FAAF",X"FAAF",X"F86F",X"F9EE",X"0000",X"F9FC",
+-- Tile #5
+X"0000",X"0000",X"0000",X"0000",X"FFFF",X"FFFD",X"FFFD",X"FFFC",X"FFFD",X"FFFD",X"FC00",X"E000",X"8000",X"0000",X"0000",X"0000",
+-- Tile #6
+X"0000",X"0000",X"0000",X"0000",X"FFEF",X"FFEF",X"FFEF",X"71EF",X"FFEF",X"FFEF",X"1FEF",X"07EF",X"01EF",X"002F",X"0000",X"0003",
+-- Tile #7
+X"0000",X"0000",X"0000",X"0000",X"FFF7",X"FFF7",X"FFF7",X"FFF7",X"FFF7",X"FFF7",X"FFF7",X"FFF7",X"FFF7",X"FFF7",X"0000",X"FFFF",
+-- Tile #8
+X"0000",X"0000",X"0000",X"0000",X"F800",X"F800",X"F800",X"F800",X"F800",X"F800",X"F800",X"F800",X"F800",X"F800",X"7800",X"9800",
+
+
+-- Tile #9
+X"0007",X"0007",X"0004",X"0000",X"0000",X"0000",X"0007",X"0007",X"0007",X"0007",X"0007",X"0007",X"0000",X"0000",X"0000",X"0000",
+-- Tile #10
+X"FFCC",X"FFC7",X"01C3",X"0001",X"0001",X"0000",X"E000",X"F800",X"FF00",X"FFC0",X"FFC0",X"FFC0",X"0000",X"0000",X"0000",X"0000",
+-- Tile #11
+X"3FF7",X"C1FF",X"FC18",X"FFE7",X"FF97",X"FF37",X"7CF7",X"33F7",X"2FF0",X"1FE0",X"1FE0",X"1FE0",X"1FE0",X"0000",X"0000",X"0000",
+-- Tile #12
+X"E778",X"1F70",X"FF60",X"FF60",X"FF00",X"FE00",X"F800",X"E000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",
+-- Tile #13
+X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",
+-- Tile #14
+X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",
+-- Tile #15
+X"E7FD",X"39FD",X"067E",X"019E",X"0047",X"0019",X"001E",X"001F",X"001D",X"001C",X"001F",X"001F",X"000F",X"000F",X"001F",X"001F",
+-- Tile #16
+X"E000",X"F800",X"FC00",X"FC00",X"7C00",X"3C00",X"BC00",X"DC00",X"CC00",X"FC00",X"3C00",X"9C00",X"EC00",X"F000",X"FC00",X"FC00",
+
+
+-- Tile #17
+X"0000",X"0000",X"0000",X"0007",X"0007",X"0007",X"0007",X"0007",X"0007",X"0000",X"0000",X"0000",X"0004",X"0007",X"0007",X"0007",
+-- Tile #18
+X"0000",X"0000",X"0000",X"FFC0",X"FFC0",X"FFC0",X"FF00",X"F800",X"E000",X"0000",X"0001",X"0001",X"01C3",X"FFC7",X"FFCC",X"FFD3",
+-- Tile #19
+X"0000",X"0000",X"1FE0",X"1FE0",X"1FE0",X"1FE0",X"2FF0",X"33F7",X"7CF7",X"FF37",X"FF97",X"FFE7",X"FC18",X"C1FF",X"3FF7",X"FFF7",
+-- Tile #20
+X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"E000",X"F800",X"FE00",X"FF00",X"FF60",X"FF60",X"1F70",X"E778",X"F9FC",
+-- Tile #21
+X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",
+-- Tile #22
+X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0003",
+-- Tile #23
+X"001F",X"000F",X"000F",X"001F",X"001F",X"001C",X"001D",X"001F",X"001E",X"0019",X"0047",X"019E",X"067E",X"39FD",X"E7FD",X"FFFF",
+-- Tile #24
+X"FC00",X"F000",X"EC00",X"9C00",X"3C00",X"FC00",X"CC00",X"DC00",X"BC00",X"3C00",X"7C00",X"FC00",X"FC00",X"F800",X"E000",X"9800",
+
+
+-- Tile #25
+X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",
+-- Tile #26
+X"0000",X"0003",X"0005",X"0001",X"4C01",X"4C01",X"4C01",X"4C01",X"0001",X"0001",X"0009",X"0000",X"0000",X"0000",X"0000",X"0000",
+-- Tile #27
+X"0000",X"FFFF",X"FFFF",X"FFFF",X"FFFF",X"FFFF",X"FFFF",X"FFFC",X"FFF3",X"FF8F",X"FE3F",X"0000",X"0000",X"0000",X"0000",X"0000",
+-- Tile #28
+X"0000",X"F9EE",X"F86F",X"FAAF",X"FAAF",X"CD4F",X"3D4F",X"FEEF",X"FE6F",X"FF8F",X"FFEF",X"0000",X"0000",X"0000",X"0000",X"0000",
+-- Tile #29
+X"0000",X"0000",X"8000",X"E000",X"FC00",X"FFFD",X"FFFD",X"FFFC",X"FFFD",X"FFFD",X"FFFF",X"0000",X"0000",X"0000",X"0000",X"0000",
+-- Tile #30
+X"0000",X"002F",X"01EF",X"07EF",X"1FEF",X"FFEF",X"FFEF",X"71EC",X"FFEF",X"FFEF",X"FFEF",X"0000",X"0000",X"0000",X"0000",X"0000",
+-- Tile #31
+X"0000",X"FFF7",X"FFF7",X"FFF7",X"FFF7",X"FFF7",X"FFF7",X"03F7",X"FFF7",X"FFF7",X"FFF7",X"0000",X"0000",X"0000",X"0000",X"0000",
+-- Tile #32
+X"7800",X"F800",X"F800",X"F800",X"F800",X"F800",X"F800",X"F800",X"F800",X"F800",X"F800",X"0000",X"0000",X"0000",X"0000",X"0000",
+
+
+
+
+
+others => X"0000");
+signal addr_reg: std_logic_vector(ADDR_WIDTH-1 downto 0);
+begin
+   -- addr register to infer block RAM
+   process (clk)
+   begin
+      if (clk'event and clk = '1') then
+        addr_reg <= addr;
+      end if;
+   end process;
+   data <= obstacle3_inv_ROM(to_integer(unsigned(addr_reg)));
+end arch;
+
+
+
+
