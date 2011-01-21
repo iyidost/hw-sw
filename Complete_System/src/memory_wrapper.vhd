@@ -32,14 +32,11 @@ entity memory_wrapper is
       clk, WE, RE	: in std_logic;
 		addr			: in std_logic_vector(15 downto 0);
 		data_inout	: inout std_logic_vector(15 downto 0)
----      switches		: in std_logic_vector(7 downto 0);
----		buttons		: in std_logic_vector(4 downto 0);
----		leds_reg		: out std_logic_vector(7 downto 0)
    );
 end memory_wrapper;
 
 architecture Behavioral of memory_wrapper is
-	--- signal data_in		: STD_LOGIC_VECTOR(15 downto 0);
+
 	signal data_out	: STD_LOGIC_VECTOR(15 downto 0);
 	signal mem_WE		: std_logic;
 

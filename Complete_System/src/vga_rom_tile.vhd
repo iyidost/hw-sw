@@ -15,7 +15,7 @@ architecture arch of vga_rom_tile is
    type rom_type is array (0 to 2**ADDR_WIDTH-1)
         of std_logic_vector(DATA_WIDTH-1 downto 0);
    -- ROM definition
-   constant HEX2LED_ROM: rom_type:=(  -- 2^9-by-16
+   constant TILE_ROM: rom_type:=(  -- 2^9-by-16
 -----------------------------------------
 -- Memory data for the background pics --
 -----------------------------------------
@@ -94,5 +94,5 @@ begin
         addr_reg <= addr;
       end if;
    end process;
-   data <= HEX2LED_ROM(to_integer(unsigned(addr_reg)));
+   data <= TILE_ROM(to_integer(unsigned(addr_reg)));
 end arch;

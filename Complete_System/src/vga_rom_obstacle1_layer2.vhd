@@ -15,7 +15,7 @@ architecture arch of vga_rom_obstacle1_layer2 is
    type rom_type is array (0 to 2**ADDR_WIDTH-1)
         of std_logic_vector(DATA_WIDTH-1 downto 0);
    -- ROM definition
-   constant obstacle1_inv_ROM: rom_type:=(  -- 2^9-by-16
+   constant obstacle1_ROM: rom_type:=(  -- 2^9-by-16
 -- OBSTACLE 1 layer 2
 -- Tile #1
 X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0000",X"0003",X"01FF",X"0200",X"06FF",X"0DFF",X"0DFF",X"1BFF",X"17F8",
@@ -76,7 +76,7 @@ begin
         addr_reg <= addr;
       end if;
    end process;
-   data <= obstacle1_inv_ROM(to_integer(unsigned(addr_reg)));
+   data <= obstacle1_ROM(to_integer(unsigned(addr_reg)));
 end arch;
 
 
