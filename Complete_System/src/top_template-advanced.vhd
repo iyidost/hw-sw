@@ -431,7 +431,7 @@ end process;
 
 vga_refresh_tick_input <= bus_data(0) when bus_address = x"FE2A" else '1';
 
---vga_addr <= bus_data (8 downto 0) when bus_address = x"FE30";
+
 
 -- Data register
 bus_data <= steer_wheel_data & "0000" when bus_address = x"FE1A" else (others => 'Z');
