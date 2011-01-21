@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO.Ports;
@@ -17,6 +16,7 @@ namespace PC_Highscore
         private SerialPort serialPort = null;
         private bool shouldRead;
         private int currentPoints;
+        private Thread readThread = null;
 
         public MainForm()
         {
@@ -54,7 +54,7 @@ namespace PC_Highscore
 
             shouldRead = true;
 
-            Thread readThread = new Thread(SerialRead);
+            readThread = new Thread(SerialRead);
             readThread.Start();
         }
 
@@ -124,18 +124,21 @@ namespace PC_Highscore
 
         private void toolStripButtonClear_Click(object sender, EventArgs e)
         {
-            using (SQLiteConnection connection = new SQLiteConnection("Data Source=highscores.db;"))
+            if (MessageBox.Show("Er du sikker på at du vil nulstille hele highscore listen?", "Nulstil highscores", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.Yes)
             {
-                connection.Open();
+                using (SQLiteConnection connection = new SQLiteConnection("Data Source=highscores.db;"))
+                {
+                    connection.Open();
 
-                IDbCommand dbcmd = connection.CreateCommand();
-                dbcmd.CommandText = "DELETE FROM highscores";
-                dbcmd.ExecuteNonQuery();
+                    IDbCommand dbcmd = connection.CreateCommand();
+                    dbcmd.CommandText = "DELETE FROM highscores";
+                    dbcmd.ExecuteNonQuery();
 
-                connection.Close();
+                    connection.Close();
+                }
+
+                RefreshData();
             }
-
-            RefreshData();
         }
 
         private void CreateTable()
@@ -155,7 +158,10 @@ namespace PC_Highscore
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             shouldRead = false;
-            Application.Exit();
+            
+            // Tell read thread to halt
+            if (readThread != null)
+                readThread.Abort();
         }
     }
 }

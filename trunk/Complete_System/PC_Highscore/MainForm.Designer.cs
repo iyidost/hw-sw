@@ -36,7 +36,6 @@
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonClear = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,8 +75,7 @@
             this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonRefresh,
-            this.toolStripButtonClear,
-            this.toolStripButton1});
+            this.toolStripButtonClear});
             this.toolStrip.Location = new System.Drawing.Point(0, 351);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(501, 25);
@@ -103,15 +101,6 @@
             this.toolStripButtonClear.Size = new System.Drawing.Size(90, 22);
             this.toolStripButtonClear.Text = "Clear highscores";
             this.toolStripButtonClear.Click += new System.EventHandler(this.toolStripButtonClear_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
             // 
             // MainForm
             // 
@@ -140,7 +129,6 @@
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton toolStripButtonRefresh;
         private System.Windows.Forms.ToolStripButton toolStripButtonClear;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
 
     }
 }
