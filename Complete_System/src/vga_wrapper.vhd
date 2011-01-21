@@ -30,7 +30,6 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 entity vga_wrapper is
    port (
       clk, reset			: in std_logic;	
-      --hsync, vsync		: out STD_LOGIC;
 		VGA_VSYNCH			: out STD_LOGIC;
 		VGA_HSYNCH			: out STD_LOGIC;
 		VGA_COMP_SYNCH		: out STD_LOGIC;
@@ -39,7 +38,6 @@ entity vga_wrapper is
 		VGA_OUT_BLUE		: out STD_LOGIC_VECTOR(7 downto 0);
 		VGA_OUT_GREEN		: out STD_LOGIC_VECTOR(7 downto 0);
 		VGA_OUT_RED			: out STD_LOGIC_VECTOR(7 downto 0);
-	--	ROM_read				: in STD_LOGIC_VECTOR (14 downto 0);
 		car_x_input			: in STD_LOGIC_VECTOR(9 downto 0);
 		obstacle1_x_input	: in STD_LOGIC_VECTOR(9 downto 0);
 		obstacle1_y_input	: in STD_LOGIC_VECTOR(9 downto 0);
@@ -47,7 +45,6 @@ entity vga_wrapper is
 		obstacle2_y_input	: in STD_LOGIC_VECTOR(9 downto 0);
 		obstacle3_x_input	: in STD_LOGIC_VECTOR(9 downto 0);
 		obstacle3_y_input	: in STD_LOGIC_VECTOR(9 downto 0);
-		--middle_line outcommented by Mini 18/1 kl. 16:25 to be able to compile
 		--- this value is how fast the tiles and middle line have to move.
 		movement_pixel		: in STD_LOGIC_VECTOR(7 downto 0);
 		refresh_tick		: out std_logic
@@ -63,7 +60,6 @@ architecture Behavioral of vga_wrapper is
 	signal b_out_reg  	: STD_LOGIC_VECTOR(7 downto 0);
 	signal g_out_reg 		: STD_LOGIC_VECTOR(7 downto 0);
 	signal r_out_reg 		: STD_LOGIC_VECTOR(7 downto 0);
-   --signal video_on		: STD_LOGIC;
 	signal clk_out			: STD_LOGIC;
 	signal blank_z			: STD_LOGIC;
 
@@ -77,9 +73,7 @@ architecture Behavioral of vga_wrapper is
 	signal obstacle3_color: STD_LOGIC_VECTOR (7 downto 0);
 	
 	signal car_on						: STD_LOGIC;
-	signal car_inverted_on			: STD_LOGIC;
 	signal obstacle1_on				: STD_LOGIC;
-	signal obstacle1_inv_on			: STD_LOGIC;
 	signal obstacle2_on				: STD_LOGIC;
 	signal obstacle3_on				: STD_LOGIC;
 	signal middle_line_on			: STD_LOGIC;
@@ -93,17 +87,7 @@ architecture Behavioral of vga_wrapper is
 	signal 	car_x_left_v	: STD_LOGIC_VECTOR(9 downto 0);
 	constant	car_x_right		: integer:= 625;
 	signal car_y_reg, car_y_next: unsigned(9 downto 0);
-	
--- Car invert constant and signal
-	constant car_inv_y_size	: integer:= 64;
-   constant car_inv_velocity: integer:=4;
-	signal 	car_inv_y_top		: unsigned(9 downto 0);
-	signal 	car_inv_y_bottom	: unsigned(9 downto 0);
-	constant car_inv_x_left		: integer:= 530;
-	signal 	car_inv_x_left_v	: STD_LOGIC_VECTOR(9 downto 0);
-	constant	car_inv_x_right		: integer:= 625;
-	signal car_inv_y_reg, car_inv_y_next: unsigned(9 downto 0);
-	
+
 -- Obstacle1 constant and signal
 	constant obstacle1_x_size	: integer:= 96;
 	constant obstacle1_y_size	: integer:= 48;
@@ -114,17 +98,6 @@ architecture Behavioral of vga_wrapper is
 	signal 	obstacle1_y_top, obstacle1_y_bottom: unsigned(9 downto 0);
 	signal 	obstacle1_y_reg, obstacle1_y_next: unsigned(9 downto 0);
 	
--- Obstacle1_inv constant and signal
-	constant obstacle1_inv_x_size	: integer:= 96;
-	constant obstacle1_inv_y_size	: integer:= 48;
-	--X axis
-	signal 	obstacle1_inv_x_left, obstacle1_inv_x_right: unsigned(9 downto 0);
-	signal 	obstacle1_inv_x_reg, obstacle1_inv_x_next: unsigned(9 downto 0);
-	--y axis
-	signal 	obstacle1_inv_y_top, obstacle1_inv_y_bottom: unsigned(9 downto 0);
-	signal 	obstacle1_inv_y_reg, obstacle1_inv_y_next: unsigned(9 downto 0);
-	
-	
 	-- Obstacle2 constant and signal
 	constant obstacle2_x_size	: integer:= 96;
 	constant obstacle2_y_size	: integer:= 64;
@@ -134,16 +107,6 @@ architecture Behavioral of vga_wrapper is
 	--y axis
 	signal 	obstacle2_y_top, obstacle2_y_bottom: unsigned(9 downto 0);
 	signal 	obstacle2_y_reg, obstacle2_y_next: unsigned(9 downto 0);
-	
--- Obstacle2_inv constant and signal
-	constant obstacle2_inv_x_size	: integer:= 96;
-	constant obstacle2_inv_y_size	: integer:= 64;
-	--X axis
-	signal 	obstacle2_inv_x_left, obstacle2_inv_x_right: unsigned(9 downto 0);
-	signal 	obstacle2_inv_x_reg, obstacle2_inv_x_next: unsigned(9 downto 0);
-	--y axis
-	signal 	obstacle2_inv_y_top, obstacle2_inv_y_bottom: unsigned(9 downto 0);
-	signal 	obstacle2_inv_y_reg, obstacle2_inv_y_next: unsigned(9 downto 0);
 
 -- Obstacle3 constant and signal
 	constant obstacle3_x_size	: integer:= 128;
@@ -154,17 +117,6 @@ architecture Behavioral of vga_wrapper is
 	--y axis
 	signal 	obstacle3_y_top, obstacle3_y_bottom: unsigned(9 downto 0);
 	signal 	obstacle3_y_reg, obstacle3_y_next: unsigned(9 downto 0);
-	
--- Obstacle3 constant and signal
-	constant obstacle3_inv_x_size	: integer:= 128;
-	constant obstacle3_inv_y_size	: integer:= 64;
-	--X axis
-	signal 	obstacle3_inv_x_left, obstacle3_inv_x_right: unsigned(9 downto 0);
-	signal 	obstacle3_inv_x_reg, obstacle3_inv_x_next: unsigned(9 downto 0);
-	--y axis
-	signal 	obstacle3_inv_y_top, obstacle3_inv_y_bottom: unsigned(9 downto 0);
-	signal 	obstacle3_inv_y_reg, obstacle3_inv_y_next: unsigned(9 downto 0);
-
 
 -- Tile signal
 	signal bit_addr			: STD_LOGIC_VECTOR(3 downto 0);
@@ -176,56 +128,75 @@ architecture Behavioral of vga_wrapper is
 	signal vga_data_line 	: STD_LOGIC_VECTOR (8 downto 0);
 	signal vga_addr			: STD_LOGIC_VECTOR(8 downto 0);
 --- Car signal
-	signal vga_car_addr	: STD_LOGIC_VECTOR(8 downto 0);
-	signal vga_car_data	: STD_LOGIC_VECTOR(15 downto 0);
-	signal vga_car_bit	: STD_LOGIC;
 	signal car_bit_add	: STD_LOGIC_VECTOR(3 downto 0);
 	signal vga_car_row	: STD_LOGIC_VECTOR(9 downto 0);
 	signal vga_car_column: STD_LOGIC_VECTOR(9 downto 0);
---- Car invert signal
-	signal vga_car_inv_addr	: STD_LOGIC_VECTOR(8 downto 0);
-	signal vga_car_inv_data	: STD_LOGIC_VECTOR(15 downto 0);
-	signal vga_car_inv_bit	: STD_LOGIC;
+--- Car layer 1 signal
+	signal vga_car_layer1_addr	: STD_LOGIC_VECTOR(8 downto 0);
+	signal vga_car_layer1_data	: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_car_layer1_bit	: STD_LOGIC;
+--- Car layer 2 signal
+	signal vga_car_layer2_addr	: STD_LOGIC_VECTOR(8 downto 0);
+	signal vga_car_layer2_data	: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_car_layer2_bit	: STD_LOGIC;
+--- Car layer 3 signal
+	signal vga_car_layer3_addr	: STD_LOGIC_VECTOR(8 downto 0);
+	signal vga_car_layer3_data	: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_car_layer3_bit	: STD_LOGIC;
 
 --- Obstacle 1 Sprite
-	signal vga_obstacle1_addr	: STD_LOGIC_VECTOR(8 downto 0);
-	signal vga_obstacle1_data	: STD_LOGIC_VECTOR(15 downto 0);
-	signal vga_obstacle1_bit	: STD_LOGIC;
 	signal obstacle1_bit_add	: STD_LOGIC_VECTOR(3 downto 0);
 	signal vga_obstacle1_row	: STD_LOGIC_VECTOR(9 downto 0);
 	signal vga_obstacle1_column: STD_LOGIC_VECTOR(9 downto 0);
-	
---- Obstacle 1 invert signal
-	signal vga_obstacle1_inv_addr		: STD_LOGIC_VECTOR(8 downto 0);
-	signal vga_obstacle1_inv_data		: STD_LOGIC_VECTOR(15 downto 0);
-	signal vga_obstacle1_inv_bit		: STD_LOGIC;
 
+--- Obstacle 1 layer 1 signal
+	signal vga_obstacle1_layer1_addr	: STD_LOGIC_VECTOR(8 downto 0);
+	signal vga_obstacle1_layer1_data	: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_obstacle1_layer1_bit	: STD_LOGIC;
+--- Obstacle 1 layer 2 signal
+	signal vga_obstacle1_layer2_addr	: STD_LOGIC_VECTOR(8 downto 0);
+	signal vga_obstacle1_layer2_data	: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_obstacle1_layer2_bit	: STD_LOGIC;
+--- Obstacle 1 layer 3 signal
+	signal vga_obstacle1_layer3_addr	: STD_LOGIC_VECTOR(8 downto 0);
+	signal vga_obstacle1_layer3_data	: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_obstacle1_layer3_bit	: STD_LOGIC;
 	
 --- Obstacle 2 Sprite
-	signal vga_obstacle2_addr	: STD_LOGIC_VECTOR(8 downto 0);
-	signal vga_obstacle2_data	: STD_LOGIC_VECTOR(15 downto 0);
-	signal vga_obstacle2_bit	: STD_LOGIC;
 	signal obstacle2_bit_add	: STD_LOGIC_VECTOR(3 downto 0);
 	signal vga_obstacle2_row	: STD_LOGIC_VECTOR(9 downto 0);
 	signal vga_obstacle2_column: STD_LOGIC_VECTOR(9 downto 0);
-	
---- Obstacle 1 invert signal
-	signal vga_obstacle2_inv_addr		: STD_LOGIC_VECTOR(8 downto 0);
-	signal vga_obstacle2_inv_data		: STD_LOGIC_VECTOR(15 downto 0);
-	signal vga_obstacle2_inv_bit		: STD_LOGIC;
+
+--- Obstacle 2 layer 1 signal
+	signal vga_obstacle2_layer1_addr	: STD_LOGIC_VECTOR(8 downto 0);
+	signal vga_obstacle2_layer1_data	: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_obstacle2_layer1_bit	: STD_LOGIC;
+--- Obstacle 2 layer 2 signal
+	signal vga_obstacle2_layer2_addr	: STD_LOGIC_VECTOR(8 downto 0);
+	signal vga_obstacle2_layer2_data	: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_obstacle2_layer2_bit	: STD_LOGIC;
+--- Obstacle 2 layer 3 signal
+	signal vga_obstacle2_layer3_addr	: STD_LOGIC_VECTOR(8 downto 0);
+	signal vga_obstacle2_layer3_data	: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_obstacle2_layer3_bit	: STD_LOGIC;
 	
 --- Obstacle 3 Sprite
-	signal vga_obstacle3_addr	: STD_LOGIC_VECTOR(8 downto 0);
-	signal vga_obstacle3_data	: STD_LOGIC_VECTOR(15 downto 0);
-	signal vga_obstacle3_bit	: STD_LOGIC;
 	signal obstacle3_bit_add	: STD_LOGIC_VECTOR(3 downto 0);
 	signal vga_obstacle3_row	: STD_LOGIC_VECTOR(9 downto 0);
 	signal vga_obstacle3_column: STD_LOGIC_VECTOR(9 downto 0);
-	
---- Obstacle 3 invert signal
-	signal vga_obstacle3_inv_addr		: STD_LOGIC_VECTOR(8 downto 0);
-	signal vga_obstacle3_inv_data		: STD_LOGIC_VECTOR(15 downto 0);
-	signal vga_obstacle3_inv_bit		: STD_LOGIC;
+
+--- Obstacle 3 layer 1 signal
+	signal vga_obstacle3_layer1_addr	: STD_LOGIC_VECTOR(8 downto 0);
+	signal vga_obstacle3_layer1_data	: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_obstacle3_layer1_bit	: STD_LOGIC;
+--- Obstacle 3 layer 2 signal
+	signal vga_obstacle3_layer2_addr	: STD_LOGIC_VECTOR(8 downto 0);
+	signal vga_obstacle3_layer2_data	: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_obstacle3_layer2_bit	: STD_LOGIC;
+--- Obstacle 3 layer 3 signal
+	signal vga_obstacle3_layer3_addr	: STD_LOGIC_VECTOR(8 downto 0);
+	signal vga_obstacle3_layer3_data	: STD_LOGIC_VECTOR(15 downto 0);
+	signal vga_obstacle3_layer3_bit	: STD_LOGIC;
 
 	constant middle_line_top1		: integer:= 224;
 	constant middle_line_buttom1	: integer:= 236;
@@ -263,67 +234,93 @@ begin
       addr  => vga_addr,
       data	=> vga_tile_line
 		);
-	-- VGA ROM CAR 
-	vga_rom_car: entity work.vga_rom_car
+	-- VGA ROM CAR LAYER 1
+	vga_rom_car_layer1: entity work.vga_rom_car_layer1
 		port map(
 			clk 	=> clk_out,
-			addr  => vga_car_addr,
-			data	=> vga_car_data
+			addr  => vga_car_layer1_addr,
+			data	=> vga_car_layer1_data
 		);
-	-- VGA ROM CAR INVERT
-	vga_rom_car_inv: entity work.vga_rom_car_inv
+	-- VGA ROM CAR LAYER 2
+	vga_rom_car_layer2: entity work.vga_rom_car_layer2
 		port map(
 			clk 	=> clk_out,
-			addr  => vga_car_inv_addr,
-			data	=> vga_car_inv_data
+			addr  => vga_car_layer2_addr,
+			data	=> vga_car_layer2_data
 		);
-	-- VGA ROM OBSTACLE 1
-	vga_rom_obstacle1: entity work.vga_rom_obstacle1
-		port map (
+	-- VGA ROM CAR LAYER 3
+	vga_rom_car_layer3: entity work.vga_rom_car_layer3
+		port map(
 			clk 	=> clk_out,
-			addr  => vga_obstacle1_addr,
-			data	=> vga_obstacle1_data
-		);
-		
-	-- VGA ROM OBSTACLE 1 inverted
-	vga_rom_obstacle1_inv: entity work.vga_rom_obstacle1_inv
-		port map (
-			clk 	=> clk_out,
-			addr  => vga_obstacle1_inv_addr,
-			data	=> vga_obstacle1_inv_data
+			addr  => vga_car_layer3_addr,
+			data	=> vga_car_layer3_data
 		);
 		
-	-- VGA ROM OBSTACLE 2
-	vga_rom_obstacle2: entity work.vga_rom_obstacle2
+	-- VGA ROM OBSTACLE 1 layer 1
+	vga_rom_obstacle1_layer1: entity work.vga_rom_obstacle1_layer1
 		port map (
 			clk 	=> clk_out,
-			addr  => vga_obstacle2_addr,
-			data	=> vga_obstacle2_data
+			addr  => vga_obstacle1_layer1_addr,
+			data	=> vga_obstacle1_layer1_data
 		);
-
--- VGA ROM OBSTACLE 2 inverted
-	vga_rom_obstacle2_inv: entity work.vga_rom_obstacle2_inv
+	-- VGA ROM OBSTACLE 1 layer 2
+	vga_rom_obstacle1_layer2: entity work.vga_rom_obstacle1_layer2
 		port map (
 			clk 	=> clk_out,
-			addr  => vga_obstacle2_inv_addr,
-			data	=> vga_obstacle2_inv_data
+			addr  => vga_obstacle1_layer2_addr,
+			data	=> vga_obstacle1_layer2_data
+		);
+	-- VGA ROM OBSTACLE 1 layer 3
+	vga_rom_obstacle1_layer3: entity work.vga_rom_obstacle1_layer3
+		port map (
+			clk 	=> clk_out,
+			addr  => vga_obstacle1_layer3_addr,
+			data	=> vga_obstacle1_layer3_data
+		);
+				
+	-- VGA ROM OBSTACLE 2 layer 1
+	vga_rom_obstacle2_layer1: entity work.vga_rom_obstacle2_layer1
+		port map (
+			clk 	=> clk_out,
+			addr  => vga_obstacle2_layer1_addr,
+			data	=> vga_obstacle2_layer1_data
+		);
+	-- VGA ROM OBSTACLE 2 layer 2
+	vga_rom_obstacle2_layer2: entity work.vga_rom_obstacle2_layer2
+		port map (
+			clk 	=> clk_out,
+			addr  => vga_obstacle2_layer2_addr,
+			data	=> vga_obstacle2_layer2_data
+		);
+	-- VGA ROM OBSTACLE 2 layer 3
+	vga_rom_obstacle2_layer3: entity work.vga_rom_obstacle2_layer3
+		port map (
+			clk 	=> clk_out,
+			addr  => vga_obstacle2_layer3_addr,
+			data	=> vga_obstacle2_layer3_data
 		);
 		
-	-- VGA ROM OBSTACLE 3
-	vga_rom_obstacle3: entity work.vga_rom_obstacle3
+	-- VGA ROM OBSTACLE 3 layer 1
+	vga_rom_obstacle3_layer1: entity work.vga_rom_obstacle3_layer1
 		port map (
 			clk 	=> clk_out,
-			addr  => vga_obstacle3_addr,
-			data	=> vga_obstacle3_data
+			addr  => vga_obstacle3_layer1_addr,
+			data	=> vga_obstacle3_layer1_data
 		);
-	-- VGA ROM OBSTACLE 3 inverted
-	vga_rom_obstacle3_inv: entity work.vga_rom_obstacle3_inv
+	-- VGA ROM OBSTACLE 3 layer 2
+	vga_rom_obstacle3_layer2: entity work.vga_rom_obstacle3_layer2
 		port map (
 			clk 	=> clk_out,
-			addr  => vga_obstacle3_inv_addr,
-			data	=> vga_obstacle3_inv_data
-			);
-		
+			addr  => vga_obstacle3_layer2_addr,
+			data	=> vga_obstacle3_layer2_data
+		);
+	-- VGA ROM OBSTACLE 3 layer 3
+	vga_rom_obstacle3_layer3: entity work.vga_rom_obstacle3_layer3
+		port map (
+			clk 	=> clk_out,
+			addr  => vga_obstacle3_layer3_addr,
+			data	=> vga_obstacle3_layer3_data
+		);
    -- rgb buffer
 	ClockDivider_unit: entity ClockDivider
 			GENERIC MAP(
@@ -355,8 +352,8 @@ begin
       end if;
    end process;
 	
+	-- Here is the movement of the tiles and the middle line made.
 	pixel_x_movement <= pixel_x - movement_pixel;
-	
 	
 	middle_line_on <=
 		'1' when (((middle_line_top1 <pixel_y) and (pixel_y<middle_line_buttom1)) or
@@ -368,17 +365,10 @@ begin
 					)
 					else
 		'0';
-	
-	
-	
-	
+
 	-- Tiles 
 	tile_addr <= "00000" when (pixel_x_movement(4) <= '0') else
 		"00001";
---tile_addr <= "00010" when (pixel_y(8 downto 4)= "01110") or (pixel_y(8 downto 4)= "01111") else
---				"00000" when (pixel_x(4)<= '0')
---			else
---		"00001";
 	tile_row_addr <= pixel_y(3 downto 0);
 	bit_addr <= pixel_x_movement(3 downto 0) ;
 	vga_addr <= tile_addr & tile_row_addr;
@@ -392,33 +382,31 @@ begin
       '1' when (car_x_left <= pixel_x_reg1) and (pixel_x_reg1  <= car_x_right) and
                (car_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=car_y_bottom) else
       '0';
-   ---car_color <= "11011010";
 
 	--- Car 
-	--- 	signal pixel_x			: STD_LOGIC_VECTOR (9 downto 0);
-	---- 	constant car_x_left		: integer:= 530;
 	car_x_left_v <= STD_LOGIC_VECTOR(to_signed(car_x_left, 10));
 	car_bit_add <= pixel_x_reg1 - car_x_left_v (3 downto 0);
-	--- vga_car_row <= unsigned(pixel_y) - car_y_top(5 downto 4);
 	vga_car_row <= pixel_y - STD_LOGIC_VECTOR(car_y_top);
 	vga_car_column <= pixel_x - car_x_left_v;
 	
-	
-	--- Row 2bit + column 3bit + line 4bit
---	vga_car_addr <= vga_car_row & vga_car_column & vga_sprite_line
-	vga_car_addr <= vga_car_row(5 downto 4) & vga_car_column(6 downto 4) & vga_car_row(3 downto 0)
+	---- Car layer 1
+	vga_car_layer1_addr <= vga_car_row(5 downto 4) & vga_car_column(6 downto 4) & vga_car_row(3 downto 0)
 			when (car_x_left<=pixel_x) and (pixel_x<=car_x_right) and
 			(car_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=car_y_bottom)
 		else "000000000";
-	vga_car_bit <= vga_car_data(to_integer(unsigned(not car_bit_add)));
-	
-	---- Car invented
-	vga_car_inv_addr <= vga_car_row(5 downto 4) & vga_car_column(6 downto 4) & vga_car_row(3 downto 0)
+	vga_car_layer1_bit <= vga_car_layer1_data(to_integer(unsigned(not car_bit_add)));
+	---- Car layer 2
+	vga_car_layer2_addr <= vga_car_row(5 downto 4) & vga_car_column(6 downto 4) & vga_car_row(3 downto 0)
 			when (car_x_left<=pixel_x) and (pixel_x<=car_x_right) and
 			(car_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=car_y_bottom)
 		else "000000000";
-	vga_car_inv_bit <= vga_car_inv_data(to_integer(unsigned(not car_bit_add)));
-	
+	vga_car_layer2_bit <= vga_car_layer2_data(to_integer(unsigned(not car_bit_add)));
+	---- Car layer 3
+	vga_car_layer3_addr <= vga_car_row(5 downto 4) & vga_car_column(6 downto 4) & vga_car_row(3 downto 0)
+			when (car_x_left<=pixel_x) and (pixel_x<=car_x_right) and
+			(car_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=car_y_bottom)
+		else "000000000";
+	vga_car_layer3_bit <= vga_car_layer3_data(to_integer(unsigned(not car_bit_add)));
 
 	obstacle1_x_left <= obstacle1_x_reg;
 	obstacle1_x_right <= obstacle1_x_left + obstacle1_x_size -1;
@@ -441,125 +429,134 @@ begin
 	
 	vga_obstacle1_column <= unsigned(pixel_x) - obstacle1_x_left;
 	
-	
-	
-	--- Row 2bit + column 3bit + line 4bit
-	vga_obstacle1_addr <= vga_obstacle1_row(5 downto 4) & vga_obstacle1_column(6 downto 4) & vga_obstacle1_row(3 downto 0)
+	--- Obstacle 1 layer 1
+	vga_obstacle1_layer1_addr <= vga_obstacle1_row(5 downto 4) & vga_obstacle1_column(6 downto 4) & vga_obstacle1_row(3 downto 0)
 			when (obstacle1_x_left <=unsigned( pixel_x)) and (unsigned(pixel_x) <= obstacle1_x_right) and
 			(obstacle1_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=obstacle1_y_bottom)
 		else "000000000";
-	vga_obstacle1_bit <= vga_obstacle1_data(to_integer(unsigned(not obstacle1_bit_add)));
+	vga_obstacle1_layer1_bit <= vga_obstacle1_layer1_data(to_integer(unsigned(not obstacle1_bit_add)));
 	
-	---- OBSTACLE 1  inverted
-	vga_obstacle1_inv_addr <= vga_obstacle1_row(5 downto 4) & vga_obstacle1_column(6 downto 4) & vga_obstacle1_row(3 downto 0)
+	---- OBSTACLE 1 layer 2
+	vga_obstacle1_layer2_addr <= vga_obstacle1_row(5 downto 4) & vga_obstacle1_column(6 downto 4) & vga_obstacle1_row(3 downto 0)
 			when (obstacle1_x_left<=unsigned(pixel_x)) and (unsigned(pixel_x)<=obstacle1_x_right) and
 			(obstacle1_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=obstacle1_y_bottom)
 		else "000000000";
-	vga_obstacle1_inv_bit <= vga_obstacle1_inv_data(to_integer(unsigned(not obstacle1_bit_add)));
+	vga_obstacle1_layer2_bit <= vga_obstacle1_layer2_data(to_integer(unsigned(not obstacle1_bit_add)));
 	
+		---- OBSTACLE 1 layer 3
+	vga_obstacle1_layer3_addr <= vga_obstacle1_row(5 downto 4) & vga_obstacle1_column(6 downto 4) & vga_obstacle1_row(3 downto 0)
+			when (obstacle1_x_left<=unsigned(pixel_x)) and (unsigned(pixel_x)<=obstacle1_x_right) and
+			(obstacle1_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=obstacle1_y_bottom)
+		else "000000000";
+	vga_obstacle1_layer3_bit <= vga_obstacle1_layer3_data(to_integer(unsigned(not obstacle1_bit_add)));
+
 	-- OBSTACLE 2 drawing values
 	obstacle2_bit_add <= unsigned(pixel_x_reg1) - obstacle2_x_left(3 downto 0);
 	vga_obstacle2_row <= pixel_y - STD_LOGIC_VECTOR(obstacle2_y_top);
-	
-
 	vga_obstacle2_column <= unsigned(pixel_x) - obstacle2_x_left;
 	
-	--- Row 2bit + column 3bit + line 4bit
-	vga_obstacle2_addr <= vga_obstacle2_row(5 downto 4) & vga_obstacle2_column(6 downto 4) & vga_obstacle2_row(3 downto 0)
+	--- Obstacle 2 layer 1
+	vga_obstacle2_layer1_addr <= vga_obstacle2_row(5 downto 4) & vga_obstacle2_column(6 downto 4) & vga_obstacle2_row(3 downto 0)
 			when (obstacle2_x_left <=unsigned( pixel_x)) and (unsigned(pixel_x) <= obstacle2_x_right) and
 			(obstacle2_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=obstacle2_y_bottom)
 		else "000000000";
-	vga_obstacle2_bit <= vga_obstacle2_data(to_integer(unsigned(not obstacle2_bit_add)));
+	vga_obstacle2_layer1_bit <= vga_obstacle2_layer1_data(to_integer(unsigned(not obstacle2_bit_add)));
 	
----- OBSTACLE 2  inverted
-	vga_obstacle2_inv_addr <= vga_obstacle2_row(5 downto 4) & vga_obstacle2_column(6 downto 4) & vga_obstacle2_row(3 downto 0)
+	---- OBSTACLE 2 layer 2
+	vga_obstacle2_layer2_addr <= vga_obstacle2_row(5 downto 4) & vga_obstacle2_column(6 downto 4) & vga_obstacle2_row(3 downto 0)
 			when (obstacle2_x_left<=unsigned(pixel_x)) and (unsigned(pixel_x)<=obstacle2_x_right) and
 			(obstacle2_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=obstacle2_y_bottom)
 		else "000000000";
-	vga_obstacle2_inv_bit <= vga_obstacle2_inv_data(to_integer(unsigned(not obstacle2_bit_add)));
-
+	vga_obstacle2_layer2_bit <= vga_obstacle2_layer2_data(to_integer(unsigned(not obstacle2_bit_add)));
+	
+		---- OBSTACLE 2 layer 3
+	vga_obstacle2_layer3_addr <= vga_obstacle2_row(5 downto 4) & vga_obstacle2_column(6 downto 4) & vga_obstacle2_row(3 downto 0)
+			when (obstacle2_x_left<=unsigned(pixel_x)) and (unsigned(pixel_x)<=obstacle2_x_right) and
+			(obstacle2_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=obstacle2_y_bottom)
+		else "000000000";
+	vga_obstacle2_layer3_bit <= vga_obstacle2_layer3_data(to_integer(unsigned(not obstacle2_bit_add)));
 
 	-- OBSTACLE 3 drawing values
 	obstacle3_bit_add <= unsigned(pixel_x_reg1) - obstacle3_x_left(3 downto 0);
 	vga_obstacle3_row <= pixel_y - STD_LOGIC_VECTOR(obstacle3_y_top);
-	
-
 	vga_obstacle3_column <= unsigned(pixel_x) - obstacle3_x_left;
 	
-	--- Row 2bit + column 3bit + line 4bit
-	vga_obstacle3_addr <= vga_obstacle3_row(5 downto 4) & vga_obstacle3_column(6 downto 4) & vga_obstacle3_row(3 downto 0)
+	--- Obstacle 3 layer 1
+	vga_obstacle3_layer1_addr <= vga_obstacle3_row(5 downto 4) & vga_obstacle3_column(6 downto 4) & vga_obstacle3_row(3 downto 0)
 			when (obstacle3_x_left <=unsigned( pixel_x)) and (unsigned(pixel_x) <= obstacle3_x_right) and
 			(obstacle3_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=obstacle3_y_bottom)
 		else "000000000";
-	vga_obstacle3_bit <= vga_obstacle3_data(to_integer(unsigned(not obstacle3_bit_add)));
+	vga_obstacle3_layer1_bit <= vga_obstacle3_layer1_data(to_integer(unsigned(not obstacle3_bit_add)));
 	
----- OBSTACLE 3  inverted
-	vga_obstacle3_inv_addr <= vga_obstacle3_row(5 downto 4) & vga_obstacle3_column(6 downto 4) & vga_obstacle3_row(3 downto 0)
+	---- OBSTACLE 3 layer 2
+	vga_obstacle3_layer2_addr <= vga_obstacle3_row(5 downto 4) & vga_obstacle3_column(6 downto 4) & vga_obstacle3_row(3 downto 0)
 			when (obstacle3_x_left<=unsigned(pixel_x)) and (unsigned(pixel_x)<=obstacle3_x_right) and
 			(obstacle3_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=obstacle3_y_bottom)
 		else "000000000";
-	vga_obstacle3_inv_bit <= vga_obstacle3_inv_data(to_integer(unsigned(not obstacle3_bit_add)));
-
+	vga_obstacle3_layer2_bit <= vga_obstacle3_layer2_data(to_integer(unsigned(not obstacle3_bit_add)));
 	
-
----- Obstacle1 on signal
---		obstacle1_on <=
---      '1' when (obstacle1_x_left<=unsigned(pixel_x)) and (unsigned(pixel_x)<=obstacle1_x_right) and
---               (obstacle1_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=obstacle1_y_bottom) else
---      '0';
---   obstacle1_color <= "11100000";
-
--- Obstacle2 on signal
---		obstacle2_on <=
---      '1' when (obstacle2_x_left<=unsigned(pixel_x)) and (unsigned(pixel_x)<=obstacle2_x_right) and
---               (obstacle2_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=obstacle2_y_bottom) else
---      '0';
---   obstacle2_color <= "00011100";
-
--- Obstacle3 on signal
---		obstacle3_on <=
---      '1' when (obstacle3_x_left<=unsigned(pixel_x)) and (unsigned(pixel_x)<=obstacle3_x_right) and
---               (obstacle3_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=obstacle3_y_bottom) else
---      '0';
---   obstacle3_color <= "11100011";
+		---- OBSTACLE 3 layer 3
+	vga_obstacle3_layer3_addr <= vga_obstacle3_row(5 downto 4) & vga_obstacle3_column(6 downto 4) & vga_obstacle3_row(3 downto 0)
+			when (obstacle3_x_left<=unsigned(pixel_x)) and (unsigned(pixel_x)<=obstacle3_x_right) and
+			(obstacle3_y_top<=unsigned(pixel_y)) and (unsigned(pixel_y)<=obstacle3_y_bottom)
+		else "000000000";
+	vga_obstacle3_layer3_bit <= vga_obstacle3_layer3_data(to_integer(unsigned(not obstacle3_bit_add)));
 
 	   -- rgb multiplexing circuit
-   process(vga_car_inv_bit,car_on,vga_obstacle1_bit,vga_obstacle2_bit,vga_obstacle3_bit,vga_obstacle1_inv_bit,vga_obstacle2_inv_bit,vga_obstacle3_inv_bit,tile_bit,vga_tile_color)
+   process(car_on, vga_car_layer1_bit, vga_car_layer2_bit, vga_car_layer3_bit,
+				vga_obstacle1_layer1_bit, vga_obstacle1_layer2_bit, vga_obstacle1_layer3_bit,
+				vga_obstacle2_layer1_bit, vga_obstacle2_layer2_bit, vga_obstacle2_layer3_bit,
+				vga_obstacle3_layer1_bit, vga_obstacle3_layer2_bit, vga_obstacle3_layer3_bit,
+				tile_bit,vga_tile_color)
    begin
-		if 	car_on='1' and vga_car_inv_bit='1' then
+		if 	car_on='1' and vga_car_layer1_bit='1' then
+				r_out_reg <= X"00";
+				g_out_reg <= X"00";
+				b_out_reg <= X"00";
+      elsif car_on='1' and vga_car_layer2_bit='1' then
+				r_out_reg <= X"FF";
+				g_out_reg <= X"00";
+				b_out_reg <= X"00";
+		elsif car_on='1' and vga_car_layer3_bit='1' then
 				r_out_reg <= X"A9";
 				g_out_reg <= X"A9";
 				b_out_reg <= X"A9";
-      elsif car_on='1' and vga_car_bit='1' then
----- old color DodgerBlue X"1E",X"90",X"FF"
+		elsif vga_obstacle1_layer1_bit = '1' then
 				r_out_reg <= X"00";
 				g_out_reg <= X"00";
+				b_out_reg <= X"00";
+		elsif vga_obstacle1_layer2_bit = '1' then
+				r_out_reg <= X"FF";
+				g_out_reg <= X"B7";
+				b_out_reg <= X"00";
+		elsif vga_obstacle1_layer3_bit = '1' then
+				r_out_reg <= X"3F";
+				g_out_reg <= X"B2";
 				b_out_reg <= X"FF";
---		elsif obstacle1_on = '1' and vga_obstacle1_bit = '1' then
-		elsif vga_obstacle1_inv_bit = '1' then
-				r_out_reg <= X"FF";
-				g_out_reg <= X"8C";
-				b_out_reg <= X"00";
-		elsif vga_obstacle1_bit = '1' then
-				r_out_reg <= X"FF";
-				g_out_reg <= X"D7";
-				b_out_reg <= X"00";
-		elsif vga_obstacle2_bit = '1' then
-				r_out_reg <= X"FF";
+		elsif vga_obstacle2_layer1_bit = '1' then
+				r_out_reg <= X"00";
 				g_out_reg <= X"00";
-				b_out_reg <= X"FF";
-		elsif vga_obstacle2_inv_bit = '1' then
-				r_out_reg <= X"99";
-				g_out_reg <= X"66";
-				b_out_reg <= X"CC";
-		elsif vga_obstacle3_inv_bit = '1' then
+				b_out_reg <= X"00";
+		elsif vga_obstacle2_layer2_bit = '1' then
+				r_out_reg <= X"F0";
+				g_out_reg <= X"E6";
+				b_out_reg <= X"8C";
+		elsif vga_obstacle2_layer3_bit = '1' then
 				r_out_reg <= X"80";
 				g_out_reg <= X"80";
+				b_out_reg <= X"80";
+		elsif vga_obstacle3_layer1_bit = '1' then
+				r_out_reg <= X"00";
+				g_out_reg <= X"00";
 				b_out_reg <= X"00";
-		elsif vga_obstacle3_bit = '1' then
-				r_out_reg <= X"55";
-				g_out_reg <= X"6B";
-				b_out_reg <= X"2F";
+		elsif vga_obstacle3_layer2_bit = '1' then
+				r_out_reg <= X"4A";
+				g_out_reg <= X"A3";
+				b_out_reg <= X"32";
+		elsif vga_obstacle3_layer3_bit = '1' then
+				r_out_reg <= X"2C";
+				g_out_reg <= X"6A";
+				b_out_reg <= X"1B";
 		elsif middle_line_on = '1' then
 				r_out_reg <= "11110101";
 				g_out_reg <= "11110101";
@@ -591,11 +588,6 @@ begin
 		obstacle3_y_next <= obstacle3_y_reg; -- no move
 		obstacle3_x_next <= obstacle3_x_reg; -- no move
       if refr_tick='1' then
---         if btn_i(1)='1' and car_x_right<(MAX_X-1-car_velocity) then
---            car_y_next <= car_y_reg + car_velocity; -- move down
---         elsif btn_i(0)='1' and car_x_left > car_velocity then
---            car_y_next <= car_y_reg - car_velocity; -- move up
---         end if;
 				  car_y_next <= unsigned(car_x_input);
 				  obstacle1_x_next <= unsigned(obstacle1_x_input);
 				  obstacle1_y_next <= unsigned(obstacle1_y_input);
